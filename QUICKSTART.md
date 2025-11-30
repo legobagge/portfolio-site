@@ -153,33 +153,3 @@ website:
 1. Add `CNAME` file with your domain
 2. Configure DNS with your provider
 3. Update `site-url` in `_quarto.yml`
-
-## Troubleshooting
-
-### Site not updating?
-- Check GitHub Actions status
-- Clear browser cache
-- Verify Pages settings
-
-### Render errors?
-```bash
-quarto clean
-quarto render
-```
-
-### Need help?
-- Quarto docs: https://quarto.org/docs/
-- GitHub Pages: https://docs.github.com/pages
-- Open an issue in this repository
-
-## Next Steps
-
-- [ ] Customize colors and styling
-- [ ] Write your first blog post
-- [ ] Add your projects
-- [ ] Share your portfolio URL
-- [ ] Connect with the community
-
----
-
-Happy publishing! 🚀
