@@ -1,0 +1,131 @@
+---
+title: "Projects"
+page-layout: full
+listing:
+  contents: "*.qmd"
+  type: grid
+  grid-columns: 2
+  sort: "date desc"
+  categories: true
+  fields: [title, description, date, categories]
+---
+
+# Featured Projects
+
+Explore my portfolio of AI, data engineering, and analytical projects. Each project demonstrates practical applications of machine learning, Bayesian inference, or econometric methods.
+
+<div class="project-grid" style="margin-top: 3rem;">
+
+<div class="project-card">
+  <div class="project-content">
+    <h3>Deep Learning for Time Series</h3>
+    <p>Comprehensive comparison of LSTM, GRU, Transformer, and Prophet models for multi-horizon forecasting across different domains.</p>
+    <p style="color: var(--text-secondary); font-size: 0.9rem;">Python • PyTorch • TensorFlow • Forecasting</p>
+    <a href="#" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">View Project →</a>
+  </div>
+</div>
+
+<div class="project-card">
+  <div class="project-content">
+    <h3>Bayesian Hierarchical Models</h3>
+    <p>Implementation of hierarchical Bayesian models for mixed effects analysis using PyMC and Stan. Applied to real-world marketing mix modeling.</p>
+    <p style="color: var(--text-secondary); font-size: 0.9rem;">PyMC • Stan • Bayesian Stats • Marketing</p>
+    <a href="#" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">View Project →</a>
+  </div>
+</div>
+
+<div class="project-card">
+  <div class="project-content">
+    <h3>Real-Time ML Pipeline</h3>
+    <p>End-to-end ML system with feature engineering, model training, and serving infrastructure. Handles 10K+ predictions per second.</p>
+    <p style="color: var(--text-secondary); font-size: 0.9rem;">FastAPI • MLflow • Redis • Docker • Kubernetes</p>
+    <a href="#" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">View Project →</a>
+  </div>
+</div>
+
+<div class="project-card">
+  <div class="project-content">
+    <h3>Causal Impact Analysis</h3>
+    <p>Econometric analysis using regression discontinuity design and synthetic controls to measure policy interventions.</p>
+    <p style="color: var(--text-secondary); font-size: 0.9rem;">R • Python • CausalImpact • DiD • RDD</p>
+    <a href="#" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">View Project →</a>
+  </div>
+</div>
+
+<div class="project-card">
+  <div class="project-content">
+    <h3>NLP Sentiment Analysis</h3>
+    <p>Fine-tuned transformer models (BERT, RoBERTa) for domain-specific sentiment classification with active learning.</p>
+    <p style="color: var(--text-secondary); font-size: 0.9rem;">Transformers • HuggingFace • PyTorch • NLP</p>
+    <a href="#" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">View Project →</a>
+  </div>
+</div>
+
+<div class="project-card">
+  <div class="project-content">
+    <h3>Data Warehouse Modernization</h3>
+    <p>Migrated legacy ETL to modern dbt-based transformation layer with data quality monitoring and automated testing.</p>
+    <p style="color: var(--text-secondary); font-size: 0.9rem;">dbt • Airflow • Snowflake • Great Expectations</p>
+    <a href="#" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">View Project →</a>
+  </div>
+</div>
+
+</div>
+
+## Technologies & Tools
+
+<div style="margin-top: 3rem;">
+
+### Programming Languages
+<div class="project-tags">
+  <span class="tag">Python</span>
+  <span class="tag">R</span>
+  <span class="tag">SQL</span>
+  <span class="tag">Julia</span>
+  <span class="tag">Scala</span>
+</div>
+
+### ML & AI Frameworks
+<div class="project-tags">
+  <span class="tag">PyTorch</span>
+  <span class="tag">TensorFlow</span>
+  <span class="tag">scikit-learn</span>
+  <span class="tag">XGBoost</span>
+  <span class="tag">LightGBM</span>
+  <span class="tag">Transformers</span>
+  <span class="tag">OpenAI API</span>
+</div>
+
+### Bayesian & Statistical Tools
+<div class="project-tags">
+  <span class="tag">PyMC</span>
+  <span class="tag">Stan</span>
+  <span class="tag">NumPyro</span>
+  <span class="tag">statsmodels</span>
+  <span class="tag">scipy</span>
+  <span class="tag">Prophet</span>
+</div>
+
+### Data Engineering
+<div class="project-tags">
+  <span class="tag">dbt</span>
+  <span class="tag">Airflow</span>
+  <span class="tag">Spark</span>
+  <span class="tag">Kafka</span>
+  <span class="tag">Snowflake</span>
+  <span class="tag">BigQuery</span>
+  <span class="tag">Redshift</span>
+</div>
+
+### MLOps & Infrastructure
+<div class="project-tags">
+  <span class="tag">Docker</span>
+  <span class="tag">Kubernetes</span>
+  <span class="tag">MLflow</span>
+  <span class="tag">FastAPI</span>
+  <span class="tag">AWS</span>
+  <span class="tag">GCP</span>
+  <span class="tag">Azure</span>
+</div>
+
+</div>

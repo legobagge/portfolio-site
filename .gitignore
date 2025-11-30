@@ -1,0 +1,51 @@
+# Quarto
+/.quarto/
+/_site/
+/docs/.quarto/
+
+# R
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.ipynb_checkpoints
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Node
+node_modules/
+package-lock.json
+
+# Environment
+.env
+.env.local
+
+# Build outputs
+*.log
+*.aux
+*.out
+*.toc

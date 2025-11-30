@@ -1,0 +1,143 @@
+---
+title: "About Me"
+page-layout: full
+---
+
+<div style="max-width: 900px; margin: 0 auto;">
+
+## Hi, I'm [Your Name] 👋
+
+I'm a data scientist and engineer specializing in the intersection of AI, analytics engineering, and statistical modeling. I'm passionate about building production-grade machine learning systems and applying rigorous statistical methods to solve complex business problems.
+
+### Background
+
+<div class="card" style="margin: 2rem 0;">
+
+My journey into data science began with a fascination for how probabilistic reasoning could quantify uncertainty in decision-making. Over the years, I've developed expertise across:
+
+- **Machine Learning Engineering**: Designing and deploying scalable ML systems that serve millions of predictions
+- **Bayesian Statistics**: Building probabilistic models for decision-making under uncertainty
+- **Causal Inference**: Applying econometric methods to measure true causal effects
+- **Data Architecture**: Creating robust data pipelines and transformation workflows
+
+</div>
+
+### Technical Expertise
+
+**Languages & Core Tools**
+<div class="project-tags">
+  <span class="tag">Python</span>
+  <span class="tag">R</span>
+  <span class="tag">SQL</span>
+  <span class="tag">Scala</span>
+  <span class="tag">Julia</span>
+</div>
+
+**Machine Learning**
+<div class="project-tags">
+  <span class="tag">PyTorch</span>
+  <span class="tag">TensorFlow</span>
+  <span class="tag">Scikit-learn</span>
+  <span class="tag">XGBoost</span>
+  <span class="tag">Transformers</span>
+  <span class="tag">MLflow</span>
+</div>
+
+**Statistical Modeling**
+<div class="project-tags">
+  <span class="tag">PyMC</span>
+  <span class="tag">Stan</span>
+  <span class="tag">statsmodels</span>
+  <span class="tag">Prophet</span>
+  <span class="tag">CausalImpact</span>
+</div>
+
+**Data Engineering**
+<div class="project-tags">
+  <span class="tag">dbt</span>
+  <span class="tag">Airflow</span>
+  <span class="tag">Spark</span>
+  <span class="tag">Kafka</span>
+  <span class="tag">Snowflake</span>
+  <span class="tag">BigQuery</span>
+</div>
+
+### Current Focus
+
+I'm currently exploring:
+
+- **Causal ML**: Combining machine learning with causal inference for heterogeneous treatment effect estimation
+- **LLM Applications**: Building practical applications with large language models and RAG systems
+- **MLOps**: Implementing best practices for ML model deployment and monitoring
+- **Probabilistic Programming**: Advanced Bayesian modeling techniques for complex hierarchical structures
+
+### Education
+
+**[Your Degree]** in [Your Field]  
+*[University Name]*, [Year]
+
+Relevant coursework: Machine Learning, Bayesian Statistics, Econometrics, Time Series Analysis, Optimization
+
+### Work Experience
+
+<div class="card">
+
+**Senior Data Scientist** @ [Company Name]  
+*[Dates]*
+
+- Led development of ML-powered recommendation system serving 10M+ users
+- Built Bayesian A/B testing framework reducing experiment time by 40%
+- Designed real-time feature engineering pipeline processing 100K events/second
+- Mentored junior data scientists on statistical modeling and production ML
+
+</div>
+
+<div class="card">
+
+**Analytics Engineer** @ [Company Name]  
+*[Dates]*
+
+- Architected data warehouse transformation layer using dbt
+- Implemented automated data quality monitoring and anomaly detection
+- Developed causal inference framework for marketing attribution
+- Reduced data pipeline processing time by 60% through optimization
+
+</div>
+
+### Publications & Talks
+
+- **"Bayesian Methods for A/B Testing"** - Data Science Conference 2024
+- **"Causal Inference at Scale"** - PyData Global 2023
+- **"Building Production ML Systems"** - MLOps World 2023
+
+### Let's Connect
+
+I'm always interested in discussing data science, machine learning, and statistical modeling. Feel free to reach out:
+
+- **Email**: [your.email@example.com](mailto:your.email@example.com)
+- **GitHub**: [@yourusername](https://github.com/yourusername)
+- **LinkedIn**: [/in/yourprofile](https://linkedin.com/in/yourprofile)
+- **Twitter**: [@yourhandle](https://twitter.com/yourhandle)
+
+### This Website
+
+This portfolio is built with [Quarto](https://quarto.org), an open-source scientific and technical publishing system. The site is hosted on GitHub Pages and features a custom design focused on readability and technical content presentation.
+
+All blog posts include reproducible code examples, and most projects have associated GitHub repositories with full implementation details.
+
+</div>
+
+<style>
+.card h3 {
+  color: var(--accent-blue);
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  margin-bottom: 0.5rem;
+}
+
+.project-tags {
+  margin: 1rem 0;
+}
+</style>

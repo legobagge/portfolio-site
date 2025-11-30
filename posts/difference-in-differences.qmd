@@ -1,0 +1,207 @@
+---
+title: "Causal Inference in Practice: Difference-in-Differences with Python"
+description: "A step-by-step guide to estimating causal effects using DiD methodology"
+author: "Your Name"
+date: "2024-10-28"
+categories: [Econometrics, Causal Inference, Python]
+image: "did-thumbnail.png"
+draft: false
+---
+
+## The Causal Question
+
+How do we measure the true impact of an intervention when we can't run a randomized experiment? Difference-in-differences (DiD) offers a powerful quasi-experimental approach.
+
+## When to Use DiD
+
+DiD is appropriate when:
+
+1. You have a **treatment group** and **control group**
+2. You observe both groups **before and after** the intervention
+3. The **parallel trends assumption** holds (more on this later)
+
+## A Real-World Example
+
+Suppose a state implements a new job training program. We want to estimate its causal effect on employment rates.
+
+### Setting Up the Data
+
+```python
+import numpy as np
+import pandas as pd
+import statsmodels.formula.api as smf
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Simulate data
+np.random.seed(123)
+n = 1000
+
+df = pd.DataFrame({
+    'state': np.random.choice(['treated', 'control'], n),
+    'year': np.random.choice([2018, 2019, 2020, 2021], n)
+})
+
+# Treatment occurs in 2020 for treated states
+df['post'] = (df['year'] >= 2020).astype(int)
+df['treated'] = (df['state'] == 'treated').astype(int)
+
+# True causal effect = 5 percentage points
+treatment_effect = 5
+
+# Generate employment rates with parallel trends pre-treatment
+df['employment_rate'] = (
+    60 +  # Baseline
+    2 * df['year'] - 2 * 2018 +  # Common time trend
+    5 * df['treated'] +  # Baseline difference between groups
+    treatment_effect * df['treated'] * df['post'] +  # CAUSAL EFFECT
+    np.random.normal(0, 3, n)  # Noise
+)
+```
+
+### Visualizing Parallel Trends
+
+```python
+# Group means by year and treatment status
+means = df.groupby(['year', 'state'])['employment_rate'].mean().reset_index()
+
+plt.figure(figsize=(10, 6))
+for state in ['treated', 'control']:
+    data = means[means['state'] == state]
+    plt.plot(data['year'], data['employment_rate'], 
+             marker='o', label=state, linewidth=2)
+
+plt.axvline(x=2019.5, color='red', linestyle='--', 
+            label='Treatment Start', alpha=0.7)
+plt.xlabel('Year', fontsize=12)
+plt.ylabel('Employment Rate (%)', fontsize=12)
+plt.title('Parallel Trends Check', fontsize=14)
+plt.legend()
+plt.grid(alpha=0.3)
+plt.show()
+```
+
+## Estimating the DiD Effect
+
+The classic DiD estimator:
+
+$$
+\hat{\delta}_{DiD} = (\bar{Y}_{treated,post} - \bar{Y}_{treated,pre}) - (\bar{Y}_{control,post} - \bar{Y}_{control,pre})
+$$
+
+### Regression Approach
+
+```python
+# DiD regression
+model = smf.ols(
+    'employment_rate ~ treated * post + C(year)',
+    data=df
+).fit(cov_type='HC1')  # Robust standard errors
+
+print(model.summary())
+
+# The coefficient on treated:post is our DiD estimate
+did_effect = model.params['treated:post']
+print(f"\nEstimated Treatment Effect: {did_effect:.2f} percentage points")
+```
+
+## Advanced DiD: Multiple Time Periods
+
+For multiple treatment periods, we use the **two-way fixed effects** (TWFE) model:
+
+```python
+# Add state and year fixed effects
+model_twfe = smf.ols(
+    'employment_rate ~ treated:post + C(state) + C(year)',
+    data=df
+).fit(cov_type='cluster', cov_kwds={'groups': df['state']})
+
+print(model_twfe.summary())
+```
+
+## Testing Parallel Trends
+
+A crucial assumption! We can test it using **event study** specification:
+
+```python
+# Create relative time to treatment
+df['rel_year'] = df['year'] - 2020
+df['rel_year'] = df['rel_year'] * df['treated']
+
+# Event study regression (omit t=-1 as base period)
+event_study = smf.ols(
+    '''employment_rate ~ C(rel_year, Treatment(-1)) + 
+       C(state) + C(year)''',
+    data=df
+).fit(cov_type='cluster', cov_kwds={'groups': df['state']})
+
+# Plot event study coefficients
+coeffs = event_study.params.filter(like='rel_year')
+conf_int = event_study.conf_int().filter(like='rel_year', axis=0)
+
+plt.figure(figsize=(10, 6))
+plt.errorbar(range(len(coeffs)), coeffs.values, 
+             yerr=[coeffs.values - conf_int[0].values,
+                   conf_int[1].values - coeffs.values],
+             fmt='o', capsize=5, capthick=2)
+plt.axhline(y=0, color='red', linestyle='--', alpha=0.7)
+plt.axvline(x=len([x for x in coeffs.index if '-' in x]), 
+            color='green', linestyle='--', alpha=0.7)
+plt.xlabel('Periods Relative to Treatment')
+plt.ylabel('Estimated Effect')
+plt.title('Event Study Plot')
+plt.grid(alpha=0.3)
+plt.show()
+```
+
+## Common Pitfalls
+
+1. **Violation of Parallel Trends**: Always test pre-treatment trends
+2. **Treatment Effect Heterogeneity**: TWFE can be biased with staggered adoption
+3. **Spillover Effects**: Control group shouldn't be affected by treatment
+4. **Anticipation**: Treatment effects shouldn't begin before official start
+
+## Modern Alternatives
+
+Recent econometric research has developed improved DiD estimators:
+
+- **Callaway & Sant'Anna (2021)**: Robust to heterogeneous effects
+- **Sun & Abraham (2021)**: Interaction-weighted estimator
+- **Borusyak et al. (2021)**: Imputation-based approach
+
+```python
+# Example using did2s package
+from did2s import did2s
+
+# Staggered DiD with heterogeneous effects
+results = did2s(
+    df=df,
+    yname='employment_rate',
+    first_stage='~ 0 | state + year',
+    second_stage='~ i(rel_year)',
+    treatment='treated',
+    cluster='state'
+)
+```
+
+## Practical Recommendations
+
+1. **Always visualize** your data before running regressions
+2. **Test parallel trends** rigorously in pre-treatment periods
+3. **Use robust/clustered** standard errors
+4. **Consider placebo tests** with fake treatment dates
+5. **Report effect sizes** with confidence intervals
+
+## Conclusion
+
+Difference-in-differences remains one of the most powerful tools for causal inference in observational settings. Combined with modern estimators and careful testing of assumptions, it provides credible estimates of treatment effects.
+
+## References
+
+- Angrist, J. D., & Pischke, J. S. (2008). *Mostly Harmless Econometrics*
+- Cunningham, S. (2021). *Causal Inference: The Mixtape*
+- Callaway, B., & Sant'Anna, P. H. (2021). Difference-in-differences with multiple time periods
+
+---
+
+**Code**: Complete implementation on [GitHub](https://github.com/yourusername/causal-inference-examples)

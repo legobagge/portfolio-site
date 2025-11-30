@@ -1,0 +1,129 @@
+---
+title: "Introduction to Bayesian Hierarchical Models with PyMC"
+description: "A practical guide to building hierarchical Bayesian models for marketing mix modeling"
+author: "Your Name"
+date: "2024-11-15"
+categories: [Bayesian Statistics, PyMC, Python, Tutorial]
+image: "bayesian-thumbnail.png"
+draft: false
+---
+
+## Introduction
+
+Hierarchical Bayesian models are powerful tools for analyzing data with nested or grouped structure. In this post, we'll explore how to build a hierarchical model for marketing mix modeling using PyMC.
+
+## Why Hierarchical Models?
+
+When dealing with data that has natural groupings (e.g., customers within regions, experiments across time periods), hierarchical models offer several advantages:
+
+- **Partial Pooling**: Balance between complete pooling (ignoring groups) and no pooling (treating groups independently)
+- **Shrinkage**: Regularization towards group-level means prevents overfitting
+- **Uncertainty Quantification**: Full posterior distributions for all parameters
+
+## A Simple Example
+
+Let's build a hierarchical model for understanding how marketing spend affects conversions across different regions.
+
+```python
+import pymc as pm
+import numpy as np
+import pandas as pd
+import arviz as az
+
+# Generate synthetic data
+np.random.seed(42)
+n_regions = 10
+n_observations = 50
+
+data = []
+for region in range(n_regions):
+    # Each region has different baseline and sensitivity to marketing
+    baseline = np.random.normal(100, 20)
+    sensitivity = np.random.uniform(0.5, 2.0)
+    
+    spend = np.random.uniform(0, 100, n_observations)
+    conversions = baseline + sensitivity * spend + np.random.normal(0, 10, n_observations)
+    
+    df_region = pd.DataFrame({
+        'region': region,
+        'spend': spend,
+        'conversions': conversions
+    })
+    data.append(df_region)
+
+df = pd.concat(data, ignore_index=True)
+```
+
+## Building the Hierarchical Model
+
+```python
+with pm.Model() as hierarchical_model:
+    # Hyperpriors for group-level parameters
+    mu_baseline = pm.Normal('mu_baseline', mu=100, sigma=50)
+    sigma_baseline = pm.HalfNormal('sigma_baseline', sigma=20)
+    
+    mu_sensitivity = pm.Normal('mu_sensitivity', mu=1, sigma=1)
+    sigma_sensitivity = pm.HalfNormal('sigma_sensitivity', sigma=0.5)
+    
+    # Region-specific parameters (partial pooling)
+    baseline = pm.Normal('baseline', mu=mu_baseline, sigma=sigma_baseline, 
+                        shape=n_regions)
+    sensitivity = pm.Normal('sensitivity', mu=mu_sensitivity, sigma=sigma_sensitivity, 
+                           shape=n_regions)
+    
+    # Model error
+    sigma = pm.HalfNormal('sigma', sigma=10)
+    
+    # Expected value
+    region_idx = df['region'].values
+    mu = baseline[region_idx] + sensitivity[region_idx] * df['spend'].values
+    
+    # Likelihood
+    y = pm.Normal('y', mu=mu, sigma=sigma, observed=df['conversions'].values)
+    
+    # Sample from posterior
+    trace = pm.sample(2000, tune=1000, return_inferencedata=True, random_seed=42)
+```
+
+## Analyzing the Results
+
+```python
+# Summarize posterior distributions
+print(az.summary(trace, var_names=['mu_baseline', 'mu_sensitivity', 
+                                   'sigma_baseline', 'sigma_sensitivity']))
+
+# Plot posterior distributions
+az.plot_posterior(trace, var_names=['mu_baseline', 'mu_sensitivity'])
+
+# Region-specific effects
+az.plot_forest(trace, var_names=['baseline', 'sensitivity'], combined=True)
+```
+
+## Key Insights
+
+1. **Shrinkage in Action**: Regions with fewer observations get pulled toward the group mean
+2. **Uncertainty Quantification**: Wide credible intervals indicate we need more data
+3. **Heterogeneity**: We can quantify how much regions differ from each other
+
+## Extensions
+
+This basic framework can be extended to:
+
+- Multiple marketing channels (TV, digital, print)
+- Time-varying effects with autoregressive components
+- Non-linear relationships using splines or Gaussian processes
+- Seasonal patterns with Fourier decomposition
+
+## Conclusion
+
+Hierarchical Bayesian models provide a principled framework for pooling information across groups while respecting their individual characteristics. PyMC makes implementation straightforward with its intuitive syntax and powerful sampling algorithms.
+
+## Further Reading
+
+- [PyMC Documentation](https://www.pymc.io/)
+- *Bayesian Data Analysis* by Gelman et al.
+- *Statistical Rethinking* by Richard McElreath
+
+---
+
+**Code**: Full implementation available on [GitHub](https://github.com/yourusername/bayesian-mmm)

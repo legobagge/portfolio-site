@@ -1,0 +1,15 @@
+[
+  {
+    "listing": "/posts/index.html",
+    "items": [
+      "/posts/bayesian-hierarchical-models.html",
+      "/posts/difference-in-differences.html"
+    ]
+  },
+  {
+    "listing": "/projects/index.html",
+    "items": [
+      "/projects/ml-pipeline.html"
+    ]
+  }
+]

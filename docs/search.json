@@ -1,0 +1,702 @@
+[
+  {
+    "objectID": "QUICKSTART.html",
+    "href": "QUICKSTART.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "QUICKSTART.html#step-1-install-quarto",
+    "href": "QUICKSTART.html#step-1-install-quarto",
+    "title": "",
+    "section": "Step 1: Install Quarto",
+    "text": "Step 1: Install Quarto\n\nmacOS\nbrew install quarto\n\n\nLinux (Ubuntu/Debian)\nwget https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.554/quarto-1.4.554-linux-amd64.deb\nsudo dpkg -i quarto-1.4.554-linux-amd64.deb\n\n\nWindows\nDownload installer from: https://quarto.org/docs/get-started/"
+  },
+  {
+    "objectID": "QUICKSTART.html#step-2-customize-your-site",
+    "href": "QUICKSTART.html#step-2-customize-your-site",
+    "title": "",
+    "section": "Step 2: Customize Your Site",
+    "text": "Step 2: Customize Your Site\n\nEssential Changes\n\nEdit _quarto.yml\nwebsite:\n  title: \"Your Name - Portfolio\"  # Change this\n\nnavbar:\n  right:\n    - icon: github\n      href: https://github.com/YOUR_USERNAME  # Update\n    - icon: linkedin\n      href: https://linkedin.com/in/YOUR_PROFILE  # Update\n    - icon: envelope\n      href: mailto:YOUR_EMAIL@example.com  # Update\nUpdate about/index.qmd\n\nAdd your name, background, and experience\nUpdate skills and technologies\nAdd your contact information\n\nCustomize index.qmd\n\nEdit hero title and subtitle\nUpdate featured projects\nModify skill descriptions"
+  },
+  {
+    "objectID": "QUICKSTART.html#step-3-preview-locally",
+    "href": "QUICKSTART.html#step-3-preview-locally",
+    "title": "",
+    "section": "Step 3: Preview Locally",
+    "text": "Step 3: Preview Locally\ncd portfolio-site\nquarto preview\nVisit http://localhost:4200 to see your site!"
+  },
+  {
+    "objectID": "QUICKSTART.html#step-4-deploy-to-github-pages",
+    "href": "QUICKSTART.html#step-4-deploy-to-github-pages",
+    "title": "",
+    "section": "Step 4: Deploy to GitHub Pages",
+    "text": "Step 4: Deploy to GitHub Pages\n\nQuick Deploy\n\nCreate GitHub repository\ngit init\ngit add .\ngit commit -m \"Initial commit\"\ngit remote add origin https://github.com/YOUR_USERNAME/portfolio-site.git\ngit push -u origin main\nEnable GitHub Pages\n\nGo to repository Settings → Pages\nSource: Select “GitHub Actions”\nThe site will automatically deploy on push to main\n\nAccess your site\n\nYour site will be live at: https://YOUR_USERNAME.github.io/portfolio-site"
+  },
+  {
+    "objectID": "QUICKSTART.html#step-5-add-content",
+    "href": "QUICKSTART.html#step-5-add-content",
+    "title": "",
+    "section": "Step 5: Add Content",
+    "text": "Step 5: Add Content\n\nCreate a Blog Post\n# Create new post file\ntouch posts/my-first-post.qmd\nAdd frontmatter and content:\n---\ntitle: \"My First Post\"\ndescription: \"Getting started with my portfolio\"\ndate: \"2024-11-30\"\ncategories: [Tutorial, Data Science]\n---\n\n## Hello World\n\nYour content here...\n\n\nCreate a Project Page\n# Create new project file\ntouch projects/my-project.qmd\nAdd project details with frontmatter similar to blog posts."
+  },
+  {
+    "objectID": "QUICKSTART.html#common-workflows",
+    "href": "QUICKSTART.html#common-workflows",
+    "title": "",
+    "section": "Common Workflows",
+    "text": "Common Workflows\n\nLocal Development\n# Preview site (auto-reload on changes)\nquarto preview\n\n# Render site\nquarto render\n\n# Clean build artifacts\nquarto clean\n\n\nPublishing Changes\ngit add .\ngit commit -m \"Update content\"\ngit push\n# Site automatically rebuilds via GitHub Actions"
+  },
+  {
+    "objectID": "QUICKSTART.html#customization-tips",
+    "href": "QUICKSTART.html#customization-tips",
+    "title": "",
+    "section": "Customization Tips",
+    "text": "Customization Tips\n\nChange Colors\nEdit assets/css/styles.css:\n:root {\n  --accent-blue: #YOUR_COLOR;\n  --accent-teal: #YOUR_COLOR;\n}\n\n\nAdd Google Analytics\nIn _quarto.yml:\nwebsite:\n  google-analytics: \"G-XXXXXXXXXX\"\n\n\nCustom Domain\n\nAdd CNAME file with your domain\nConfigure DNS with your provider\nUpdate site-url in _quarto.yml"
+  },
+  {
+    "objectID": "QUICKSTART.html#troubleshooting",
+    "href": "QUICKSTART.html#troubleshooting",
+    "title": "",
+    "section": "Troubleshooting",
+    "text": "Troubleshooting\n\nSite not updating?\n\nCheck GitHub Actions status\nClear browser cache\nVerify Pages settings\n\n\n\nRender errors?\nquarto clean\nquarto render\n\n\nNeed help?\n\nQuarto docs: https://quarto.org/docs/\nGitHub Pages: https://docs.github.com/pages\nOpen an issue in this repository"
+  },
+  {
+    "objectID": "QUICKSTART.html#next-steps",
+    "href": "QUICKSTART.html#next-steps",
+    "title": "",
+    "section": "Next Steps",
+    "text": "Next Steps\n\nCustomize colors and styling\nWrite your first blog post\nAdd your projects\nShare your portfolio URL\nConnect with the community\n\n\nHappy publishing! 🚀"
+  },
+  {
+    "objectID": "projects/ml-pipeline.html",
+    "href": "projects/ml-pipeline.html",
+    "title": "Real-Time ML Prediction Pipeline",
+    "section": "",
+    "text": "Built an end-to-end machine learning pipeline capable of serving 10,000+ predictions per second with sub-100ms latency. The system handles feature engineering, model inference, and monitoring in a production environment."
+  },
+  {
+    "objectID": "projects/ml-pipeline.html#overview",
+    "href": "projects/ml-pipeline.html#overview",
+    "title": "Real-Time ML Prediction Pipeline",
+    "section": "",
+    "text": "Built an end-to-end machine learning pipeline capable of serving 10,000+ predictions per second with sub-100ms latency. The system handles feature engineering, model inference, and monitoring in a production environment."
+  },
+  {
+    "objectID": "projects/ml-pipeline.html#architecture",
+    "href": "projects/ml-pipeline.html#architecture",
+    "title": "Real-Time ML Prediction Pipeline",
+    "section": "Architecture",
+    "text": "Architecture\n┌─────────────┐      ┌──────────────┐      ┌─────────────┐\n│   Client    │─────▶│  API Gateway │─────▶│   FastAPI   │\n│ Application │      │   (Nginx)    │      │   Service   │\n└─────────────┘      └──────────────┘      └──────┬──────┘\n                                                   │\n                     ┌─────────────────────────────┼─────────────┐\n                     │                             │             │\n                     ▼                             ▼             ▼\n              ┌─────────────┐             ┌─────────────┐  ┌─────────┐\n              │   Redis     │             │   Model     │  │  MLflow │\n              │   Cache     │             │  Registry   │  │Tracking │\n              └─────────────┘             └─────────────┘  └─────────┘\n                                                   │\n                                                   ▼\n                                          ┌─────────────┐\n                                          │ Prometheus/ │\n                                          │  Grafana    │\n                                          └─────────────┘"
+  },
+  {
+    "objectID": "projects/ml-pipeline.html#key-features",
+    "href": "projects/ml-pipeline.html#key-features",
+    "title": "Real-Time ML Prediction Pipeline",
+    "section": "Key Features",
+    "text": "Key Features\n\nLow Latency: Sub-100ms p99 latency through intelligent caching and async processing\nHigh Throughput: Handles 10K+ requests/second with horizontal scaling\nModel Versioning: Seamless A/B testing and gradual rollouts using MLflow\nMonitoring: Real-time metrics, drift detection, and alerting\nFault Tolerance: Circuit breakers, retries, and graceful degradation"
+  },
+  {
+    "objectID": "projects/ml-pipeline.html#technology-stack",
+    "href": "projects/ml-pipeline.html#technology-stack",
+    "title": "Real-Time ML Prediction Pipeline",
+    "section": "Technology Stack",
+    "text": "Technology Stack\n\nAPI Framework: FastAPI with async/await for concurrent request handling\nCaching: Redis for feature and prediction caching\nModel Serving: ONNX Runtime for optimized inference\nContainerization: Docker + Docker Compose\nOrchestration: Kubernetes with Horizontal Pod Autoscaling\nMonitoring: Prometheus + Grafana + custom dashboards\nCI/CD: GitHub Actions for automated testing and deployment"
+  },
+  {
+    "objectID": "projects/ml-pipeline.html#implementation-highlights",
+    "href": "projects/ml-pipeline.html#implementation-highlights",
+    "title": "Real-Time ML Prediction Pipeline",
+    "section": "Implementation Highlights",
+    "text": "Implementation Highlights\n\n1. FastAPI Service\nfrom fastapi import FastAPI, HTTPException\nfrom pydantic import BaseModel\nimport redis\nimport numpy as np\nimport onnxruntime as ort\nfrom typing import List, Dict\nimport asyncio\n\napp = FastAPI(title=\"ML Prediction Service\")\n\n# Initialize connections\nredis_client = redis.Redis(host='redis', port=6379, decode_responses=True)\nsession = ort.InferenceSession(\"models/model.onnx\")\n\nclass PredictionRequest(BaseModel):\n    features: List[float]\n    user_id: str\n\nclass PredictionResponse(BaseModel):\n    prediction: float\n    probability: float\n    model_version: str\n\n@app.post(\"/predict\", response_model=PredictionResponse)\nasync def predict(request: PredictionRequest):\n    # Check cache first\n    cache_key = f\"pred:{request.user_id}\"\n    cached = redis_client.get(cache_key)\n    \n    if cached:\n        return PredictionResponse(**eval(cached))\n    \n    # Feature engineering\n    features = await engineer_features(request.features)\n    \n    # Model inference\n    input_name = session.get_inputs()[0].name\n    output = session.run(None, {input_name: features})[0]\n    \n    result = {\n        \"prediction\": float(output[0]),\n        \"probability\": float(output[1]),\n        \"model_version\": \"v2.1.0\"\n    }\n    \n    # Cache result (5 minute TTL)\n    redis_client.setex(cache_key, 300, str(result))\n    \n    return PredictionResponse(**result)\n\nasync def engineer_features(raw_features: List[float]) -&gt; np.ndarray:\n    \"\"\"Async feature engineering pipeline\"\"\"\n    # Simulate async operations (DB lookups, external APIs)\n    await asyncio.sleep(0.01)\n    \n    # Feature transformations\n    features = np.array(raw_features).reshape(1, -1)\n    # Add engineered features\n    features = np.concatenate([features, \n                               features**2, \n                               np.log1p(features)], axis=1)\n    return features.astype(np.float32)\n\n@app.get(\"/health\")\nasync def health_check():\n    return {\"status\": \"healthy\", \"model_loaded\": True}\n\n\n2. Docker Configuration\nFROM python:3.10-slim\n\nWORKDIR /app\n\n# Install dependencies\nCOPY requirements.txt .\nRUN pip install --no-cache-dir -r requirements.txt\n\n# Copy application code\nCOPY . .\n\n# Expose port\nEXPOSE 8000\n\n# Run application\nCMD [\"uvicorn\", \"main:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\", \"--workers\", \"4\"]\n\n\n3. Kubernetes Deployment\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: ml-prediction-service\nspec:\n  replicas: 3\n  selector:\n    matchLabels:\n      app: ml-prediction\n  template:\n    metadata:\n      labels:\n        app: ml-prediction\n    spec:\n      containers:\n      - name: api\n        image: ml-prediction:v2.1.0\n        ports:\n        - containerPort: 8000\n        resources:\n          requests:\n            memory: \"512Mi\"\n            cpu: \"500m\"\n          limits:\n            memory: \"1Gi\"\n            cpu: \"1000m\"\n        livenessProbe:\n          httpGet:\n            path: /health\n            port: 8000\n          initialDelaySeconds: 10\n          periodSeconds: 30\n---\napiVersion: autoscaling/v2\nkind: HorizontalPodAutoscaler\nmetadata:\n  name: ml-prediction-hpa\nspec:\n  scaleTargetRef:\n    apiVersion: apps/v1\n    kind: Deployment\n    name: ml-prediction-service\n  minReplicas: 3\n  maxReplicas: 10\n  metrics:\n  - type: Resource\n    resource:\n      name: cpu\n      target:\n        type: Utilization\n        averageUtilization: 70\n\n\n4. Monitoring & Observability\nfrom prometheus_client import Counter, Histogram, Gauge\nimport time\n\n# Metrics\nprediction_counter = Counter('predictions_total', 'Total predictions')\nprediction_latency = Histogram('prediction_latency_seconds', \n                              'Prediction latency in seconds')\nmodel_version_gauge = Gauge('model_version', 'Current model version')\ncache_hit_rate = Gauge('cache_hit_rate', 'Cache hit rate')\n\n@app.middleware(\"http\")\nasync def monitor_requests(request, call_next):\n    start_time = time.time()\n    response = await call_next(request)\n    \n    prediction_counter.inc()\n    prediction_latency.observe(time.time() - start_time)\n    \n    return response"
+  },
+  {
+    "objectID": "projects/ml-pipeline.html#performance-metrics",
+    "href": "projects/ml-pipeline.html#performance-metrics",
+    "title": "Real-Time ML Prediction Pipeline",
+    "section": "Performance Metrics",
+    "text": "Performance Metrics\n\nThroughput: 12,000 requests/second (load tested)\nLatency:\n\np50: 45ms\np95: 85ms\np99: 95ms\n\nAvailability: 99.95% uptime over 3 months\nCache Hit Rate: 78% (significantly reduces inference load)"
+  },
+  {
+    "objectID": "projects/ml-pipeline.html#load-testing-results",
+    "href": "projects/ml-pipeline.html#load-testing-results",
+    "title": "Real-Time ML Prediction Pipeline",
+    "section": "Load Testing Results",
+    "text": "Load Testing Results\n# Using locust for load testing\nfrom locust import HttpUser, task, between\n\nclass PredictionUser(HttpUser):\n    wait_time = between(0.1, 0.5)\n    \n    @task\n    def predict(self):\n        payload = {\n            \"features\": [0.5, 1.2, 0.8, 2.1, 0.3],\n            \"user_id\": f\"user_{random.randint(1, 10000)}\"\n        }\n        self.client.post(\"/predict\", json=payload)\nResults: System remained stable at 10,000 RPS with linear scaling up to 15,000 RPS."
+  },
+  {
+    "objectID": "projects/ml-pipeline.html#lessons-learned",
+    "href": "projects/ml-pipeline.html#lessons-learned",
+    "title": "Real-Time ML Prediction Pipeline",
+    "section": "Lessons Learned",
+    "text": "Lessons Learned\n\nCaching is Critical: Redis caching improved throughput by 5x for repeat requests\nONNX Optimization: Converting to ONNX reduced inference time by 40%\nAsync Processing: FastAPI’s async capabilities essential for I/O-bound operations\nMonitoring First: Built observability from day one - invaluable for debugging\nGradual Rollouts: A/B testing new models prevented production incidents"
+  },
+  {
+    "objectID": "projects/ml-pipeline.html#future-enhancements",
+    "href": "projects/ml-pipeline.html#future-enhancements",
+    "title": "Real-Time ML Prediction Pipeline",
+    "section": "Future Enhancements",
+    "text": "Future Enhancements\n\nGPU Acceleration: For more complex models (transformers, CNNs)\nFeature Store: Centralized feature management with Feast\nDrift Detection: Automated model retraining triggers\nMulti-Model Serving: Support for ensemble predictions\nStream Processing: Integration with Kafka for real-time feature updates"
+  },
+  {
+    "objectID": "projects/ml-pipeline.html#code-resources",
+    "href": "projects/ml-pipeline.html#code-resources",
+    "title": "Real-Time ML Prediction Pipeline",
+    "section": "Code & Resources",
+    "text": "Code & Resources\n\nGitHub Repository: github.com/yourusername/ml-pipeline\nDocumentation: Full API docs and deployment guide\nBlog Post: Detailed write-up on [blog link]"
+  },
+  {
+    "objectID": "projects/ml-pipeline.html#tags",
+    "href": "projects/ml-pipeline.html#tags",
+    "title": "Real-Time ML Prediction Pipeline",
+    "section": "Tags",
+    "text": "Tags\n\nPython FastAPI Docker Kubernetes Redis ONNX MLOps Monitoring"
+  },
+  {
+    "objectID": "posts/index.html",
+    "href": "posts/index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Technical Blog\nInsights and tutorials on AI, data engineering, Bayesian statistics, and econometrics. Exploring cutting-edge techniques and practical implementations.\n\n\n\n\n\n\nSubscribe\n\n\n\nGet notified of new posts via RSS feed\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to Bayesian Hierarchical Models with PyMC\n\n\n\n\n\n\nBayesian Statistics\n\n\nPyMC\n\n\nPython\n\n\nTutorial\n\n\n\nA practical guide to building hierarchical Bayesian models for marketing mix modeling\n\n\n\n\n\nNov 15, 2024\n\n\n4 min\n\n\n\n\n\n\n\nCausal Inference in Practice: Difference-in-Differences with Python\n\n\n\n\n\n\nEconometrics\n\n\nCausal Inference\n\n\nPython\n\n\n\nA step-by-step guide to estimating causal effects using DiD methodology\n\n\n\n\n\nOct 28, 2024\n\n\n4 min\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/bayesian-hierarchical-models.html",
+    "href": "posts/bayesian-hierarchical-models.html",
+    "title": "Introduction to Bayesian Hierarchical Models with PyMC",
+    "section": "",
+    "text": "Hierarchical Bayesian models are powerful tools for analyzing data with nested or grouped structure. In this post, we’ll explore how to build a hierarchical model for marketing mix modeling using PyMC."
+  },
+  {
+    "objectID": "posts/bayesian-hierarchical-models.html#introduction",
+    "href": "posts/bayesian-hierarchical-models.html#introduction",
+    "title": "Introduction to Bayesian Hierarchical Models with PyMC",
+    "section": "",
+    "text": "Hierarchical Bayesian models are powerful tools for analyzing data with nested or grouped structure. In this post, we’ll explore how to build a hierarchical model for marketing mix modeling using PyMC."
+  },
+  {
+    "objectID": "posts/bayesian-hierarchical-models.html#why-hierarchical-models",
+    "href": "posts/bayesian-hierarchical-models.html#why-hierarchical-models",
+    "title": "Introduction to Bayesian Hierarchical Models with PyMC",
+    "section": "Why Hierarchical Models?",
+    "text": "Why Hierarchical Models?\nWhen dealing with data that has natural groupings (e.g., customers within regions, experiments across time periods), hierarchical models offer several advantages:\n\nPartial Pooling: Balance between complete pooling (ignoring groups) and no pooling (treating groups independently)\nShrinkage: Regularization towards group-level means prevents overfitting\nUncertainty Quantification: Full posterior distributions for all parameters"
+  },
+  {
+    "objectID": "posts/bayesian-hierarchical-models.html#a-simple-example",
+    "href": "posts/bayesian-hierarchical-models.html#a-simple-example",
+    "title": "Introduction to Bayesian Hierarchical Models with PyMC",
+    "section": "A Simple Example",
+    "text": "A Simple Example\nLet’s build a hierarchical model for understanding how marketing spend affects conversions across different regions.\nimport pymc as pm\nimport numpy as np\nimport pandas as pd\nimport arviz as az\n\n# Generate synthetic data\nnp.random.seed(42)\nn_regions = 10\nn_observations = 50\n\ndata = []\nfor region in range(n_regions):\n    # Each region has different baseline and sensitivity to marketing\n    baseline = np.random.normal(100, 20)\n    sensitivity = np.random.uniform(0.5, 2.0)\n    \n    spend = np.random.uniform(0, 100, n_observations)\n    conversions = baseline + sensitivity * spend + np.random.normal(0, 10, n_observations)\n    \n    df_region = pd.DataFrame({\n        'region': region,\n        'spend': spend,\n        'conversions': conversions\n    })\n    data.append(df_region)\n\ndf = pd.concat(data, ignore_index=True)"
+  },
+  {
+    "objectID": "posts/bayesian-hierarchical-models.html#building-the-hierarchical-model",
+    "href": "posts/bayesian-hierarchical-models.html#building-the-hierarchical-model",
+    "title": "Introduction to Bayesian Hierarchical Models with PyMC",
+    "section": "Building the Hierarchical Model",
+    "text": "Building the Hierarchical Model\nwith pm.Model() as hierarchical_model:\n    # Hyperpriors for group-level parameters\n    mu_baseline = pm.Normal('mu_baseline', mu=100, sigma=50)\n    sigma_baseline = pm.HalfNormal('sigma_baseline', sigma=20)\n    \n    mu_sensitivity = pm.Normal('mu_sensitivity', mu=1, sigma=1)\n    sigma_sensitivity = pm.HalfNormal('sigma_sensitivity', sigma=0.5)\n    \n    # Region-specific parameters (partial pooling)\n    baseline = pm.Normal('baseline', mu=mu_baseline, sigma=sigma_baseline, \n                        shape=n_regions)\n    sensitivity = pm.Normal('sensitivity', mu=mu_sensitivity, sigma=sigma_sensitivity, \n                           shape=n_regions)\n    \n    # Model error\n    sigma = pm.HalfNormal('sigma', sigma=10)\n    \n    # Expected value\n    region_idx = df['region'].values\n    mu = baseline[region_idx] + sensitivity[region_idx] * df['spend'].values\n    \n    # Likelihood\n    y = pm.Normal('y', mu=mu, sigma=sigma, observed=df['conversions'].values)\n    \n    # Sample from posterior\n    trace = pm.sample(2000, tune=1000, return_inferencedata=True, random_seed=42)"
+  },
+  {
+    "objectID": "posts/bayesian-hierarchical-models.html#analyzing-the-results",
+    "href": "posts/bayesian-hierarchical-models.html#analyzing-the-results",
+    "title": "Introduction to Bayesian Hierarchical Models with PyMC",
+    "section": "Analyzing the Results",
+    "text": "Analyzing the Results\n# Summarize posterior distributions\nprint(az.summary(trace, var_names=['mu_baseline', 'mu_sensitivity', \n                                   'sigma_baseline', 'sigma_sensitivity']))\n\n# Plot posterior distributions\naz.plot_posterior(trace, var_names=['mu_baseline', 'mu_sensitivity'])\n\n# Region-specific effects\naz.plot_forest(trace, var_names=['baseline', 'sensitivity'], combined=True)"
+  },
+  {
+    "objectID": "posts/bayesian-hierarchical-models.html#key-insights",
+    "href": "posts/bayesian-hierarchical-models.html#key-insights",
+    "title": "Introduction to Bayesian Hierarchical Models with PyMC",
+    "section": "Key Insights",
+    "text": "Key Insights\n\nShrinkage in Action: Regions with fewer observations get pulled toward the group mean\nUncertainty Quantification: Wide credible intervals indicate we need more data\nHeterogeneity: We can quantify how much regions differ from each other"
+  },
+  {
+    "objectID": "posts/bayesian-hierarchical-models.html#extensions",
+    "href": "posts/bayesian-hierarchical-models.html#extensions",
+    "title": "Introduction to Bayesian Hierarchical Models with PyMC",
+    "section": "Extensions",
+    "text": "Extensions\nThis basic framework can be extended to:\n\nMultiple marketing channels (TV, digital, print)\nTime-varying effects with autoregressive components\nNon-linear relationships using splines or Gaussian processes\nSeasonal patterns with Fourier decomposition"
+  },
+  {
+    "objectID": "posts/bayesian-hierarchical-models.html#conclusion",
+    "href": "posts/bayesian-hierarchical-models.html#conclusion",
+    "title": "Introduction to Bayesian Hierarchical Models with PyMC",
+    "section": "Conclusion",
+    "text": "Conclusion\nHierarchical Bayesian models provide a principled framework for pooling information across groups while respecting their individual characteristics. PyMC makes implementation straightforward with its intuitive syntax and powerful sampling algorithms."
+  },
+  {
+    "objectID": "posts/bayesian-hierarchical-models.html#further-reading",
+    "href": "posts/bayesian-hierarchical-models.html#further-reading",
+    "title": "Introduction to Bayesian Hierarchical Models with PyMC",
+    "section": "Further Reading",
+    "text": "Further Reading\n\nPyMC Documentation\nBayesian Data Analysis by Gelman et al.\nStatistical Rethinking by Richard McElreath\n\n\nCode: Full implementation available on GitHub"
+  },
+  {
+    "objectID": "GET_STARTED.html",
+    "href": "GET_STARTED.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "GET_STARTED.html#what-you-have",
+    "href": "GET_STARTED.html#what-you-have",
+    "title": "",
+    "section": "What You Have",
+    "text": "What You Have\nA complete, production-ready portfolio website built with Quarto, featuring:\n\n✨ Key Features\n\nModern Design: Elegant dark theme with analytical aesthetic\nResponsive Layout: Beautiful on desktop, tablet, and mobile\nBlog System: Write technical posts with executable code\nProject Showcase: Highlight your best work\nSEO Optimized: Ready for search engines\nAuto-Deploy: GitHub Actions workflow included\n\n\n\n📁 What’s Included\nportfolio-site/\n├── index.qmd                    # Homepage with hero section\n├── about/index.qmd              # About page (customize with your info)\n├── posts/                       # Blog posts\n│   ├── index.qmd               # Blog listing\n│   ├── bayesian-hierarchical-models.qmd\n│   └── difference-in-differences.qmd\n├── projects/                    # Project showcase\n│   ├── index.qmd               # Projects listing\n│   └── ml-pipeline.qmd         # Example project\n├── assets/css/styles.css       # Custom styling\n├── _quarto.yml                 # Site configuration\n├── .github/workflows/publish.yml  # Auto-deployment\n└── Documentation files"
+  },
+  {
+    "objectID": "GET_STARTED.html#three-ways-to-get-started",
+    "href": "GET_STARTED.html#three-ways-to-get-started",
+    "title": "",
+    "section": "🎯 Three Ways to Get Started",
+    "text": "🎯 Three Ways to Get Started\n\nOption 1: Automated Setup (Easiest)\ncd portfolio-site\nchmod +x setup.sh\n./setup.sh\nThis script will: - Ask for your information - Update all placeholder text - Initialize git repository - Show you next steps\n\n\nOption 2: Quick Manual Setup\n\nEdit _quarto.yml\n\nChange title, description\nUpdate GitHub, LinkedIn, email links\n\nEdit about/index.qmd\n\nAdd your name and background\nUpdate experience and skills\n\nEdit index.qmd\n\nCustomize hero text\nUpdate project examples\n\n\n\n\nOption 3: Follow the Guide\nOpen QUICKSTART.md for step-by-step instructions."
+  },
+  {
+    "objectID": "GET_STARTED.html#before-you-deploy",
+    "href": "GET_STARTED.html#before-you-deploy",
+    "title": "",
+    "section": "📋 Before You Deploy",
+    "text": "📋 Before You Deploy\nUse DEPLOYMENT_CHECKLIST.md to ensure everything is configured correctly."
+  },
+  {
+    "objectID": "GET_STARTED.html#essential-commands",
+    "href": "GET_STARTED.html#essential-commands",
+    "title": "",
+    "section": "🛠️ Essential Commands",
+    "text": "🛠️ Essential Commands\n# Preview locally (opens http://localhost:4200)\nquarto preview\n\n# Build the site\nquarto render\n\n# Clean build artifacts\nquarto clean\n\n# Deploy to GitHub\ngit add .\ngit commit -m \"Update site\"\ngit push"
+  },
+  {
+    "objectID": "GET_STARTED.html#documentation",
+    "href": "GET_STARTED.html#documentation",
+    "title": "",
+    "section": "📖 Documentation",
+    "text": "📖 Documentation\n\nREADME.md - Comprehensive documentation\nQUICKSTART.md - 5-minute setup guide\n\nDEPLOYMENT_CHECKLIST.md - Pre-launch checklist\nThis file - Quick reference"
+  },
+  {
+    "objectID": "GET_STARTED.html#customization",
+    "href": "GET_STARTED.html#customization",
+    "title": "",
+    "section": "🎨 Customization",
+    "text": "🎨 Customization\n\nChange Colors\nEdit assets/css/styles.css:\n:root {\n  --accent-blue: #4a9eff;    /* Your primary color */\n  --accent-teal: #2dd4bf;    /* Your secondary color */\n}\n\n\nAdd Content\nNew Blog Post:\ntouch posts/my-post.qmd\nNew Project:\ntouch projects/my-project.qmd"
+  },
+  {
+    "objectID": "GET_STARTED.html#deployment-to-github-pages",
+    "href": "GET_STARTED.html#deployment-to-github-pages",
+    "title": "",
+    "section": "🌐 Deployment to GitHub Pages",
+    "text": "🌐 Deployment to GitHub Pages\n\nQuick Deploy\n\nCreate repo on GitHub (must be public)\nPush your code:\ngit init\ngit add .\ngit commit -m \"Initial commit\"\ngit remote add origin https://github.com/USERNAME/REPO.git\ngit push -u origin main\nEnable Pages: Settings → Pages → Source: GitHub Actions\nAccess: https://USERNAME.github.io/REPO\n\n\n\nCustom Domain (Optional)\n\nAdd CNAME file with your domain\nUpdate DNS settings\nConfigure in GitHub Pages settings"
+  },
+  {
+    "objectID": "GET_STARTED.html#content-ideas",
+    "href": "GET_STARTED.html#content-ideas",
+    "title": "",
+    "section": "💡 Content Ideas",
+    "text": "💡 Content Ideas\n\nBlog Posts\n\nTechnical tutorials\nProject walkthroughs\nData analysis deep-dives\nML model explanations\nIndustry insights\n\n\n\nProjects\n\nMachine learning models\nData pipelines\nBayesian analyses\nCausal inference studies\nOpen-source contributions"
+  },
+  {
+    "objectID": "GET_STARTED.html#learning-resources",
+    "href": "GET_STARTED.html#learning-resources",
+    "title": "",
+    "section": "🎓 Learning Resources",
+    "text": "🎓 Learning Resources\n\nQuarto: https://quarto.org/docs/\nMarkdown: https://www.markdownguide.org/\nGitHub Pages: https://docs.github.com/en/pages"
+  },
+  {
+    "objectID": "GET_STARTED.html#common-issues",
+    "href": "GET_STARTED.html#common-issues",
+    "title": "",
+    "section": "🐛 Common Issues",
+    "text": "🐛 Common Issues\nSite not updating? - Clear cache (Ctrl/Cmd + Shift + R) - Check GitHub Actions status - Wait 2-3 minutes\nRender errors?\nquarto clean && quarto render\nNeed help? - Check documentation files - Quarto community: https://github.com/quarto-dev/quarto-cli/discussions"
+  },
+  {
+    "objectID": "GET_STARTED.html#next-steps",
+    "href": "GET_STARTED.html#next-steps",
+    "title": "",
+    "section": "✅ Next Steps",
+    "text": "✅ Next Steps\n\nRun ./setup.sh or manually update your info\nPreview locally: quarto preview\nPush to GitHub\nEnable GitHub Pages\nShare your portfolio!"
+  },
+  {
+    "objectID": "GET_STARTED.html#youre-all-set",
+    "href": "GET_STARTED.html#youre-all-set",
+    "title": "",
+    "section": "🎉 You’re All Set!",
+    "text": "🎉 You’re All Set!\nYour portfolio framework is complete. Now it’s time to: - Add your unique projects - Share your insights through blog posts - Showcase your expertise - Build your professional brand\nGood luck with your portfolio! Feel free to customize everything to match your style. 🚀"
+  },
+  {
+    "objectID": "GET_STARTED.html#need-more-examples",
+    "href": "GET_STARTED.html#need-more-examples",
+    "title": "",
+    "section": "Need More Examples?",
+    "text": "Need More Examples?\nCheck out these Quarto websites for inspiration: - https://quarto.org/docs/gallery/ - https://github.com/topics/quarto-website"
+  },
+  {
+    "objectID": "GET_STARTED.html#support",
+    "href": "GET_STARTED.html#support",
+    "title": "",
+    "section": "Support",
+    "text": "Support\nIf you found this helpful, consider: - Starring the repository - Sharing with others - Providing feedback\nHappy building! 💻"
+  },
+  {
+    "objectID": "about/index.html",
+    "href": "about/index.html",
+    "title": "About Me",
+    "section": "",
+    "text": "I’m a data scientist and engineer specializing in the intersection of AI, analytics engineering, and statistical modeling. I’m passionate about building production-grade machine learning systems and applying rigorous statistical methods to solve complex business problems.\n\n\n\nMy journey into data science began with a fascination for how probabilistic reasoning could quantify uncertainty in decision-making. Over the years, I’ve developed expertise across:\n\nMachine Learning Engineering: Designing and deploying scalable ML systems that serve millions of predictions\nBayesian Statistics: Building probabilistic models for decision-making under uncertainty\nCausal Inference: Applying econometric methods to measure true causal effects\nData Architecture: Creating robust data pipelines and transformation workflows\n\n\n\n\n\nLanguages & Core Tools\n\nPython R SQL Scala Julia\n\nMachine Learning\n\nPyTorch TensorFlow Scikit-learn XGBoost Transformers MLflow\n\nStatistical Modeling\n\nPyMC Stan statsmodels Prophet CausalImpact\n\nData Engineering\n\ndbt Airflow Spark Kafka Snowflake BigQuery\n\n\n\n\nI’m currently exploring:\n\nCausal ML: Combining machine learning with causal inference for heterogeneous treatment effect estimation\nLLM Applications: Building practical applications with large language models and RAG systems\nMLOps: Implementing best practices for ML model deployment and monitoring\nProbabilistic Programming: Advanced Bayesian modeling techniques for complex hierarchical structures\n\n\n\n\n[Your Degree] in [Your Field]\n[University Name], [Year]\nRelevant coursework: Machine Learning, Bayesian Statistics, Econometrics, Time Series Analysis, Optimization\n\n\n\n\nSenior Data Scientist @ [Company Name]\n[Dates]\n\nLed development of ML-powered recommendation system serving 10M+ users\nBuilt Bayesian A/B testing framework reducing experiment time by 40%\nDesigned real-time feature engineering pipeline processing 100K events/second\nMentored junior data scientists on statistical modeling and production ML\n\n\n\nAnalytics Engineer @ [Company Name]\n[Dates]\n\nArchitected data warehouse transformation layer using dbt\nImplemented automated data quality monitoring and anomaly detection\nDeveloped causal inference framework for marketing attribution\nReduced data pipeline processing time by 60% through optimization\n\n\n\n\n\n\n“Bayesian Methods for A/B Testing” - Data Science Conference 2024\n“Causal Inference at Scale” - PyData Global 2023\n“Building Production ML Systems” - MLOps World 2023\n\n\n\n\nI’m always interested in discussing data science, machine learning, and statistical modeling. Feel free to reach out:\n\nEmail: your.email@example.com\nGitHub: @yourusername\nLinkedIn: /in/yourprofile\nTwitter: @yourhandle\n\n\n\n\nThis portfolio is built with Quarto, an open-source scientific and technical publishing system. The site is hosted on GitHub Pages and features a custom design focused on readability and technical content presentation.\nAll blog posts include reproducible code examples, and most projects have associated GitHub repositories with full implementation details."
+  },
+  {
+    "objectID": "about/index.html#hi-im-your-name",
+    "href": "about/index.html#hi-im-your-name",
+    "title": "About Me",
+    "section": "",
+    "text": "I’m a data scientist and engineer specializing in the intersection of AI, analytics engineering, and statistical modeling. I’m passionate about building production-grade machine learning systems and applying rigorous statistical methods to solve complex business problems.\n\n\n\nMy journey into data science began with a fascination for how probabilistic reasoning could quantify uncertainty in decision-making. Over the years, I’ve developed expertise across:\n\nMachine Learning Engineering: Designing and deploying scalable ML systems that serve millions of predictions\nBayesian Statistics: Building probabilistic models for decision-making under uncertainty\nCausal Inference: Applying econometric methods to measure true causal effects\nData Architecture: Creating robust data pipelines and transformation workflows\n\n\n\n\n\nLanguages & Core Tools\n\nPython R SQL Scala Julia\n\nMachine Learning\n\nPyTorch TensorFlow Scikit-learn XGBoost Transformers MLflow\n\nStatistical Modeling\n\nPyMC Stan statsmodels Prophet CausalImpact\n\nData Engineering\n\ndbt Airflow Spark Kafka Snowflake BigQuery\n\n\n\n\nI’m currently exploring:\n\nCausal ML: Combining machine learning with causal inference for heterogeneous treatment effect estimation\nLLM Applications: Building practical applications with large language models and RAG systems\nMLOps: Implementing best practices for ML model deployment and monitoring\nProbabilistic Programming: Advanced Bayesian modeling techniques for complex hierarchical structures\n\n\n\n\n[Your Degree] in [Your Field]\n[University Name], [Year]\nRelevant coursework: Machine Learning, Bayesian Statistics, Econometrics, Time Series Analysis, Optimization\n\n\n\n\nSenior Data Scientist @ [Company Name]\n[Dates]\n\nLed development of ML-powered recommendation system serving 10M+ users\nBuilt Bayesian A/B testing framework reducing experiment time by 40%\nDesigned real-time feature engineering pipeline processing 100K events/second\nMentored junior data scientists on statistical modeling and production ML\n\n\n\nAnalytics Engineer @ [Company Name]\n[Dates]\n\nArchitected data warehouse transformation layer using dbt\nImplemented automated data quality monitoring and anomaly detection\nDeveloped causal inference framework for marketing attribution\nReduced data pipeline processing time by 60% through optimization\n\n\n\n\n\n\n“Bayesian Methods for A/B Testing” - Data Science Conference 2024\n“Causal Inference at Scale” - PyData Global 2023\n“Building Production ML Systems” - MLOps World 2023\n\n\n\n\nI’m always interested in discussing data science, machine learning, and statistical modeling. Feel free to reach out:\n\nEmail: your.email@example.com\nGitHub: @yourusername\nLinkedIn: /in/yourprofile\nTwitter: @yourhandle\n\n\n\n\nThis portfolio is built with Quarto, an open-source scientific and technical publishing system. The site is hosted on GitHub Pages and features a custom design focused on readability and technical content presentation.\nAll blog posts include reproducible code examples, and most projects have associated GitHub repositories with full implementation details."
+  },
+  {
+    "objectID": "DEPLOYMENT_CHECKLIST.html",
+    "href": "DEPLOYMENT_CHECKLIST.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "DEPLOYMENT_CHECKLIST.html#pre-deployment",
+    "href": "DEPLOYMENT_CHECKLIST.html#pre-deployment",
+    "title": "",
+    "section": "Pre-Deployment",
+    "text": "Pre-Deployment\n\nContent Customization\n\nUpdated _quarto.yml with your name and links\nCustomized about/index.qmd with your background\nModified index.qmd hero section\nUpdated navbar links (GitHub, LinkedIn, email)\nAdded your projects to projects/ directory\nWritten at least 1-2 blog posts in posts/ directory\nReviewed and updated footer information\n\n\n\nBranding & Design\n\nChosen your color scheme in assets/css/styles.css\nAdded profile image (if desired)\nCreated favicon (optional)\nCustomized fonts (optional)\n\n\n\nTechnical Setup\n\nInstalled Quarto (v1.4+)\nTested site locally with quarto preview\nFixed any rendering errors\nVerified all links work\nChecked mobile responsiveness"
+  },
+  {
+    "objectID": "DEPLOYMENT_CHECKLIST.html#github-setup",
+    "href": "DEPLOYMENT_CHECKLIST.html#github-setup",
+    "title": "",
+    "section": "GitHub Setup",
+    "text": "GitHub Setup\n\nRepository Creation\n\nCreated new GitHub repository\nRepository is public (required for GitHub Pages)\nRepository name matches your preference\nAdded README.md description\n\n\n\nLocal Git\n\nInitialized git repository (git init)\nAdded all files (git add .)\nMade initial commit\nAdded remote origin\nPushed to GitHub (git push -u origin main)"
+  },
+  {
+    "objectID": "DEPLOYMENT_CHECKLIST.html#github-pages-configuration",
+    "href": "DEPLOYMENT_CHECKLIST.html#github-pages-configuration",
+    "title": "",
+    "section": "GitHub Pages Configuration",
+    "text": "GitHub Pages Configuration\n\nSettings\n\nNavigated to Settings → Pages\nSource set to “GitHub Actions”\nVerified workflow file exists (.github/workflows/publish.yml)\nFirst deployment completed successfully\n\n\n\nVerification\n\nSite accessible at https://[username].github.io/[repo-name]\nAll pages load correctly\nNavigation works\nCode blocks render properly\nImages display correctly\nExternal links open in new tabs"
+  },
+  {
+    "objectID": "DEPLOYMENT_CHECKLIST.html#post-deployment",
+    "href": "DEPLOYMENT_CHECKLIST.html#post-deployment",
+    "title": "",
+    "section": "Post-Deployment",
+    "text": "Post-Deployment\n\nContent Quality\n\nChecked for typos and grammar\nVerified code examples work\nEnsured professional tone throughout\nAdded tags/categories to posts\nIncluded dates on all content\n\n\n\nSEO & Sharing\n\nUpdated meta descriptions\nAdded Open Graph images (optional)\nCreated Twitter card meta tags (optional)\nSubmitted to Google Search Console (optional)\nCreated sitemap (Quarto generates automatically)\n\n\n\nAnalytics & Monitoring (Optional)\n\nAdded Google Analytics ID\nSet up error tracking\nConfigured uptime monitoring"
+  },
+  {
+    "objectID": "DEPLOYMENT_CHECKLIST.html#ongoing-maintenance",
+    "href": "DEPLOYMENT_CHECKLIST.html#ongoing-maintenance",
+    "title": "",
+    "section": "Ongoing Maintenance",
+    "text": "Ongoing Maintenance\n\nRegular Updates\n\nSchedule regular content updates\nKeep dependencies updated\nReview and update project descriptions\nAdd new blog posts monthly/quarterly\nUpdate skills and experience\n\n\n\nTechnical\n\nMonitor GitHub Actions for failed builds\nUpdate Quarto version periodically\nReview site performance\nCheck for broken links\nBackup content regularly"
+  },
+  {
+    "objectID": "DEPLOYMENT_CHECKLIST.html#troubleshooting",
+    "href": "DEPLOYMENT_CHECKLIST.html#troubleshooting",
+    "title": "",
+    "section": "Troubleshooting",
+    "text": "Troubleshooting\n\nIf site doesn’t deploy:\n\nCheck GitHub Actions tab for errors\nVerify publish.yml workflow file exists\nEnsure repository is public\nCheck Pages settings show “GitHub Actions” as source\nReview build logs for specific errors\n\n\n\nIf changes don’t appear:\n\nClear browser cache (Ctrl/Cmd + Shift + R)\nWait 2-3 minutes for GitHub Pages to update\nCheck that changes were committed and pushed\nVerify workflow completed successfully\n\n\n\nIf local preview fails:\n\nRun quarto clean\nCheck Quarto version: quarto --version\nEnsure dependencies are installed\nReview error messages in terminal"
+  },
+  {
+    "objectID": "DEPLOYMENT_CHECKLIST.html#enhancement-ideas",
+    "href": "DEPLOYMENT_CHECKLIST.html#enhancement-ideas",
+    "title": "",
+    "section": "Enhancement Ideas",
+    "text": "Enhancement Ideas\n\nShort-term\n\nAdd more blog posts\nInclude project thumbnails/screenshots\nCreate an RSS feed for blog\nAdd search functionality\nInclude code download buttons\n\n\n\nLong-term\n\nCustom domain setup\nPortfolio PDF download\nNewsletter signup integration\nComments section (utterances.es)\nMulti-language support\nDark/light theme toggle"
+  },
+  {
+    "objectID": "DEPLOYMENT_CHECKLIST.html#resources",
+    "href": "DEPLOYMENT_CHECKLIST.html#resources",
+    "title": "",
+    "section": "Resources",
+    "text": "Resources\n\nQuarto Docs: https://quarto.org/docs/\nGitHub Pages: https://docs.github.com/en/pages\nMarkdown Guide: https://www.markdownguide.org/\nCSS Reference: https://developer.mozilla.org/en-US/docs/Web/CSS"
+  },
+  {
+    "objectID": "DEPLOYMENT_CHECKLIST.html#final-check",
+    "href": "DEPLOYMENT_CHECKLIST.html#final-check",
+    "title": "",
+    "section": "Final Check",
+    "text": "Final Check\nBefore sharing your portfolio: - [ ] Everything above is complete - [ ] Site looks professional on desktop - [ ] Site looks good on mobile - [ ] All external links verified - [ ] Contact information is correct - [ ] Content represents your best work\nCongratulations! Your portfolio is ready to share! 🎉\nShare it on: - LinkedIn - Twitter - GitHub profile README - Resume/CV - Email signature"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "AI, Data & Analytics Engineering",
+    "section": "",
+    "text": "Exploring the intersection of machine learning, Bayesian inference, and econometric modeling {.hero-subtitle}\n\nView Projects Read Blog"
+  },
+  {
+    "objectID": "index.html#what-i-do",
+    "href": "index.html#what-i-do",
+    "title": "AI, Data & Analytics Engineering",
+    "section": "What I Do",
+    "text": "What I Do\n\n\n\n🤖 AI & Machine Learning\n\n\nBuilding intelligent systems using deep learning, natural language processing, and computer vision. Specializing in production-grade ML pipelines and model deployment.\n\n\n&lt;div class=\"skill-progress\" style=\"--skill-width: 90%;\"&gt;&lt;/div&gt;\n\n\n\n\n📊 Data Engineering\n\n\nDesigning scalable data architectures and ETL pipelines. Expert in modern data stacks including dbt, Airflow, Spark, and cloud platforms (AWS, GCP, Azure).\n\n\n&lt;div class=\"skill-progress\" style=\"--skill-width: 85%;\"&gt;&lt;/div&gt;\n\n\n\n\n📈 Bayesian Modelling\n\n\nApplying probabilistic programming and Bayesian inference to solve complex statistical problems. Experience with PyMC, Stan, and advanced MCMC techniques.\n\n\n&lt;div class=\"skill-progress\" style=\"--skill-width: 80%;\"&gt;&lt;/div&gt;\n\n\n\n\n📉 Econometrics\n\n\nConducting rigorous causal inference and econometric analysis. Skilled in time series forecasting, panel data methods, and experimental design.\n\n\n&lt;div class=\"skill-progress\" style=\"--skill-width: 85%;\"&gt;&lt;/div&gt;"
+  },
+  {
+    "objectID": "index.html#featured-work",
+    "href": "index.html#featured-work",
+    "title": "AI, Data & Analytics Engineering",
+    "section": "Featured Work",
+    "text": "Featured Work"
+  },
+  {
+    "objectID": "index.html#recent-posts",
+    "href": "index.html#recent-posts",
+    "title": "AI, Data & Analytics Engineering",
+    "section": "Recent Posts",
+    "text": "Recent Posts\nCheck out my latest thoughts on data science, ML engineering, and statistical modeling."
+  },
+  {
+    "objectID": "posts/difference-in-differences.html",
+    "href": "posts/difference-in-differences.html",
+    "title": "Causal Inference in Practice: Difference-in-Differences with Python",
+    "section": "",
+    "text": "How do we measure the true impact of an intervention when we can’t run a randomized experiment? Difference-in-differences (DiD) offers a powerful quasi-experimental approach."
+  },
+  {
+    "objectID": "posts/difference-in-differences.html#the-causal-question",
+    "href": "posts/difference-in-differences.html#the-causal-question",
+    "title": "Causal Inference in Practice: Difference-in-Differences with Python",
+    "section": "",
+    "text": "How do we measure the true impact of an intervention when we can’t run a randomized experiment? Difference-in-differences (DiD) offers a powerful quasi-experimental approach."
+  },
+  {
+    "objectID": "posts/difference-in-differences.html#when-to-use-did",
+    "href": "posts/difference-in-differences.html#when-to-use-did",
+    "title": "Causal Inference in Practice: Difference-in-Differences with Python",
+    "section": "When to Use DiD",
+    "text": "When to Use DiD\nDiD is appropriate when:\n\nYou have a treatment group and control group\nYou observe both groups before and after the intervention\nThe parallel trends assumption holds (more on this later)"
+  },
+  {
+    "objectID": "posts/difference-in-differences.html#a-real-world-example",
+    "href": "posts/difference-in-differences.html#a-real-world-example",
+    "title": "Causal Inference in Practice: Difference-in-Differences with Python",
+    "section": "A Real-World Example",
+    "text": "A Real-World Example\nSuppose a state implements a new job training program. We want to estimate its causal effect on employment rates.\n\nSetting Up the Data\nimport numpy as np\nimport pandas as pd\nimport statsmodels.formula.api as smf\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\n# Simulate data\nnp.random.seed(123)\nn = 1000\n\ndf = pd.DataFrame({\n    'state': np.random.choice(['treated', 'control'], n),\n    'year': np.random.choice([2018, 2019, 2020, 2021], n)\n})\n\n# Treatment occurs in 2020 for treated states\ndf['post'] = (df['year'] &gt;= 2020).astype(int)\ndf['treated'] = (df['state'] == 'treated').astype(int)\n\n# True causal effect = 5 percentage points\ntreatment_effect = 5\n\n# Generate employment rates with parallel trends pre-treatment\ndf['employment_rate'] = (\n    60 +  # Baseline\n    2 * df['year'] - 2 * 2018 +  # Common time trend\n    5 * df['treated'] +  # Baseline difference between groups\n    treatment_effect * df['treated'] * df['post'] +  # CAUSAL EFFECT\n    np.random.normal(0, 3, n)  # Noise\n)\n\n\nVisualizing Parallel Trends\n# Group means by year and treatment status\nmeans = df.groupby(['year', 'state'])['employment_rate'].mean().reset_index()\n\nplt.figure(figsize=(10, 6))\nfor state in ['treated', 'control']:\n    data = means[means['state'] == state]\n    plt.plot(data['year'], data['employment_rate'], \n             marker='o', label=state, linewidth=2)\n\nplt.axvline(x=2019.5, color='red', linestyle='--', \n            label='Treatment Start', alpha=0.7)\nplt.xlabel('Year', fontsize=12)\nplt.ylabel('Employment Rate (%)', fontsize=12)\nplt.title('Parallel Trends Check', fontsize=14)\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()"
+  },
+  {
+    "objectID": "posts/difference-in-differences.html#estimating-the-did-effect",
+    "href": "posts/difference-in-differences.html#estimating-the-did-effect",
+    "title": "Causal Inference in Practice: Difference-in-Differences with Python",
+    "section": "Estimating the DiD Effect",
+    "text": "Estimating the DiD Effect\nThe classic DiD estimator:\n\\[\n\\hat{\\delta}_{DiD} = (\\bar{Y}_{treated,post} - \\bar{Y}_{treated,pre}) - (\\bar{Y}_{control,post} - \\bar{Y}_{control,pre})\n\\]\n\nRegression Approach\n# DiD regression\nmodel = smf.ols(\n    'employment_rate ~ treated * post + C(year)',\n    data=df\n).fit(cov_type='HC1')  # Robust standard errors\n\nprint(model.summary())\n\n# The coefficient on treated:post is our DiD estimate\ndid_effect = model.params['treated:post']\nprint(f\"\\nEstimated Treatment Effect: {did_effect:.2f} percentage points\")"
+  },
+  {
+    "objectID": "posts/difference-in-differences.html#advanced-did-multiple-time-periods",
+    "href": "posts/difference-in-differences.html#advanced-did-multiple-time-periods",
+    "title": "Causal Inference in Practice: Difference-in-Differences with Python",
+    "section": "Advanced DiD: Multiple Time Periods",
+    "text": "Advanced DiD: Multiple Time Periods\nFor multiple treatment periods, we use the two-way fixed effects (TWFE) model:\n# Add state and year fixed effects\nmodel_twfe = smf.ols(\n    'employment_rate ~ treated:post + C(state) + C(year)',\n    data=df\n).fit(cov_type='cluster', cov_kwds={'groups': df['state']})\n\nprint(model_twfe.summary())"
+  },
+  {
+    "objectID": "posts/difference-in-differences.html#testing-parallel-trends",
+    "href": "posts/difference-in-differences.html#testing-parallel-trends",
+    "title": "Causal Inference in Practice: Difference-in-Differences with Python",
+    "section": "Testing Parallel Trends",
+    "text": "Testing Parallel Trends\nA crucial assumption! We can test it using event study specification:\n# Create relative time to treatment\ndf['rel_year'] = df['year'] - 2020\ndf['rel_year'] = df['rel_year'] * df['treated']\n\n# Event study regression (omit t=-1 as base period)\nevent_study = smf.ols(\n    '''employment_rate ~ C(rel_year, Treatment(-1)) + \n       C(state) + C(year)''',\n    data=df\n).fit(cov_type='cluster', cov_kwds={'groups': df['state']})\n\n# Plot event study coefficients\ncoeffs = event_study.params.filter(like='rel_year')\nconf_int = event_study.conf_int().filter(like='rel_year', axis=0)\n\nplt.figure(figsize=(10, 6))\nplt.errorbar(range(len(coeffs)), coeffs.values, \n             yerr=[coeffs.values - conf_int[0].values,\n                   conf_int[1].values - coeffs.values],\n             fmt='o', capsize=5, capthick=2)\nplt.axhline(y=0, color='red', linestyle='--', alpha=0.7)\nplt.axvline(x=len([x for x in coeffs.index if '-' in x]), \n            color='green', linestyle='--', alpha=0.7)\nplt.xlabel('Periods Relative to Treatment')\nplt.ylabel('Estimated Effect')\nplt.title('Event Study Plot')\nplt.grid(alpha=0.3)\nplt.show()"
+  },
+  {
+    "objectID": "posts/difference-in-differences.html#common-pitfalls",
+    "href": "posts/difference-in-differences.html#common-pitfalls",
+    "title": "Causal Inference in Practice: Difference-in-Differences with Python",
+    "section": "Common Pitfalls",
+    "text": "Common Pitfalls\n\nViolation of Parallel Trends: Always test pre-treatment trends\nTreatment Effect Heterogeneity: TWFE can be biased with staggered adoption\nSpillover Effects: Control group shouldn’t be affected by treatment\nAnticipation: Treatment effects shouldn’t begin before official start"
+  },
+  {
+    "objectID": "posts/difference-in-differences.html#modern-alternatives",
+    "href": "posts/difference-in-differences.html#modern-alternatives",
+    "title": "Causal Inference in Practice: Difference-in-Differences with Python",
+    "section": "Modern Alternatives",
+    "text": "Modern Alternatives\nRecent econometric research has developed improved DiD estimators:\n\nCallaway & Sant’Anna (2021): Robust to heterogeneous effects\nSun & Abraham (2021): Interaction-weighted estimator\nBorusyak et al. (2021): Imputation-based approach\n\n# Example using did2s package\nfrom did2s import did2s\n\n# Staggered DiD with heterogeneous effects\nresults = did2s(\n    df=df,\n    yname='employment_rate',\n    first_stage='~ 0 | state + year',\n    second_stage='~ i(rel_year)',\n    treatment='treated',\n    cluster='state'\n)"
+  },
+  {
+    "objectID": "posts/difference-in-differences.html#practical-recommendations",
+    "href": "posts/difference-in-differences.html#practical-recommendations",
+    "title": "Causal Inference in Practice: Difference-in-Differences with Python",
+    "section": "Practical Recommendations",
+    "text": "Practical Recommendations\n\nAlways visualize your data before running regressions\nTest parallel trends rigorously in pre-treatment periods\nUse robust/clustered standard errors\nConsider placebo tests with fake treatment dates\nReport effect sizes with confidence intervals"
+  },
+  {
+    "objectID": "posts/difference-in-differences.html#conclusion",
+    "href": "posts/difference-in-differences.html#conclusion",
+    "title": "Causal Inference in Practice: Difference-in-Differences with Python",
+    "section": "Conclusion",
+    "text": "Conclusion\nDifference-in-differences remains one of the most powerful tools for causal inference in observational settings. Combined with modern estimators and careful testing of assumptions, it provides credible estimates of treatment effects."
+  },
+  {
+    "objectID": "posts/difference-in-differences.html#references",
+    "href": "posts/difference-in-differences.html#references",
+    "title": "Causal Inference in Practice: Difference-in-Differences with Python",
+    "section": "References",
+    "text": "References\n\nAngrist, J. D., & Pischke, J. S. (2008). Mostly Harmless Econometrics\nCunningham, S. (2021). Causal Inference: The Mixtape\nCallaway, B., & Sant’Anna, P. H. (2021). Difference-in-differences with multiple time periods\n\n\nCode: Complete implementation on GitHub"
+  },
+  {
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Explore my portfolio of AI, data engineering, and analytical projects. Each project demonstrates practical applications of machine learning, Bayesian inference, or econometric methods.\n\n\n\n&lt;h3&gt;Deep Learning for Time Series&lt;/h3&gt;\n&lt;p&gt;Comprehensive comparison of LSTM, GRU, Transformer, and Prophet models for multi-horizon forecasting across different domains.&lt;/p&gt;\n&lt;p style=\"color: var(--text-secondary); font-size: 0.9rem;\"&gt;Python • PyTorch • TensorFlow • Forecasting&lt;/p&gt;\n&lt;a href=\"#\" class=\"btn btn-primary\" style=\"margin-top: 1rem; display: inline-block;\"&gt;View Project →&lt;/a&gt;\n\n\n\n\n&lt;h3&gt;Bayesian Hierarchical Models&lt;/h3&gt;\n&lt;p&gt;Implementation of hierarchical Bayesian models for mixed effects analysis using PyMC and Stan. Applied to real-world marketing mix modeling.&lt;/p&gt;\n&lt;p style=\"color: var(--text-secondary); font-size: 0.9rem;\"&gt;PyMC • Stan • Bayesian Stats • Marketing&lt;/p&gt;\n&lt;a href=\"#\" class=\"btn btn-primary\" style=\"margin-top: 1rem; display: inline-block;\"&gt;View Project →&lt;/a&gt;\n\n\n\n\n&lt;h3&gt;Real-Time ML Pipeline&lt;/h3&gt;\n&lt;p&gt;End-to-end ML system with feature engineering, model training, and serving infrastructure. Handles 10K+ predictions per second.&lt;/p&gt;\n&lt;p style=\"color: var(--text-secondary); font-size: 0.9rem;\"&gt;FastAPI • MLflow • Redis • Docker • Kubernetes&lt;/p&gt;\n&lt;a href=\"#\" class=\"btn btn-primary\" style=\"margin-top: 1rem; display: inline-block;\"&gt;View Project →&lt;/a&gt;\n\n\n\n\n&lt;h3&gt;Causal Impact Analysis&lt;/h3&gt;\n&lt;p&gt;Econometric analysis using regression discontinuity design and synthetic controls to measure policy interventions.&lt;/p&gt;\n&lt;p style=\"color: var(--text-secondary); font-size: 0.9rem;\"&gt;R • Python • CausalImpact • DiD • RDD&lt;/p&gt;\n&lt;a href=\"#\" class=\"btn btn-primary\" style=\"margin-top: 1rem; display: inline-block;\"&gt;View Project →&lt;/a&gt;\n\n\n\n\n&lt;h3&gt;NLP Sentiment Analysis&lt;/h3&gt;\n&lt;p&gt;Fine-tuned transformer models (BERT, RoBERTa) for domain-specific sentiment classification with active learning.&lt;/p&gt;\n&lt;p style=\"color: var(--text-secondary); font-size: 0.9rem;\"&gt;Transformers • HuggingFace • PyTorch • NLP&lt;/p&gt;\n&lt;a href=\"#\" class=\"btn btn-primary\" style=\"margin-top: 1rem; display: inline-block;\"&gt;View Project →&lt;/a&gt;\n\n\n\n\n&lt;h3&gt;Data Warehouse Modernization&lt;/h3&gt;\n&lt;p&gt;Migrated legacy ETL to modern dbt-based transformation layer with data quality monitoring and automated testing.&lt;/p&gt;\n&lt;p style=\"color: var(--text-secondary); font-size: 0.9rem;\"&gt;dbt • Airflow • Snowflake • Great Expectations&lt;/p&gt;\n&lt;a href=\"#\" class=\"btn btn-primary\" style=\"margin-top: 1rem; display: inline-block;\"&gt;View Project →&lt;/a&gt;\n\n\n\n\n\n\n\n\n\nPython R SQL Julia Scala\n\n\n\n\n\nPyTorch TensorFlow scikit-learn XGBoost LightGBM Transformers OpenAI API\n\n\n\n\n\nPyMC Stan NumPyro statsmodels scipy Prophet\n\n\n\n\n\ndbt Airflow Spark Kafka Snowflake BigQuery Redshift\n\n\n\n\n\nDocker Kubernetes MLflow FastAPI AWS GCP Azure"
+  },
+  {
+    "objectID": "projects/index.html#technologies-tools",
+    "href": "projects/index.html#technologies-tools",
+    "title": "Projects",
+    "section": "",
+    "text": "Python R SQL Julia Scala\n\n\n\n\n\nPyTorch TensorFlow scikit-learn XGBoost LightGBM Transformers OpenAI API\n\n\n\n\n\nPyMC Stan NumPyro statsmodels scipy Prophet\n\n\n\n\n\ndbt Airflow Spark Kafka Snowflake BigQuery Redshift\n\n\n\n\n\nDocker Kubernetes MLflow FastAPI AWS GCP Azure"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html",
+    "href": "PROJECT_OVERVIEW.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#what-this-is",
+    "href": "PROJECT_OVERVIEW.html#what-this-is",
+    "title": "",
+    "section": "🎯 What This Is",
+    "text": "🎯 What This Is\nA production-ready, fully-featured portfolio website specifically designed for professionals in: - Artificial Intelligence & Machine Learning - Data Engineering & Analytics - Bayesian Statistics & Probabilistic Programming - Econometrics & Causal Inference"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#what-makes-this-special",
+    "href": "PROJECT_OVERVIEW.html#what-makes-this-special",
+    "title": "",
+    "section": "✨ What Makes This Special",
+    "text": "✨ What Makes This Special\n\n1. Distinctive Design\n\nCustom dark theme with analytical aesthetic (NOT generic AI templates)\nAnimated grid background\nGradient accents and smooth transitions\nProfessional typography using Crimson Pro & Libre Baskerville\nResponsive design that looks great on all devices\n\n\n\n2. Technical Excellence\n\nBuilt with Quarto (the best tool for technical/scientific publishing)\nExecutable code blocks (Python, R, Julia, SQL)\nLaTeX math support\nSyntax highlighting with copy-to-clipboard\nAutomatic table of contents\nCode folding capabilities\n\n\n\n3. Complete Content Examples\nTwo full blog posts included: - “Bayesian Hierarchical Models with PyMC” (complete tutorial) - “Causal Inference with Difference-in-Differences” (comprehensive guide)\nPlus detailed project example: - “Real-Time ML Prediction Pipeline” (production system walkthrough)\n\n\n4. Zero-Config Deployment\n\nGitHub Actions workflow pre-configured\nAutomatic builds on every push\nNo manual deployment needed\nWorks with GitHub Pages (free hosting)"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#complete-file-list",
+    "href": "PROJECT_OVERVIEW.html#complete-file-list",
+    "title": "",
+    "section": "📦 Complete File List",
+    "text": "📦 Complete File List\n\nCore Configuration\n\n_quarto.yml - Main site configuration\n.gitignore - Git ignore rules\nrequirements.txt - Python dependencies\n\n\n\nContent Pages\n\nindex.qmd - Homepage with hero section\nabout/index.qmd - About page\nposts/index.qmd - Blog listing\nposts/bayesian-hierarchical-models.qmd - Sample blog post #1\nposts/difference-in-differences.qmd - Sample blog post #2\nprojects/index.qmd - Projects listing\nprojects/ml-pipeline.qmd - Sample project\n\n\n\nStyling\n\nassets/css/styles.css - Custom CSS (1000+ lines)\n\n\n\nAutomation\n\n.github/workflows/publish.yml - GitHub Actions workflow\nsetup.sh - Interactive setup script\n\n\n\nDocumentation\n\nREADME.md - Comprehensive documentation (150+ lines)\nGET_STARTED.md - Quick start guide\nQUICKSTART.md - 5-minute setup\nDEPLOYMENT_CHECKLIST.md - Pre-launch checklist\nSTRUCTURE.txt - File tree overview"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#getting-started-3-options",
+    "href": "PROJECT_OVERVIEW.html#getting-started-3-options",
+    "title": "",
+    "section": "🚀 Getting Started (3 Options)",
+    "text": "🚀 Getting Started (3 Options)\n\nFastest: Automated Setup\ncd portfolio-site\n./setup.sh  # Interactive wizard\n\n\nQuick: Manual Updates\n\nEdit _quarto.yml (your name, links)\nEdit about/index.qmd (your background)\nEdit index.qmd (customize hero)\nPreview: quarto preview\nDeploy: Push to GitHub\n\n\n\nDetailed: Follow Guides\n\nStart with QUICKSTART.md\nReference README.md for details\nUse DEPLOYMENT_CHECKLIST.md before going live"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#customization-points",
+    "href": "PROJECT_OVERVIEW.html#customization-points",
+    "title": "",
+    "section": "🎨 Customization Points",
+    "text": "🎨 Customization Points\n\nMust Change\n\nYour name in _quarto.yml and about/index.qmd\nGitHub/LinkedIn/Email links in _quarto.yml\nAbout page content\nHomepage hero text\n\n\n\nShould Change\n\nColor scheme in assets/css/styles.css\nAdd your actual projects\nWrite your own blog posts\nUpdate example projects/posts\n\n\n\nOptional\n\nFonts (change in CSS)\nAdd profile image\nCustom domain\nGoogle Analytics\nAdditional pages"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#technical-requirements",
+    "href": "PROJECT_OVERVIEW.html#technical-requirements",
+    "title": "",
+    "section": "💻 Technical Requirements",
+    "text": "💻 Technical Requirements\n\nMinimum\n\nQuarto 1.4+ (required)\nGit (for version control)\nText editor (VS Code recommended)\n\n\n\nOptional\n\nPython 3.8+ (for Python code execution)\nR 4.0+ (for R code execution)\nNode.js (if using npm packages)"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#what-you-can-write-about",
+    "href": "PROJECT_OVERVIEW.html#what-you-can-write-about",
+    "title": "",
+    "section": "📊 What You Can Write About",
+    "text": "📊 What You Can Write About\n\nBlog Post Ideas\n\nTechnical tutorials (ML, data engineering)\nProject walkthroughs\nStatistical methods explanations\nIndustry analyses\nTool comparisons\nBest practices guides\n\n\n\nProject Showcase Ideas\n\nML models you’ve built\nData pipelines\nBayesian analyses\nCausal inference studies\nOpen-source contributions\nResearch projects"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#deployment-options",
+    "href": "PROJECT_OVERVIEW.html#deployment-options",
+    "title": "",
+    "section": "🌐 Deployment Options",
+    "text": "🌐 Deployment Options\n\nGitHub Pages (Recommended - Free)\n\nPush to GitHub\nEnable Pages (Settings → Pages)\nSelect “GitHub Actions” as source\nDone! Auto-deploys on every push\n\n\n\nCustom Domain\n\nBuy domain from registrar\nAdd CNAME file\nConfigure DNS\nUpdate in GitHub settings\n\n\n\nOther Options\n\nNetlify (supports Quarto)\nVercel (supports static sites)\nRender (supports static sites)"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#what-happens-after-deployment",
+    "href": "PROJECT_OVERVIEW.html#what-happens-after-deployment",
+    "title": "",
+    "section": "📈 What Happens After Deployment",
+    "text": "📈 What Happens After Deployment\n\nSite goes live at https://[username].github.io/[repo]\nAuto-builds on every push to main branch\nUpdates appear within 2-3 minutes\nRSS feed auto-generated for blog\nSearch indexing begins automatically"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#learning-path",
+    "href": "PROJECT_OVERVIEW.html#learning-path",
+    "title": "",
+    "section": "🎓 Learning Path",
+    "text": "🎓 Learning Path\n\nWeek 1: Setup\n\nRun setup script\nCustomize content\nDeploy to GitHub Pages\nVerify everything works\n\n\n\nWeek 2: Content\n\nWrite first original blog post\nAdd 2-3 projects\nCustomize styling\nAdd images/screenshots\n\n\n\nWeek 3: Polish\n\nReview on mobile devices\nCheck all links\nOptimize images\nAdd meta descriptions\n\n\n\nWeek 4: Promote\n\nShare on LinkedIn\nAdd to resume\nTweet about it\nGet feedback"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#maintenance",
+    "href": "PROJECT_OVERVIEW.html#maintenance",
+    "title": "",
+    "section": "🔧 Maintenance",
+    "text": "🔧 Maintenance\n\nRegular Tasks\n\nAdd blog posts (monthly/quarterly)\nUpdate projects as you build them\nKeep dependencies updated\nReview analytics (if enabled)\n\n\n\nOccasional Tasks\n\nRefresh design (yearly)\nUpdate about page (as you grow)\nAdd new features\nReorganize content"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#learning-resources",
+    "href": "PROJECT_OVERVIEW.html#learning-resources",
+    "title": "",
+    "section": "📚 Learning Resources",
+    "text": "📚 Learning Resources\n\nQuarto-Specific\n\nOfficial Docs: https://quarto.org/docs/\nGallery: https://quarto.org/docs/gallery/\nExtensions: https://quarto.org/docs/extensions/\n\n\n\nWeb Design\n\nCSS Tricks: https://css-tricks.com/\nMDN Web Docs: https://developer.mozilla.org/\nCan I Use: https://caniuse.com/\n\n\n\nContent Writing\n\nTechnical Writing Guide\nBlogging best practices\nSEO fundamentals"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#pro-tips",
+    "href": "PROJECT_OVERVIEW.html#pro-tips",
+    "title": "",
+    "section": "💡 Pro Tips",
+    "text": "💡 Pro Tips\n\nStart simple - Use example content, customize gradually\nPreview often - Use quarto preview while editing\nCommit frequently - Small commits are easier to debug\nMobile first - Always check mobile view\nReal projects - Add actual work, not just examples\nBe consistent - Regular updates &gt; perfect launch\nGet feedback - Share with peers before promotion\nTrack metrics - Use analytics to improve"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#success-metrics",
+    "href": "PROJECT_OVERVIEW.html#success-metrics",
+    "title": "",
+    "section": "🎯 Success Metrics",
+    "text": "🎯 Success Metrics\nAfter 1 month, you should have: - [ ] Personalized design - [ ] 3-5 blog posts - [ ] 5-10 projects - [ ] Professional about page - [ ] Clean, working site - [ ] Shared with network\nAfter 6 months: - [ ] Regular posting cadence - [ ] Growing content library - [ ] Inbound interest/contacts - [ ] Portfolio mentioned in applications - [ ] Continuous improvements"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#contributing",
+    "href": "PROJECT_OVERVIEW.html#contributing",
+    "title": "",
+    "section": "🤝 Contributing",
+    "text": "🤝 Contributing\nThis is your portfolio, but if you: - Find bugs → Document them - Make improvements → Consider sharing - Have ideas → Write them down"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#important-notes",
+    "href": "PROJECT_OVERVIEW.html#important-notes",
+    "title": "",
+    "section": "⚠️ Important Notes",
+    "text": "⚠️ Important Notes\n\nGitHub Pages must be public (for free tier)\nDon’t commit sensitive data (API keys, passwords)\nCheck license compatibility for code you include\nBackup your content regularly\nTest before sharing widely"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#final-thoughts",
+    "href": "PROJECT_OVERVIEW.html#final-thoughts",
+    "title": "",
+    "section": "🎉 Final Thoughts",
+    "text": "🎉 Final Thoughts\nYou now have everything you need to create a professional, impressive portfolio website. The framework is solid, the examples are comprehensive, and the documentation is thorough.\nThe only thing left is to make it yours: - Add your unique voice - Showcase your best work - Share your knowledge - Build your brand\nThis is your platform. Make it count! 🚀"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#quick-links",
+    "href": "PROJECT_OVERVIEW.html#quick-links",
+    "title": "",
+    "section": "Quick Links",
+    "text": "Quick Links\n\nStart Here: GET_STARTED.md\n5-Min Setup: QUICKSTART.md\nFull Docs: README.md\nPre-Launch: DEPLOYMENT_CHECKLIST.md"
+  },
+  {
+    "objectID": "PROJECT_OVERVIEW.html#support",
+    "href": "PROJECT_OVERVIEW.html#support",
+    "title": "",
+    "section": "Support",
+    "text": "Support\nCreated with ❤️ for data scientists, ML engineers, and analytical professionals.\nNow go build something amazing! 💻✨"
+  },
+  {
+    "objectID": "index.html#what-i-do-1",
+    "href": "index.html#what-i-do-1",
+    "title": "",
+    "section": "What I Do",
+    "text": "What I Do\n\n\n\n🤖 AI & Machine Learning\n\n\nBuilding intelligent systems using deep learning, natural language processing, and computer vision. Specializing in production-grade ML pipelines and model deployment.\n\n\n&lt;div class=\"skill-progress\" style=\"--skill-width: 90%;\"&gt;&lt;/div&gt;\n\n\n\n\n📊 Data Engineering\n\n\nDesigning scalable data architectures and ETL pipelines. Expert in modern data stacks including dbt, Airflow, Spark, and cloud platforms (AWS, GCP, Azure).\n\n\n&lt;div class=\"skill-progress\" style=\"--skill-width: 85%;\"&gt;&lt;/div&gt;\n\n\n\n\n📈 Bayesian Modelling\n\n\nApplying probabilistic programming and Bayesian inference to solve complex statistical problems. Experience with PyMC, Stan, and advanced MCMC techniques.\n\n\n&lt;div class=\"skill-progress\" style=\"--skill-width: 80%;\"&gt;&lt;/div&gt;\n\n\n\n\n📉 Econometrics\n\n\nConducting rigorous causal inference and econometric analysis. Skilled in time series forecasting, panel data methods, and experimental design.\n\n\n&lt;div class=\"skill-progress\" style=\"--skill-width: 85%;\"&gt;&lt;/div&gt;"
+  },
+  {
+    "objectID": "index.html#featured-work-1",
+    "href": "index.html#featured-work-1",
+    "title": "AI, Data & Analytics Engineering",
+    "section": "Featured Work",
+    "text": "Featured Work\n\n\n&lt;h3 class=\"card-title\"&gt;Time Series Forecasting with Prophet &amp; LSTM&lt;/h3&gt;\n&lt;p&gt;\n  Built an ensemble forecasting system combining Facebook Prophet and LSTM networks\n  for demand prediction, achieving 15% improvement over baseline models.\n&lt;/p&gt;\n&lt;div class=\"project-tags\"&gt;\n  &lt;span class=\"tag\"&gt;Python&lt;/span&gt;\n  &lt;span class=\"tag\"&gt;PyTorch&lt;/span&gt;\n  &lt;span class=\"tag\"&gt;Prophet&lt;/span&gt;\n  &lt;span class=\"tag\"&gt;Time Series&lt;/span&gt;\n&lt;/div&gt;\n\n\n&lt;h3 class=\"card-title\"&gt;Bayesian A/B Testing Framework&lt;/h3&gt;\n&lt;p&gt;\n  Developed a production-ready Bayesian A/B testing framework using PyMC\n  for faster and more accurate experiment analysis.\n&lt;/p&gt;\n&lt;div class=\"project-tags\"&gt;\n  &lt;span class=\"tag\"&gt;PyMC&lt;/span&gt;\n  &lt;span class=\"tag\"&gt;Bayesian&lt;/span&gt;\n  &lt;span class=\"tag\"&gt;Statistics&lt;/span&gt;\n  &lt;span class=\"tag\"&gt;Experimentation&lt;/span&gt;\n&lt;/div&gt;\n\n\n&lt;h3 class=\"card-title\"&gt;Causal Inference Pipeline&lt;/h3&gt;\n&lt;p&gt;\n  Implemented difference-in-differences and synthetic control methods for policy\n  evaluation using modern causal inference techniques.\n&lt;/p&gt;\n&lt;div class=\"project-tags\"&gt;\n  &lt;span class=\"tag\"&gt;R&lt;/span&gt;\n  &lt;span class=\"tag\"&gt;Python&lt;/span&gt;\n  &lt;span class=\"tag\"&gt;Causal ML&lt;/span&gt;\n  &lt;span class=\"tag\"&gt;Econometrics&lt;/span&gt;\n&lt;/div&gt;"
+  }
+]

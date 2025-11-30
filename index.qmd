@@ -1,0 +1,75 @@
+---
+title: ""
+page-layout: full
+---
+
+::: {.hero-section}
+::: {.hero-content}
+
+# AI, Data &amp; Analytics Engineering {.hero-title}
+
+Exploring the intersection of machine learning, Bayesian inference, and econometric modeling {.hero-subtitle}
+
+::: {.hero-actions}
+[View Projects](projects/index.qmd){.btn .btn-primary .hero-btn-primary}
+[Read Blog](posts/index.qmd){.btn .btn-outline-primary .hero-btn-outline}
+:::
+
+:::
+:::
+
+## What I Do
+
+<div class="project-grid">
+
+<div class="card">
+  <h3 class="card-title">🤖 AI &amp; Machine Learning</h3>
+  <p>Building intelligent systems using deep learning, natural language processing, and computer vision. Specializing in production-grade ML pipelines and model deployment.</p>
+  <div class="skill-bar">
+    <div class="skill-progress" style="--skill-width: 90%;"></div>
+  </div>
+</div>
+
+<div class="card">
+  <h3 class="card-title">📊 Data Engineering</h3>
+  <p>Designing scalable data architectures and ETL pipelines. Expert in modern data stacks including dbt, Airflow, Spark, and cloud platforms (AWS, GCP, Azure).</p>
+  <div class="skill-bar">
+    <div class="skill-progress" style="--skill-width: 85%;"></div>
+  </div>
+</div>
+
+<div class="card">
+  <h3 class="card-title">📈 Bayesian Modelling</h3>
+  <p>Applying probabilistic programming and Bayesian inference to solve complex statistical problems. Experience with PyMC, Stan, and advanced MCMC techniques.</p>
+  <div class="skill-bar">
+    <div class="skill-progress" style="--skill-width: 80%;"></div>
+  </div>
+</div>
+
+<div class="card">
+  <h3 class="card-title">📉 Econometrics</h3>
+  <p>Conducting rigorous causal inference and econometric analysis. Skilled in time series forecasting, panel data methods, and experimental design.</p>
+  <div class="skill-bar">
+    <div class="skill-progress" style="--skill-width: 85%;"></div>
+  </div>
+</div>
+
+</div>
+
+
+## Recent Posts
+
+Check out my latest thoughts on
+[data science, ML engineering, and statistical modeling](/posts/index.qmd).
+
+<style>
+/* Animate bars (using CSS variable for the width) */
+.skill-progress {
+  animation: fill-bar 1.4s ease-out forwards;
+}
+
+@keyframes fill-bar {
+  from { width: 0%; }
+  to   { width: var(--skill-width, 85%); }
+}
+</style>
