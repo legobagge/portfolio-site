@@ -2,58 +2,58 @@
   {
     "objectID": "QUICKSTART.html",
     "href": "QUICKSTART.html",
-    "title": "",
+    "title": "Quick Start Guide",
     "section": "",
-    "text": "Code"
+    "text": "Get your portfolio website up and running in 5 minutes!\n\n\n\n\nbrew install quarto\n\n\n\nwget https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.554/quarto-1.4.554-linux-amd64.deb\nsudo dpkg -i quarto-1.4.554-linux-amd64.deb\n\n\n\nDownload installer from: https://quarto.org/docs/get-started/\n\n\n\n\n\n\n\nEdit _quarto.yml\nwebsite:\n  title: \"Your Name - Portfolio\"  # Change this\n\nnavbar:\n  right:\n    - icon: github\n      href: https://github.com/YOUR_USERNAME  # Update\n    - icon: linkedin\n      href: https://linkedin.com/in/YOUR_PROFILE  # Update\n    - icon: envelope\n      href: mailto:YOUR_EMAIL@example.com  # Update\nUpdate about/index.qmd\n\nAdd your name, background, and experience\nUpdate skills and technologies\nAdd your contact information\n\nCustomize index.qmd\n\nEdit hero title and subtitle\nUpdate featured projects\nModify skill descriptions\n\n\n\n\n\n\ncd portfolio-site\nquarto preview\nVisit http://localhost:4200 to see your site!\n\n\n\n\n\n\nCreate GitHub repository\ngit init\ngit add .\ngit commit -m \"Initial commit\"\ngit remote add origin https://github.com/YOUR_USERNAME/portfolio-site.git\ngit push -u origin main\nEnable GitHub Pages\n\nGo to repository Settings → Pages\nSource: Select “GitHub Actions”\nThe site will automatically deploy on push to main\n\nAccess your site\n\nYour site will be live at: https://YOUR_USERNAME.github.io/portfolio-site\n\n\n\n\n\n\n\n\n# Create new post file\ntouch posts/my-first-post.qmd\nAdd frontmatter and content:\n---\ntitle: \"My First Post\"\ndescription: \"Getting started with my portfolio\"\ndate: \"2024-11-30\"\ncategories: [Tutorial, Data Science]\n---\n\n## Hello World\n\nYour content here...\n\n\n\n# Create new project file\ntouch projects/my-project.qmd\nAdd project details with frontmatter similar to blog posts.\n\n\n\n\n\n\n# Preview site (auto-reload on changes)\nquarto preview\n\n# Render site\nquarto render\n\n# Clean build artifacts\nquarto clean\n\n\n\ngit add .\ngit commit -m \"Update content\"\ngit push\n# Site automatically rebuilds via GitHub Actions\n\n\n\n\n\n\nEdit assets/css/styles.css:\n:root {\n  --accent-blue: #YOUR_COLOR;\n  --accent-teal: #YOUR_COLOR;\n}\n\n\n\nIn _quarto.yml:\nwebsite:\n  google-analytics: \"G-XXXXXXXXXX\"\n\n\n\n\nAdd CNAME file with your domain\nConfigure DNS with your provider\nUpdate site-url in _quarto.yml"
   },
   {
     "objectID": "QUICKSTART.html#step-1-install-quarto",
     "href": "QUICKSTART.html#step-1-install-quarto",
-    "title": "",
-    "section": "Step 1: Install Quarto",
-    "text": "Step 1: Install Quarto\n\nmacOS\nbrew install quarto\n\n\nLinux (Ubuntu/Debian)\nwget https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.554/quarto-1.4.554-linux-amd64.deb\nsudo dpkg -i quarto-1.4.554-linux-amd64.deb\n\n\nWindows\nDownload installer from: https://quarto.org/docs/get-started/"
+    "title": "Quick Start Guide",
+    "section": "",
+    "text": "brew install quarto\n\n\n\nwget https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.554/quarto-1.4.554-linux-amd64.deb\nsudo dpkg -i quarto-1.4.554-linux-amd64.deb\n\n\n\nDownload installer from: https://quarto.org/docs/get-started/"
   },
   {
     "objectID": "QUICKSTART.html#step-2-customize-your-site",
     "href": "QUICKSTART.html#step-2-customize-your-site",
-    "title": "",
-    "section": "Step 2: Customize Your Site",
-    "text": "Step 2: Customize Your Site\n\nEssential Changes\n\nEdit _quarto.yml\nwebsite:\n  title: \"Your Name - Portfolio\"  # Change this\n\nnavbar:\n  right:\n    - icon: github\n      href: https://github.com/YOUR_USERNAME  # Update\n    - icon: linkedin\n      href: https://linkedin.com/in/YOUR_PROFILE  # Update\n    - icon: envelope\n      href: mailto:YOUR_EMAIL@example.com  # Update\nUpdate about/index.qmd\n\nAdd your name, background, and experience\nUpdate skills and technologies\nAdd your contact information\n\nCustomize index.qmd\n\nEdit hero title and subtitle\nUpdate featured projects\nModify skill descriptions"
+    "title": "Quick Start Guide",
+    "section": "",
+    "text": "Edit _quarto.yml\nwebsite:\n  title: \"Your Name - Portfolio\"  # Change this\n\nnavbar:\n  right:\n    - icon: github\n      href: https://github.com/YOUR_USERNAME  # Update\n    - icon: linkedin\n      href: https://linkedin.com/in/YOUR_PROFILE  # Update\n    - icon: envelope\n      href: mailto:YOUR_EMAIL@example.com  # Update\nUpdate about/index.qmd\n\nAdd your name, background, and experience\nUpdate skills and technologies\nAdd your contact information\n\nCustomize index.qmd\n\nEdit hero title and subtitle\nUpdate featured projects\nModify skill descriptions"
   },
   {
     "objectID": "QUICKSTART.html#step-3-preview-locally",
     "href": "QUICKSTART.html#step-3-preview-locally",
-    "title": "",
-    "section": "Step 3: Preview Locally",
-    "text": "Step 3: Preview Locally\ncd portfolio-site\nquarto preview\nVisit http://localhost:4200 to see your site!"
+    "title": "Quick Start Guide",
+    "section": "",
+    "text": "cd portfolio-site\nquarto preview\nVisit http://localhost:4200 to see your site!"
   },
   {
     "objectID": "QUICKSTART.html#step-4-deploy-to-github-pages",
     "href": "QUICKSTART.html#step-4-deploy-to-github-pages",
-    "title": "",
-    "section": "Step 4: Deploy to GitHub Pages",
-    "text": "Step 4: Deploy to GitHub Pages\n\nQuick Deploy\n\nCreate GitHub repository\ngit init\ngit add .\ngit commit -m \"Initial commit\"\ngit remote add origin https://github.com/YOUR_USERNAME/portfolio-site.git\ngit push -u origin main\nEnable GitHub Pages\n\nGo to repository Settings → Pages\nSource: Select “GitHub Actions”\nThe site will automatically deploy on push to main\n\nAccess your site\n\nYour site will be live at: https://YOUR_USERNAME.github.io/portfolio-site"
+    "title": "Quick Start Guide",
+    "section": "",
+    "text": "Create GitHub repository\ngit init\ngit add .\ngit commit -m \"Initial commit\"\ngit remote add origin https://github.com/YOUR_USERNAME/portfolio-site.git\ngit push -u origin main\nEnable GitHub Pages\n\nGo to repository Settings → Pages\nSource: Select “GitHub Actions”\nThe site will automatically deploy on push to main\n\nAccess your site\n\nYour site will be live at: https://YOUR_USERNAME.github.io/portfolio-site"
   },
   {
     "objectID": "QUICKSTART.html#step-5-add-content",
     "href": "QUICKSTART.html#step-5-add-content",
-    "title": "",
-    "section": "Step 5: Add Content",
-    "text": "Step 5: Add Content\n\nCreate a Blog Post\n# Create new post file\ntouch posts/my-first-post.qmd\nAdd frontmatter and content:\n---\ntitle: \"My First Post\"\ndescription: \"Getting started with my portfolio\"\ndate: \"2024-11-30\"\ncategories: [Tutorial, Data Science]\n---\n\n## Hello World\n\nYour content here...\n\n\nCreate a Project Page\n# Create new project file\ntouch projects/my-project.qmd\nAdd project details with frontmatter similar to blog posts."
+    "title": "Quick Start Guide",
+    "section": "",
+    "text": "# Create new post file\ntouch posts/my-first-post.qmd\nAdd frontmatter and content:\n---\ntitle: \"My First Post\"\ndescription: \"Getting started with my portfolio\"\ndate: \"2024-11-30\"\ncategories: [Tutorial, Data Science]\n---\n\n## Hello World\n\nYour content here...\n\n\n\n# Create new project file\ntouch projects/my-project.qmd\nAdd project details with frontmatter similar to blog posts."
   },
   {
     "objectID": "QUICKSTART.html#common-workflows",
     "href": "QUICKSTART.html#common-workflows",
-    "title": "",
-    "section": "Common Workflows",
-    "text": "Common Workflows\n\nLocal Development\n# Preview site (auto-reload on changes)\nquarto preview\n\n# Render site\nquarto render\n\n# Clean build artifacts\nquarto clean\n\n\nPublishing Changes\ngit add .\ngit commit -m \"Update content\"\ngit push\n# Site automatically rebuilds via GitHub Actions"
+    "title": "Quick Start Guide",
+    "section": "",
+    "text": "# Preview site (auto-reload on changes)\nquarto preview\n\n# Render site\nquarto render\n\n# Clean build artifacts\nquarto clean\n\n\n\ngit add .\ngit commit -m \"Update content\"\ngit push\n# Site automatically rebuilds via GitHub Actions"
   },
   {
     "objectID": "QUICKSTART.html#customization-tips",
     "href": "QUICKSTART.html#customization-tips",
-    "title": "",
-    "section": "Customization Tips",
-    "text": "Customization Tips\n\nChange Colors\nEdit assets/css/styles.css:\n:root {\n  --accent-blue: #YOUR_COLOR;\n  --accent-teal: #YOUR_COLOR;\n}\n\n\nAdd Google Analytics\nIn _quarto.yml:\nwebsite:\n  google-analytics: \"G-XXXXXXXXXX\"\n\n\nCustom Domain\n\nAdd CNAME file with your domain\nConfigure DNS with your provider\nUpdate site-url in _quarto.yml"
+    "title": "Quick Start Guide",
+    "section": "",
+    "text": "Edit assets/css/styles.css:\n:root {\n  --accent-blue: #YOUR_COLOR;\n  --accent-teal: #YOUR_COLOR;\n}\n\n\n\nIn _quarto.yml:\nwebsite:\n  google-analytics: \"G-XXXXXXXXXX\"\n\n\n\n\nAdd CNAME file with your domain\nConfigure DNS with your provider\nUpdate site-url in _quarto.yml"
   },
   {
     "objectID": "QUICKSTART.html#troubleshooting",
@@ -158,7 +158,7 @@
     "href": "posts/index.html",
     "title": "Blog",
     "section": "",
-    "text": "Technical Blog\nInsights and tutorials on AI, data engineering, Bayesian statistics, and econometrics. Exploring cutting-edge techniques and practical implementations.\n\n\n\n\n\n\nSubscribe\n\n\n\nGet notified of new posts via RSS feed\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to Bayesian Hierarchical Models with PyMC\n\n\n\n\n\n\nBayesian Statistics\n\n\nPyMC\n\n\nPython\n\n\nTutorial\n\n\n\nA practical guide to building hierarchical Bayesian models for marketing mix modeling\n\n\n\n\n\nNov 15, 2024\n\n\n4 min\n\n\n\n\n\n\n\nCausal Inference in Practice: Difference-in-Differences with Python\n\n\n\n\n\n\nEconometrics\n\n\nCausal Inference\n\n\nPython\n\n\n\nA step-by-step guide to estimating causal effects using DiD methodology\n\n\n\n\n\nOct 28, 2024\n\n\n4 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Insights and tutorials on AI, data engineering, Bayesian statistics, and econometrics. Exploring cutting-edge techniques and practical implementations.\n\n\n\n\n\n\n\n\n\nIntroduction to Bayesian Hierarchical Models with PyMC\n\n\n\n\n\n\nBayesian Statistics\n\n\nPyMC\n\n\nPython\n\n\nTutorial\n\n\n\nA practical guide to building hierarchical Bayesian models for marketing mix modeling\n\n\n\n\n\nNov 15, 2024\n\n\n4 min\n\n\n\n\n\n\n\nCausal Inference in Practice: Difference-in-Differences with Python\n\n\n\n\n\n\nEconometrics\n\n\nCausal Inference\n\n\nPython\n\n\n\nA step-by-step guide to estimating causal effects using DiD methodology\n\n\n\n\n\nOct 28, 2024\n\n\n4 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/bayesian-hierarchical-models.html",

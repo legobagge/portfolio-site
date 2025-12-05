@@ -9,11 +9,4 @@ listing:
   fields: [title, description, date, categories, reading-time]
 ---
 
-# Technical Blog
-
 Insights and tutorials on AI, data engineering, Bayesian statistics, and econometrics. Exploring cutting-edge techniques and practical implementations.
-
-:::{.callout-tip}
-## Subscribe
-Get notified of new posts via [RSS feed](index.xml)
-:::
