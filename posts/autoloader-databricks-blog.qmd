@@ -1,0 +1,384 @@
+---
+title: "Autoloader: The Smart Way to Ingest Data into Your Bronze Layer"
+description: "How Databricks Autoloader solved my incremental ingestion problem and why you should stop using spark.read() for file-based data loads"
+author: "Lucas Bagge"
+date: "2025-12-05"
+categories: [Databricks, Data Engineering, Tutorial, Azure]
+highlight-style: monokai
+image: "autoloader-thumbnail.png"
+draft: false
+---
+
+## Why I Stopped Using spark.read() for Data Ingestion
+
+Let me tell you about a problem I ran into recently. We had daily JSON files dropping into Azure Blob Storage from an Oracle database—full dumps arriving every morning at 2 AM. Simple enough, right? Just read the files with `spark.read.json()` and load them into a Delta table.
+
+But here's the thing: every time I ran the job, it would re-read **all** the files. Day 1? Read 9 files. Day 2? Read 10 files (including the 9 from yesterday). Day 30? Read 39 files, even though only 1 was new.
+
+This wasn't just inefficient—it was creating duplicate data, wasting compute resources, and making my data pipeline unnecessarily slow and expensive.
+
+That's when I discovered **Databricks Autoloader**, and honestly, it changed everything.
+
+------------------------------------------------------------------------
+
+## What is Autoloader, Really?
+
+At its core, Autoloader (officially called `cloudFiles`) is Databricks' way of saying: "I'll handle the messy parts of incremental file ingestion for you."
+
+Instead of you having to:
+
+-   Track which files you've already processed
+-   Filter out old files manually
+-   Handle schema changes
+-   Deal with duplicates
+-   Retry failed files
+
+Autoloader does all of this automatically. You just point it at a directory, and it figures out the rest.
+
+------------------------------------------------------------------------
+
+## The Problem: Daily Full Dumps
+
+Here's my specific use case: We get daily snapshots from an Oracle database exported as JSON files, like this:
+
+```         
+orders-2025-11-26.json
+orders-2025-11-27.json
+orders-2025-11-28.json
+...
+```
+
+Each file is a **complete dump** of the orders table—about 25MB per file. New file arrives every morning at 2 AM.
+
+### The Old Way (spark.read)
+
+``` python
+# Read all files every single time 😱
+df = spark.read.json("wasbs://Ordertable@storage.blob.core.windows.net/")
+df.write.mode("append").saveAsTable("_table")
+```
+
+**Problems:**
+
+-   Day 1: Reads 1 file ✅
+-   Day 2: Reads 2 files (1 duplicate) ❌
+-   Day 30: Reads 30 files (29 duplicates) ❌❌❌
+
+Result? My table had massive duplicates, and I was burning through compute credits for no reason.
+
+------------------------------------------------------------------------
+
+## The Solution: Autoloader + Bronze Layer
+
+The key insight: **separate ingestion from deduplication**.
+
+### Step 1: Autoloader → Bronze (Append Everything)
+
+Bronze is your "raw data lake"—just land the data as-is, with minimal processing. Autoloader is perfect for this.
+
+``` python
+from pyspark.sql import functions as F
+
+# Configuration
+storage_account_name = "testforblog"
+container_name = "testforblog"
+
+# Get storage key from secrets
+storage_account_key = dbutils.secrets.get(
+    scope="scope", 
+    key="key"
+)
+
+# Configure Azure access
+spark.conf.set(
+    f"fs.azure.account.key.{storage_account_name}.blob.core.windows.net",
+    storage_account_key
+)
+
+# Paths
+source_path = f"wasbs://{container_name}@{storage_account_name}.blob.core.windows.net/"
+checkpoint_path = "dbfs:/checkpoints/testforblog"
+target_table = "catalog.schema.table"
+
+# Read with Autoloader
+df_stream = (
+    spark.readStream
+    .format("cloudFiles")  # This is the magic ✨
+    .option("cloudFiles.format", "json")
+    .option("cloudFiles.schemaLocation", checkpoint_path)
+    .option("cloudFiles.inferColumnTypes", "true")
+    .option("cloudFiles.schemaEvolutionMode", "addNewColumns")
+    .option("multiLine", "true")  # For JSON arrays
+    .load(source_path)
+)
+
+# Extract file date from filename
+df_stream = (
+    df_stream
+    .withColumn("_source_file", F.input_file_name())
+    .withColumn("_file_date", 
+                F.to_date(
+                    F.regexp_extract(
+                        F.col("_source_file"), 
+                        r"orders-(\d{4}-\d{2}-\d{2})\.json", 
+                        1
+                    )
+                ))
+    .withColumn("_ingestion_timestamp", F.current_timestamp())
+)
+
+# Write to Bronze
+query = (
+    df_stream.writeStream
+    .format("delta")
+    .outputMode("append")
+    .option("checkpointLocation", checkpoint_path)
+    .option("mergeSchema", "true")
+    .trigger(availableNow=True)  # Process all available files, then stop
+    .toTable(target_table)
+)
+
+query.awaitTermination()
+print("✓ Bronze ingestion complete!")
+```
+
+------------------------------------------------------------------------
+
+## What Makes This Smart?
+
+### 1. Incremental Processing (No Duplicates)
+
+Autoloader maintains a checkpoint—a hidden ledger of every file it's processed.
+
+```         
+Day 1: Process orders-2025-11-26.json → Checkpoint: ✓
+Day 2: Check checkpoint → Skip orders-2025-11-26.json, 
+       process orders-2025-11-27.json → Checkpoint: ✓✓
+Day 3: Check checkpoint → Skip both old files, 
+       process orders-2025-11-28.json → Checkpoint: ✓✓✓
+```
+
+**Result:** Each file is processed exactly once. No duplicates in Bronze.
+
+### 2. Schema Evolution (Future-Proof)
+
+Oracle adds a new column? No problem.
+
+``` python
+.option("cloudFiles.schemaEvolutionMode", "addNewColumns")
+```
+
+Autoloader automatically:
+
+-   Detects the new column
+-   Adds it to your Delta table schema
+-   Fills old records with NULL
+-   Keeps processing without breaking
+
+I don't have to manually alter table schemas or write migration scripts. It just works.
+
+### 3. File Date Tracking
+
+Notice this part?
+
+``` python
+.withColumn("_file_date", 
+            F.to_date(
+                F.regexp_extract(
+                    F.col("_source_file"), 
+                    r"table-(\d{4}-\d{2}-\d{2})\.json", 
+                    1
+                )
+            ))
+```
+
+I'm extracting the date from the filename (`table-2025-11-26.json` → `2025-11-26`). This tells me **when the Oracle snapshot was taken**, not when I ingested it.
+
+Why does this matter? Because if my ingestion job runs late (network issue, cluster delay, etc.), I still know the **source date** of the data. This becomes crucial in the Silver layer for deduplication.
+
+### 4. Fault Tolerance
+
+Job crashes halfway through? No problem. The checkpoint knows exactly where you left off.
+
+Autoloader will:
+
+-   Resume from the last successfully processed file
+-   Not reprocess completed files
+-   Guarantee exactly-once processing
+
+This is huge for production pipelines where reliability matters.
+
+------------------------------------------------------------------------
+
+## The Bronze Layer Philosophy
+
+You might be thinking: "Wait, you're appending everything? Won't that create duplicates?"
+
+**Yes, and that's intentional.**
+
+Bronze is your **raw data archive**. The rules are:
+
+1.  Append-only (never update/delete)
+2.  Keep data exactly as it arrived from source
+3.  Add metadata (\_source_file, \_file_date, \_ingestion_timestamp)
+4.  Minimal transformations
+
+Think of Bronze as your "receipts drawer"—you keep everything, even if some orders appear in multiple daily dumps. This gives you:
+
+-   **Full audit trail**: Can trace any record back to its source file
+-   **Reprocessing capability**: If logic changes, rebuild Silver/Gold from Bronze
+-   **Debugging**: "What did the source system send us on Dec 5th?" → Query Bronze with `_file_date = '2025-12-05'`
+
+**Deduplication happens in Silver**, not Bronze. This separation of concerns makes the pipeline much cleaner.
+
+------------------------------------------------------------------------
+
+## What About Performance?
+
+Let's talk numbers. Without Autoloader:
+
+```         
+Day 1:  Read 1 file  (25 MB)  → 25 MB total
+Day 2:  Read 2 files (50 MB)  → 75 MB total
+Day 30: Read 30 files (750 MB) → 11,625 MB total (11.6 GB)
+```
+
+With Autoloader:
+
+```         
+Day 1:  Read 1 file  (25 MB)  → 25 MB total
+Day 2:  Read 1 file  (25 MB)  → 50 MB total
+Day 30: Read 1 file  (25 MB)  → 750 MB total
+```
+
+That's a **15x reduction** in data scanned over 30 days. Multiply that by compute costs, and you're saving real money.
+
+Plus, Autoloader can scale to **millions of files** using file notification mode (Azure Event Grid), which is way more efficient than directory listing for huge datasets.
+
+------------------------------------------------------------------------
+
+## The Trigger Mode: Batch vs. Streaming
+
+Notice this line?
+
+``` python
+.trigger(availableNow=True)
+```
+
+This tells Autoloader: "Process all available files right now, then stop."
+
+It's perfect for scheduled batch jobs (run daily at 2:30 AM after the file arrives at 2 AM).
+
+**Alternative for real-time:**
+
+``` python
+.trigger(processingTime="10 minutes")
+```
+
+This keeps the stream running continuously, checking for new files every 10 minutes. Great for near-real-time pipelines.
+
+For my use case (daily batch), `availableNow=True` is ideal—it runs, finishes, and shuts down the cluster to save costs.
+
+------------------------------------------------------------------------
+
+## Common Gotchas I Ran Into
+
+### 1. Checkpoint Path Must Be Writable
+
+Initially, I used `/mnt/checkpoints/...` which pointed to a non-existent S3 bucket. Error.
+
+**Solution:** Use DBFS paths:
+
+``` python
+checkpoint_path = "dbfs:/checkpoints/test"
+```
+
+### 2. JSON Array Format
+
+My JSON files were arrays:
+
+``` json
+[
+  {"order_id": 1, "part": "ABC"},
+  {"order_id": 2, "part": "DEF"}
+]
+```
+
+Standard JSON reader failed.
+
+**Solution:** Add `multiLine` option:
+
+``` python
+.option("multiLine", "true")
+```
+
+### 3. Schema Inference Can Fail on Empty Directories
+
+If you run Autoloader on an empty directory, it'll error out because it can't infer a schema.
+
+**Solution:** Either wait for files to arrive, or provide an explicit schema.
+
+------------------------------------------------------------------------
+
+## Why This Matters for the Medallion Architecture
+
+This is the **Bronze layer** of the Medallion Architecture:
+
+```         
+Sources (Oracle DB)
+    ↓
+  [Autoloader] ← We are here
+    ↓
+Bronze (Raw, append-only, all history)
+    ↓
+  [Deduplication & Cleaning]
+    ↓
+Silver (Deduplicated, typed, latest version)
+    ↓
+  [Aggregations & Business Logic]
+    ↓
+Gold (Business metrics, ready for BI tools)
+```
+
+**Bronze is the foundation.** If you mess up ingestion here, everything downstream breaks. Autoloader makes this layer:
+
+-   Reliable (exactly-once processing)
+-   Maintainable (no manual file tracking)
+-   Scalable (handles millions of files)
+-   Cost-effective (incremental processing)
+
+------------------------------------------------------------------------
+
+## The Bottom Line
+
+Before Autoloader, I was writing custom logic to:
+
+-   List files in blob storage
+-   Compare against a "processed files" table
+-   Filter out old files
+-   Handle retry logic
+-   Track schema changes manually
+
+**That's hundreds of lines of brittle, error-prone code.**
+
+With Autoloader, it's \~30 lines of configuration. It just works.
+
+If you're ingesting files from cloud storage (Azure Blob, S3, ADLS, GCS), stop using `spark.read()` repeatedly. Use Autoloader. Your future self will thank you.
+
+------------------------------------------------------------------------
+
+## Next Steps
+
+In my next post, I'll cover the **Silver layer**—how to deduplicate these daily full dumps and create a clean, analytics-ready table using the `_file_date` we extracted. We'll use window functions to keep only the latest version of each order and add proper data types.
+
+But for now, if you're still manually tracking which files you've processed, give Autoloader a try. It's one of those tools that feels like magic the first time it works—and then you wonder how you ever lived without it.
+
+------------------------------------------------------------------------
+
+## Further Reading
+
+-   [Databricks Autoloader Documentation](https://docs.databricks.com/ingestion/auto-loader/index.html)
+-   [Medallion Architecture](https://www.databricks.com/glossary/medallion-architecture)
+-   [Delta Lake Best Practices](https://docs.databricks.com/delta/best-practices.html)
+
+------------------------------------------------------------------------

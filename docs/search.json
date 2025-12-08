@@ -158,7 +158,7 @@
     "href": "posts/index.html",
     "title": "Blog",
     "section": "",
-    "text": "Insights and tutorials on AI, data engineering, Bayesian statistics, and econometrics. Exploring cutting-edge techniques and practical implementations.\n\n\n\n\n\n\n\n\n\nIntroduction to Bayesian Hierarchical Models with PyMC\n\n\n\n\n\n\nBayesian Statistics\n\n\nPyMC\n\n\nPython\n\n\nTutorial\n\n\n\nA practical guide to building hierarchical Bayesian models for marketing mix modeling\n\n\n\n\n\nNov 15, 2024\n\n\n4 min\n\n\n\n\n\n\n\nCausal Inference in Practice: Difference-in-Differences with Python\n\n\n\n\n\n\nEconometrics\n\n\nCausal Inference\n\n\nPython\n\n\n\nA step-by-step guide to estimating causal effects using DiD methodology\n\n\n\n\n\nOct 28, 2024\n\n\n4 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Insights and tutorials on AI, data engineering, Bayesian statistics, and econometrics. Exploring cutting-edge techniques and practical implementations.\n\n\n\n\n\n\n\n\n\nAutoloader: The Smart Way to Ingest Data into Your Bronze Layer\n\n\n\n\n\n\nDatabricks\n\n\nData Engineering\n\n\nTutorial\n\n\nAzure\n\n\n\nHow Databricks Autoloader solved my incremental ingestion problem and why you should stop using spark.read() for file-based data loads\n\n\n\n\n\nDec 5, 2025\n\n\n9 min\n\n\n\n\n\n\n\nIntroduction to Bayesian Hierarchical Models with PyMC\n\n\n\n\n\n\nBayesian Statistics\n\n\nPyMC\n\n\nPython\n\n\nTutorial\n\n\n\nA practical guide to building hierarchical Bayesian models for marketing mix modeling\n\n\n\n\n\nNov 15, 2024\n\n\n4 min\n\n\n\n\n\n\n\nCausal Inference in Practice: Difference-in-Differences with Python\n\n\n\n\n\n\nEconometrics\n\n\nCausal Inference\n\n\nPython\n\n\n\nA step-by-step guide to estimating causal effects using DiD methodology\n\n\n\n\n\nOct 28, 2024\n\n\n4 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/bayesian-hierarchical-models.html",
@@ -698,5 +698,103 @@
     "title": "AI, Data & Analytics Engineering",
     "section": "Featured Work",
     "text": "Featured Work\n\n\n&lt;h3 class=\"card-title\"&gt;Time Series Forecasting with Prophet &amp; LSTM&lt;/h3&gt;\n&lt;p&gt;\n  Built an ensemble forecasting system combining Facebook Prophet and LSTM networks\n  for demand prediction, achieving 15% improvement over baseline models.\n&lt;/p&gt;\n&lt;div class=\"project-tags\"&gt;\n  &lt;span class=\"tag\"&gt;Python&lt;/span&gt;\n  &lt;span class=\"tag\"&gt;PyTorch&lt;/span&gt;\n  &lt;span class=\"tag\"&gt;Prophet&lt;/span&gt;\n  &lt;span class=\"tag\"&gt;Time Series&lt;/span&gt;\n&lt;/div&gt;\n\n\n&lt;h3 class=\"card-title\"&gt;Bayesian A/B Testing Framework&lt;/h3&gt;\n&lt;p&gt;\n  Developed a production-ready Bayesian A/B testing framework using PyMC\n  for faster and more accurate experiment analysis.\n&lt;/p&gt;\n&lt;div class=\"project-tags\"&gt;\n  &lt;span class=\"tag\"&gt;PyMC&lt;/span&gt;\n  &lt;span class=\"tag\"&gt;Bayesian&lt;/span&gt;\n  &lt;span class=\"tag\"&gt;Statistics&lt;/span&gt;\n  &lt;span class=\"tag\"&gt;Experimentation&lt;/span&gt;\n&lt;/div&gt;\n\n\n&lt;h3 class=\"card-title\"&gt;Causal Inference Pipeline&lt;/h3&gt;\n&lt;p&gt;\n  Implemented difference-in-differences and synthetic control methods for policy\n  evaluation using modern causal inference techniques.\n&lt;/p&gt;\n&lt;div class=\"project-tags\"&gt;\n  &lt;span class=\"tag\"&gt;R&lt;/span&gt;\n  &lt;span class=\"tag\"&gt;Python&lt;/span&gt;\n  &lt;span class=\"tag\"&gt;Causal ML&lt;/span&gt;\n  &lt;span class=\"tag\"&gt;Econometrics&lt;/span&gt;\n&lt;/div&gt;"
+  },
+  {
+    "objectID": "posts/autoloader-databricks-blog.html",
+    "href": "posts/autoloader-databricks-blog.html",
+    "title": "Autoloader: The Smart Way to Ingest Data into Your Bronze Layer",
+    "section": "",
+    "text": "Let me tell you about a problem I ran into recently. We had daily JSON files dropping into Azure Blob Storage from an Oracle database—full dumps arriving every morning at 2 AM. Simple enough, right? Just read the files with spark.read.json() and load them into a Delta table.\nBut here’s the thing: every time I ran the job, it would re-read all the files. Day 1? Read 9 files. Day 2? Read 10 files (including the 9 from yesterday). Day 30? Read 39 files, even though only 1 was new.\nThis wasn’t just inefficient—it was creating duplicate data, wasting compute resources, and making my data pipeline unnecessarily slow and expensive.\nThat’s when I discovered Databricks Autoloader, and honestly, it changed everything."
+  },
+  {
+    "objectID": "posts/autoloader-databricks-blog.html#why-i-stopped-using-spark.read-for-data-ingestion",
+    "href": "posts/autoloader-databricks-blog.html#why-i-stopped-using-spark.read-for-data-ingestion",
+    "title": "Autoloader: The Smart Way to Ingest Data into Your Bronze Layer",
+    "section": "",
+    "text": "Let me tell you about a problem I ran into recently. We had daily JSON files dropping into Azure Blob Storage from an Oracle database—full dumps arriving every morning at 2 AM. Simple enough, right? Just read the files with spark.read.json() and load them into a Delta table.\nBut here’s the thing: every time I ran the job, it would re-read all the files. Day 1? Read 9 files. Day 2? Read 10 files (including the 9 from yesterday). Day 30? Read 39 files, even though only 1 was new.\nThis wasn’t just inefficient—it was creating duplicate data, wasting compute resources, and making my data pipeline unnecessarily slow and expensive.\nThat’s when I discovered Databricks Autoloader, and honestly, it changed everything."
+  },
+  {
+    "objectID": "posts/autoloader-databricks-blog.html#what-is-autoloader-really",
+    "href": "posts/autoloader-databricks-blog.html#what-is-autoloader-really",
+    "title": "Autoloader: The Smart Way to Ingest Data into Your Bronze Layer",
+    "section": "What is Autoloader, Really?",
+    "text": "What is Autoloader, Really?\nAt its core, Autoloader (officially called cloudFiles) is Databricks’ way of saying: “I’ll handle the messy parts of incremental file ingestion for you.”\nInstead of you having to:\n\nTrack which files you’ve already processed\nFilter out old files manually\nHandle schema changes\nDeal with duplicates\nRetry failed files\n\nAutoloader does all of this automatically. You just point it at a directory, and it figures out the rest."
+  },
+  {
+    "objectID": "posts/autoloader-databricks-blog.html#the-problem-daily-full-dumps",
+    "href": "posts/autoloader-databricks-blog.html#the-problem-daily-full-dumps",
+    "title": "Autoloader: The Smart Way to Ingest Data into Your Bronze Layer",
+    "section": "The Problem: Daily Full Dumps",
+    "text": "The Problem: Daily Full Dumps\nHere’s my specific use case: We get daily snapshots from an Oracle database exported as JSON files, like this:\norders-2025-11-26.json\norders-2025-11-27.json\norders-2025-11-28.json\n...\nEach file is a complete dump of the orders table—about 25MB per file. New file arrives every morning at 2 AM.\n\nThe Old Way (spark.read)\n# Read all files every single time 😱\ndf = spark.read.json(\"wasbs://Ordertable@storage.blob.core.windows.net/\")\ndf.write.mode(\"append\").saveAsTable(\"orders_table\")\nProblems:\n\nDay 1: Reads 1 file ✅\nDay 2: Reads 2 files (1 duplicate) ❌\nDay 30: Reads 30 files (29 duplicates) ❌❌❌\n\nResult? My table had massive duplicates, and I was burning through compute credits for no reason."
+  },
+  {
+    "objectID": "posts/autoloader-databricks-blog.html#the-solution-autoloader-bronze-layer",
+    "href": "posts/autoloader-databricks-blog.html#the-solution-autoloader-bronze-layer",
+    "title": "Autoloader: The Smart Way to Ingest Data into Your Bronze Layer",
+    "section": "The Solution: Autoloader + Bronze Layer",
+    "text": "The Solution: Autoloader + Bronze Layer\nThe key insight: separate ingestion from deduplication.\n\nStep 1: Autoloader → Bronze (Append Everything)\nBronze is your “raw data lake”—just land the data as-is, with minimal processing. Autoloader is perfect for this.\nfrom pyspark.sql import functions as F\n\n# Configuration\nstorage_account_name = \"testforblog\"\ncontainer_name = \"testforblog\"\n\n# Get storage key from secrets\nstorage_account_key = dbutils.secrets.get(\n    scope=\"scope\", \n    key=\"key\"\n)\n\n# Configure Azure access\nspark.conf.set(\n    f\"fs.azure.account.key.{storage_account_name}.blob.core.windows.net\",\n    storage_account_key\n)\n\n# Paths\nsource_path = f\"wasbs://{container_name}@{storage_account_name}.blob.core.windows.net/\"\ncheckpoint_path = \"dbfs:/checkpoints/testforblog\"\ntarget_table = \"catalog.schema.table\"\n\n# Read with Autoloader\ndf_stream = (\n    spark.readStream\n    .format(\"cloudFiles\")  # This is the magic ✨\n    .option(\"cloudFiles.format\", \"json\")\n    .option(\"cloudFiles.schemaLocation\", checkpoint_path)\n    .option(\"cloudFiles.inferColumnTypes\", \"true\")\n    .option(\"cloudFiles.schemaEvolutionMode\", \"addNewColumns\")\n    .option(\"multiLine\", \"true\")  # For JSON arrays\n    .load(source_path)\n)\n\n# Extract file date from filename\ndf_stream = (\n    df_stream\n    .withColumn(\"_source_file\", F.input_file_name())\n    .withColumn(\"_file_date\", \n                F.to_date(\n                    F.regexp_extract(\n                        F.col(\"_source_file\"), \n                        r\"orders-(\\d{4}-\\d{2}-\\d{2})\\.json\", \n                        1\n                    )\n                ))\n    .withColumn(\"_ingestion_timestamp\", F.current_timestamp())\n)\n\n# Write to Bronze\nquery = (\n    df_stream.writeStream\n    .format(\"delta\")\n    .outputMode(\"append\")\n    .option(\"checkpointLocation\", checkpoint_path)\n    .option(\"mergeSchema\", \"true\")\n    .trigger(availableNow=True)  # Process all available files, then stop\n    .toTable(target_table)\n)\n\nquery.awaitTermination()\nprint(\"✓ Bronze ingestion complete!\")"
+  },
+  {
+    "objectID": "posts/autoloader-databricks-blog.html#what-makes-this-smart",
+    "href": "posts/autoloader-databricks-blog.html#what-makes-this-smart",
+    "title": "Autoloader: The Smart Way to Ingest Data into Your Bronze Layer",
+    "section": "What Makes This Smart?",
+    "text": "What Makes This Smart?\n\n1. Incremental Processing (No Duplicates)\nAutoloader maintains a checkpoint—a hidden ledger of every file it’s processed.\nDay 1: Process orders-2025-11-26.json → Checkpoint: ✓\nDay 2: Check checkpoint → Skip orders-2025-11-26.json, \n       process orders-2025-11-27.json → Checkpoint: ✓✓\nDay 3: Check checkpoint → Skip both old files, \n       process orders-2025-11-28.json → Checkpoint: ✓✓✓\nResult: Each file is processed exactly once. No duplicates in Bronze.\n\n\n2. Schema Evolution (Future-Proof)\nOracle adds a new column? No problem.\n.option(\"cloudFiles.schemaEvolutionMode\", \"addNewColumns\")\nAutoloader automatically:\n\nDetects the new column\nAdds it to your Delta table schema\nFills old records with NULL\nKeeps processing without breaking\n\nI don’t have to manually alter table schemas or write migration scripts. It just works.\n\n\n3. File Date Tracking\nNotice this part?\n.withColumn(\"_file_date\", \n            F.to_date(\n                F.regexp_extract(\n                    F.col(\"_source_file\"), \n                    r\"orders-(\\d{4}-\\d{2}-\\d{2})\\.json\", \n                    1\n                )\n            ))\nI’m extracting the date from the filename (orders-2025-11-26.json → 2025-11-26). This tells me when the Oracle snapshot was taken, not when I ingested it.\nWhy does this matter? Because if my ingestion job runs late (network issue, cluster delay, etc.), I still know the source date of the data. This becomes crucial in the Silver layer for deduplication.\n\n\n4. Fault Tolerance\nJob crashes halfway through? No problem. The checkpoint knows exactly where you left off.\nAutoloader will:\n\nResume from the last successfully processed file\nNot reprocess completed files\nGuarantee exactly-once processing\n\nThis is huge for production pipelines where reliability matters."
+  },
+  {
+    "objectID": "posts/autoloader-databricks-blog.html#the-bronze-layer-philosophy",
+    "href": "posts/autoloader-databricks-blog.html#the-bronze-layer-philosophy",
+    "title": "Autoloader: The Smart Way to Ingest Data into Your Bronze Layer",
+    "section": "The Bronze Layer Philosophy",
+    "text": "The Bronze Layer Philosophy\nYou might be thinking: “Wait, you’re appending everything? Won’t that create duplicates?”\nYes, and that’s intentional.\nBronze is your raw data archive. The rules are:\n\nAppend-only (never update/delete)\nKeep data exactly as it arrived from source\nAdd metadata (_source_file, _file_date, _ingestion_timestamp)\nMinimal transformations\n\nThink of Bronze as your “receipts drawer”—you keep everything, even if some orders appear in multiple daily dumps. This gives you:\n\nFull audit trail: Can trace any record back to its source file\nReprocessing capability: If logic changes, rebuild Silver/Gold from Bronze\nDebugging: “What did the source system send us on Dec 5th?” → Query Bronze with _file_date = '2025-12-05'\n\nDeduplication happens in Silver, not Bronze. This separation of concerns makes the pipeline much cleaner."
+  },
+  {
+    "objectID": "posts/autoloader-databricks-blog.html#what-about-performance",
+    "href": "posts/autoloader-databricks-blog.html#what-about-performance",
+    "title": "Autoloader: The Smart Way to Ingest Data into Your Bronze Layer",
+    "section": "What About Performance?",
+    "text": "What About Performance?\nLet’s talk numbers. Without Autoloader:\nDay 1:  Read 1 file  (25 MB)  → 25 MB total\nDay 2:  Read 2 files (50 MB)  → 75 MB total\nDay 30: Read 30 files (750 MB) → 11,625 MB total (11.6 GB)\nWith Autoloader:\nDay 1:  Read 1 file  (25 MB)  → 25 MB total\nDay 2:  Read 1 file  (25 MB)  → 50 MB total\nDay 30: Read 1 file  (25 MB)  → 750 MB total\nThat’s a 15x reduction in data scanned over 30 days. Multiply that by compute costs, and you’re saving real money.\nPlus, Autoloader can scale to millions of files using file notification mode (Azure Event Grid), which is way more efficient than directory listing for huge datasets."
+  },
+  {
+    "objectID": "posts/autoloader-databricks-blog.html#the-trigger-mode-batch-vs.-streaming",
+    "href": "posts/autoloader-databricks-blog.html#the-trigger-mode-batch-vs.-streaming",
+    "title": "Autoloader: The Smart Way to Ingest Data into Your Bronze Layer",
+    "section": "The Trigger Mode: Batch vs. Streaming",
+    "text": "The Trigger Mode: Batch vs. Streaming\nNotice this line?\n.trigger(availableNow=True)\nThis tells Autoloader: “Process all available files right now, then stop.”\nIt’s perfect for scheduled batch jobs (run daily at 2:30 AM after the file arrives at 2 AM).\nAlternative for real-time:\n.trigger(processingTime=\"10 minutes\")\nThis keeps the stream running continuously, checking for new files every 10 minutes. Great for near-real-time pipelines.\nFor my use case (daily batch), availableNow=True is ideal—it runs, finishes, and shuts down the cluster to save costs."
+  },
+  {
+    "objectID": "posts/autoloader-databricks-blog.html#common-gotchas-i-ran-into",
+    "href": "posts/autoloader-databricks-blog.html#common-gotchas-i-ran-into",
+    "title": "Autoloader: The Smart Way to Ingest Data into Your Bronze Layer",
+    "section": "Common Gotchas I Ran Into",
+    "text": "Common Gotchas I Ran Into\n\n1. Checkpoint Path Must Be Writable\nInitially, I used /mnt/checkpoints/... which pointed to a non-existent S3 bucket. Error.\nSolution: Use DBFS paths:\ncheckpoint_path = \"dbfs:/checkpoints/test\"\n\n\n2. JSON Array Format\nMy JSON files were arrays:\n[\n  {\"order_id\": 1, \"part\": \"ABC\"},\n  {\"order_id\": 2, \"part\": \"DEF\"}\n]\nStandard JSON reader failed.\nSolution: Add multiLine option:\n.option(\"multiLine\", \"true\")\n\n\n3. Schema Inference Can Fail on Empty Directories\nIf you run Autoloader on an empty directory, it’ll error out because it can’t infer a schema.\nSolution: Either wait for files to arrive, or provide an explicit schema."
+  },
+  {
+    "objectID": "posts/autoloader-databricks-blog.html#why-this-matters-for-the-medallion-architecture",
+    "href": "posts/autoloader-databricks-blog.html#why-this-matters-for-the-medallion-architecture",
+    "title": "Autoloader: The Smart Way to Ingest Data into Your Bronze Layer",
+    "section": "Why This Matters for the Medallion Architecture",
+    "text": "Why This Matters for the Medallion Architecture\nThis is the Bronze layer of the Medallion Architecture:\nSources (Oracle DB)\n    ↓\n  [Autoloader] ← We are here\n    ↓\nBronze (Raw, append-only, all history)\n    ↓\n  [Deduplication & Cleaning]\n    ↓\nSilver (Deduplicated, typed, latest version)\n    ↓\n  [Aggregations & Business Logic]\n    ↓\nGold (Business metrics, ready for BI tools)\nBronze is the foundation. If you mess up ingestion here, everything downstream breaks. Autoloader makes this layer:\n\nReliable (exactly-once processing)\nMaintainable (no manual file tracking)\nScalable (handles millions of files)\nCost-effective (incremental processing)"
+  },
+  {
+    "objectID": "posts/autoloader-databricks-blog.html#the-bottom-line",
+    "href": "posts/autoloader-databricks-blog.html#the-bottom-line",
+    "title": "Autoloader: The Smart Way to Ingest Data into Your Bronze Layer",
+    "section": "The Bottom Line",
+    "text": "The Bottom Line\nBefore Autoloader, I was writing custom logic to:\n\nList files in blob storage\nCompare against a “processed files” table\nFilter out old files\nHandle retry logic\nTrack schema changes manually\n\nThat’s hundreds of lines of brittle, error-prone code.\nWith Autoloader, it’s ~30 lines of configuration. It just works.\nIf you’re ingesting files from cloud storage (Azure Blob, S3, ADLS, GCS), stop using spark.read() repeatedly. Use Autoloader. Your future self will thank you."
+  },
+  {
+    "objectID": "posts/autoloader-databricks-blog.html#next-steps",
+    "href": "posts/autoloader-databricks-blog.html#next-steps",
+    "title": "Autoloader: The Smart Way to Ingest Data into Your Bronze Layer",
+    "section": "Next Steps",
+    "text": "Next Steps\nIn my next post, I’ll cover the Silver layer—how to deduplicate these daily full dumps and create a clean, analytics-ready table using the _file_date we extracted. We’ll use window functions to keep only the latest version of each order and add proper data types.\nBut for now, if you’re still manually tracking which files you’ve processed, give Autoloader a try. It’s one of those tools that feels like magic the first time it works—and then you wonder how you ever lived without it."
+  },
+  {
+    "objectID": "posts/autoloader-databricks-blog.html#further-reading",
+    "href": "posts/autoloader-databricks-blog.html#further-reading",
+    "title": "Autoloader: The Smart Way to Ingest Data into Your Bronze Layer",
+    "section": "Further Reading",
+    "text": "Further Reading\n\nDatabricks Autoloader Documentation\nMedallion Architecture\nDelta Lake Best Practices"
   }
 ]

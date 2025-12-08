@@ -2,6 +2,7 @@
   {
     "listing": "/posts/index.html",
     "items": [
+      "/posts/autoloader-databricks-blog.html",
       "/posts/bayesian-hierarchical-models.html",
       "/posts/difference-in-differences.html"
     ]
