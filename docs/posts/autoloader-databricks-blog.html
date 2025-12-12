@@ -290,7 +290,7 @@ orders-2025-11-28.json
 <h3 class="anchored" data-anchor-id="the-old-way-spark.read">The Old Way (spark.read)</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read all files every single time 😱</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> spark.read.json(<span class="st">"wasbs://Ordertable@storage.blob.core.windows.net/"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df.write.mode(<span class="st">"append"</span>).saveAsTable(<span class="st">"orders_table"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df.write.mode(<span class="st">"append"</span>).saveAsTable(<span class="st">"_table"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Problems:</strong></p>
 <ul>
 <li>Day 1: Reads 1 file ✅</li>
@@ -405,11 +405,11 @@ Day 3: Check checkpoint → Skip both old files,
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>            F.to_date(</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                F.regexp_extract(</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                    F.col(<span class="st">"_source_file"</span>), </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                    <span class="vs">r"orders-(\d</span><span class="sc">{4}</span><span class="vs">-\d</span><span class="sc">{2}</span><span class="vs">-\d</span><span class="sc">{2}</span><span class="vs">)\.json"</span>, </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                    <span class="vs">r"table-(\d</span><span class="sc">{4}</span><span class="vs">-\d</span><span class="sc">{2}</span><span class="vs">-\d</span><span class="sc">{2}</span><span class="vs">)\.json"</span>, </span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                )</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>            ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>I’m extracting the date from the filename (<code>orders-2025-11-26.json</code> → <code>2025-11-26</code>). This tells me <strong>when the Oracle snapshot was taken</strong>, not when I ingested it.</p>
+<p>I’m extracting the date from the filename (<code>table-2025-11-26.json</code> → <code>2025-11-26</code>). This tells me <strong>when the Oracle snapshot was taken</strong>, not when I ingested it.</p>
 <p>Why does this matter? Because if my ingestion job runs late (network issue, cluster delay, etc.), I still know the <strong>source date</strong> of the data. This becomes crucial in the Silver layer for deduplication.</p>
 </section>
 <section id="fault-tolerance" class="level3">
