@@ -16,15 +16,15 @@ Hierarchical Bayesian models are powerful tools for analyzing data with nested o
 
 When dealing with data that has natural groupings (e.g., customers within regions, experiments across time periods), hierarchical models offer several advantages:
 
-- **Partial Pooling**: Balance between complete pooling (ignoring groups) and no pooling (treating groups independently)
-- **Shrinkage**: Regularization towards group-level means prevents overfitting
-- **Uncertainty Quantification**: Full posterior distributions for all parameters
+-   **Partial Pooling**: Balance between complete pooling (ignoring groups) and no pooling (treating groups independently)
+-   **Shrinkage**: Regularization towards group-level means prevents overfitting
+-   **Uncertainty Quantification**: Full posterior distributions for all parameters
 
 ## A Simple Example
 
 Let's build a hierarchical model for understanding how marketing spend affects conversions across different regions.
 
-```python
+``` python
 import pymc as pm
 import numpy as np
 import pandas as pd
@@ -56,7 +56,7 @@ df = pd.concat(data, ignore_index=True)
 
 ## Building the Hierarchical Model
 
-```python
+``` python
 with pm.Model() as hierarchical_model:
     # Hyperpriors for group-level parameters
     mu_baseline = pm.Normal('mu_baseline', mu=100, sigma=50)
@@ -87,7 +87,7 @@ with pm.Model() as hierarchical_model:
 
 ## Analyzing the Results
 
-```python
+``` python
 # Summarize posterior distributions
 print(az.summary(trace, var_names=['mu_baseline', 'mu_sensitivity', 
                                    'sigma_baseline', 'sigma_sensitivity']))
@@ -101,18 +101,18 @@ az.plot_forest(trace, var_names=['baseline', 'sensitivity'], combined=True)
 
 ## Key Insights
 
-1. **Shrinkage in Action**: Regions with fewer observations get pulled toward the group mean
-2. **Uncertainty Quantification**: Wide credible intervals indicate we need more data
-3. **Heterogeneity**: We can quantify how much regions differ from each other
+1.  **Shrinkage in Action**: Regions with fewer observations get pulled toward the group mean
+2.  **Uncertainty Quantification**: Wide credible intervals indicate we need more data
+3.  **Heterogeneity**: We can quantify how much regions differ from each other
 
 ## Extensions
 
 This basic framework can be extended to:
 
-- Multiple marketing channels (TV, digital, print)
-- Time-varying effects with autoregressive components
-- Non-linear relationships using splines or Gaussian processes
-- Seasonal patterns with Fourier decomposition
+-   Multiple marketing channels (TV, digital, print)
+-   Time-varying effects with autoregressive components
+-   Non-linear relationships using splines or Gaussian processes
+-   Seasonal patterns with Fourier decomposition
 
 ## Conclusion
 
@@ -120,10 +120,10 @@ Hierarchical Bayesian models provide a principled framework for pooling informat
 
 ## Further Reading
 
-- [PyMC Documentation](https://www.pymc.io/)
-- *Bayesian Data Analysis* by Gelman et al.
-- *Statistical Rethinking* by Richard McElreath
+-   [PyMC Documentation](https://www.pymc.io/)
+-   *Bayesian Data Analysis* by Gelman et al.
+-   *Statistical Rethinking* by Richard McElreath
 
----
+------------------------------------------------------------------------
 
 **Code**: Full implementation available on [GitHub](https://github.com/yourusername/bayesian-mmm)

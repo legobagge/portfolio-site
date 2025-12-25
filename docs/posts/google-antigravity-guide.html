@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.55">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Lucas Bagge">
+<meta name="dcterms.date" content="2025-12-09">
+<meta name="description" content="A comprehensive guide to Google’s revolutionary new IDE where AI agents autonomously plan, code, and test your applications while you focus on the big picture">
+
+<title>Google Antigravity: The AI-First IDE That Lets Agents Code For You – AI &amp; Analytics Portfolio</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/images/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">AI &amp; Analytics Portfolio</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects/index.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../posts/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about/index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/yourusername"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://linkedin.com/in/yourprofile"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:your.email@example.com"> <i class="bi bi-envelope" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-traditional-ai-coding-assistants-arent-enough-anymore" id="toc-why-traditional-ai-coding-assistants-arent-enough-anymore" class="nav-link active" data-scroll-target="#why-traditional-ai-coding-assistants-arent-enough-anymore">Why Traditional AI Coding Assistants Aren’t Enough Anymore</a></li>
+  <li><a href="#what-is-google-antigravity" id="toc-what-is-google-antigravity" class="nav-link" data-scroll-target="#what-is-google-antigravity">What is Google Antigravity?</a></li>
+  <li><a href="#the-two-faces-of-antigravity" id="toc-the-two-faces-of-antigravity" class="nav-link" data-scroll-target="#the-two-faces-of-antigravity">The Two Faces of Antigravity</a>
+  <ul class="collapse">
+  <li><a href="#editor-view-the-familiar" id="toc-editor-view-the-familiar" class="nav-link" data-scroll-target="#editor-view-the-familiar">1. Editor View (The Familiar)</a></li>
+  <li><a href="#manager-view-the-revolution" id="toc-manager-view-the-revolution" class="nav-link" data-scroll-target="#manager-view-the-revolution">2. Manager View (The Revolution)</a></li>
+  </ul></li>
+  <li><a href="#the-magic-of-artifacts-proof-the-agent-isnt-just-guessing" id="toc-the-magic-of-artifacts-proof-the-agent-isnt-just-guessing" class="nav-link" data-scroll-target="#the-magic-of-artifacts-proof-the-agent-isnt-just-guessing">The Magic of Artifacts: Proof the Agent Isn’t Just Guessing</a>
+  <ul class="collapse">
+  <li><a href="#types-of-artifacts" id="toc-types-of-artifacts" class="nav-link" data-scroll-target="#types-of-artifacts">Types of Artifacts:</a></li>
+  </ul></li>
+  <li><a href="#step-by-step-getting-started-with-antigravity" id="toc-step-by-step-getting-started-with-antigravity" class="nav-link" data-scroll-target="#step-by-step-getting-started-with-antigravity">Step-by-Step: Getting Started with Antigravity</a>
+  <ul class="collapse">
+  <li><a href="#step-1-download-and-install" id="toc-step-1-download-and-install" class="nav-link" data-scroll-target="#step-1-download-and-install">Step 1: Download and Install</a></li>
+  <li><a href="#step-2-sign-in-and-configure" id="toc-step-2-sign-in-and-configure" class="nav-link" data-scroll-target="#step-2-sign-in-and-configure">Step 2: Sign In and Configure</a></li>
+  <li><a href="#step-3-choose-your-ai-model" id="toc-step-3-choose-your-ai-model" class="nav-link" data-scroll-target="#step-3-choose-your-ai-model">Step 3: Choose Your AI Model</a></li>
+  </ul></li>
+  <li><a href="#your-first-agent-task-build-a-react-hello-world" id="toc-your-first-agent-task-build-a-react-hello-world" class="nav-link" data-scroll-target="#your-first-agent-task-build-a-react-hello-world">Your First Agent Task: Build a React Hello World</a>
+  <ul class="collapse">
+  <li><a href="#the-prompt-manager-view" id="toc-the-prompt-manager-view" class="nav-link" data-scroll-target="#the-prompt-manager-view">The Prompt (Manager View)</a></li>
+  <li><a href="#what-the-agent-does-behind-the-scenes" id="toc-what-the-agent-does-behind-the-scenes" class="nav-link" data-scroll-target="#what-the-agent-does-behind-the-scenes">What the Agent Does (Behind the Scenes)</a></li>
+  <li><a href="#reviewing-the-work" id="toc-reviewing-the-work" class="nav-link" data-scroll-target="#reviewing-the-work">Reviewing the Work</a></li>
+  </ul></li>
+  <li><a href="#the-built-in-browser-testing-on-autopilot" id="toc-the-built-in-browser-testing-on-autopilot" class="nav-link" data-scroll-target="#the-built-in-browser-testing-on-autopilot">The Built-In Browser: Testing on Autopilot</a>
+  <ul class="collapse">
+  <li><a href="#how-it-works" id="toc-how-it-works" class="nav-link" data-scroll-target="#how-it-works">How It Works</a></li>
+  <li><a href="#example-testing-a-login-flow" id="toc-example-testing-a-login-flow" class="nav-link" data-scroll-target="#example-testing-a-login-flow">Example: Testing a Login Flow</a></li>
+  </ul></li>
+  <li><a href="#advanced-features-rules-workflows-and-learning" id="toc-advanced-features-rules-workflows-and-learning" class="nav-link" data-scroll-target="#advanced-features-rules-workflows-and-learning">Advanced Features: Rules, Workflows, and Learning</a>
+  <ul class="collapse">
+  <li><a href="#rules-global-instructions" id="toc-rules-global-instructions" class="nav-link" data-scroll-target="#rules-global-instructions">1. Rules (Global Instructions)</a></li>
+  <li><a href="#workflows-saved-prompts" id="toc-workflows-saved-prompts" class="nav-link" data-scroll-target="#workflows-saved-prompts">2. Workflows (Saved Prompts)</a></li>
+  <li><a href="#knowledge-base-agent-learning" id="toc-knowledge-base-agent-learning" class="nav-link" data-scroll-target="#knowledge-base-agent-learning">3. Knowledge Base (Agent Learning)</a></li>
+  </ul></li>
+  <li><a href="#the-reality-check-limitations-you-should-know" id="toc-the-reality-check-limitations-you-should-know" class="nav-link" data-scroll-target="#the-reality-check-limitations-you-should-know">The Reality Check: Limitations You Should Know</a>
+  <ul class="collapse">
+  <li><a href="#rate-limits-are-aggressive" id="toc-rate-limits-are-aggressive" class="nav-link" data-scroll-target="#rate-limits-are-aggressive">1. Rate Limits Are Aggressive</a></li>
+  <li><a href="#performance-can-be-slow" id="toc-performance-can-be-slow" class="nav-link" data-scroll-target="#performance-can-be-slow">2. Performance Can Be Slow</a></li>
+  <li><a href="#the-free-preview-wont-last-forever" id="toc-the-free-preview-wont-last-forever" class="nav-link" data-scroll-target="#the-free-preview-wont-last-forever">3. The Free Preview Won’t Last Forever</a></li>
+  <li><a href="#security-concerns" id="toc-security-concerns" class="nav-link" data-scroll-target="#security-concerns">4. Security Concerns</a></li>
+  </ul></li>
+  <li><a href="#antigravity-vs.-the-competition" id="toc-antigravity-vs.-the-competition" class="nav-link" data-scroll-target="#antigravity-vs.-the-competition">Antigravity vs.&nbsp;The Competition</a></li>
+  <li><a href="#real-world-use-cases-when-to-use-antigravity" id="toc-real-world-use-cases-when-to-use-antigravity" class="nav-link" data-scroll-target="#real-world-use-cases-when-to-use-antigravity">Real-World Use Cases: When to Use Antigravity</a>
+  <ul class="collapse">
+  <li><a href="#great-for" id="toc-great-for" class="nav-link" data-scroll-target="#great-for">✅ Great For:</a></li>
+  <li><a href="#not-great-for" id="toc-not-great-for" class="nav-link" data-scroll-target="#not-great-for">❌ Not Great For:</a></li>
+  </ul></li>
+  <li><a href="#step-by-step-building-a-real-project" id="toc-step-by-step-building-a-real-project" class="nav-link" data-scroll-target="#step-by-step-building-a-real-project">Step-by-Step: Building a Real Project</a>
+  <ul class="collapse">
+  <li><a href="#start-with-the-plan" id="toc-start-with-the-plan" class="nav-link" data-scroll-target="#start-with-the-plan">1. Start with the Plan</a></li>
+  <li><a href="#monitor-progress" id="toc-monitor-progress" class="nav-link" data-scroll-target="#monitor-progress">2. Monitor Progress</a></li>
+  <li><a href="#iterate-with-feedback" id="toc-iterate-with-feedback" class="nav-link" data-scroll-target="#iterate-with-feedback">3. Iterate with Feedback</a></li>
+  <li><a href="#final-verification" id="toc-final-verification" class="nav-link" data-scroll-target="#final-verification">4. Final Verification</a></li>
+  </ul></li>
+  <li><a href="#tips-for-maximizing-your-free-token-quota" id="toc-tips-for-maximizing-your-free-token-quota" class="nav-link" data-scroll-target="#tips-for-maximizing-your-free-token-quota">Tips for Maximizing Your Free Token Quota</a>
+  <ul class="collapse">
+  <li><a href="#match-model-to-task-complexity" id="toc-match-model-to-task-complexity" class="nav-link" data-scroll-target="#match-model-to-task-complexity">1. Match Model to Task Complexity</a></li>
+  <li><a href="#use-planning-mode-for-big-tasks" id="toc-use-planning-mode-for-big-tasks" class="nav-link" data-scroll-target="#use-planning-mode-for-big-tasks">2. Use Planning Mode for Big Tasks</a></li>
+  <li><a href="#batch-related-tasks-together" id="toc-batch-related-tasks-together" class="nav-link" data-scroll-target="#batch-related-tasks-together">3. Batch Related Tasks Together</a></li>
+  <li><a href="#move-routine-work-off-platform" id="toc-move-routine-work-off-platform" class="nav-link" data-scroll-target="#move-routine-work-off-platform">4. Move Routine Work Off-Platform</a></li>
+  </ul></li>
+  <li><a href="#the-future-of-coding-where-antigravity-is-heading" id="toc-the-future-of-coding-where-antigravity-is-heading" class="nav-link" data-scroll-target="#the-future-of-coding-where-antigravity-is-heading">The Future of Coding: Where Antigravity is Heading</a>
+  <ul class="collapse">
+  <li><a href="#whats-coming-speculation" id="toc-whats-coming-speculation" class="nav-link" data-scroll-target="#whats-coming-speculation">What’s Coming (Speculation):</a></li>
+  <li><a href="#the-bigger-picture" id="toc-the-bigger-picture" class="nav-link" data-scroll-target="#the-bigger-picture">The Bigger Picture:</a></li>
+  </ul></li>
+  <li><a href="#should-you-use-antigravity-today" id="toc-should-you-use-antigravity-today" class="nav-link" data-scroll-target="#should-you-use-antigravity-today">Should You Use Antigravity Today?</a></li>
+  <li><a href="#getting-started-checklist" id="toc-getting-started-checklist" class="nav-link" data-scroll-target="#getting-started-checklist">Getting Started Checklist</a></li>
+  <li><a href="#further-reading-resources" id="toc-further-reading-resources" class="nav-link" data-scroll-target="#further-reading-resources">Further Reading &amp; Resources</a></li>
+  <li><a href="#the-bottom-line" id="toc-the-bottom-line" class="nav-link" data-scroll-target="#the-bottom-line">The Bottom Line</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Google Antigravity: The AI-First IDE That Lets Agents Code For You</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">AI</div>
+    <div class="quarto-category">Developer Tools</div>
+    <div class="quarto-category">Tutorial</div>
+    <div class="quarto-category">Google</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A comprehensive guide to Google’s revolutionary new IDE where AI agents autonomously plan, code, and test your applications while you focus on the big picture
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Lucas Bagge </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 9, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="why-traditional-ai-coding-assistants-arent-enough-anymore" class="level2">
+<h2 class="anchored" data-anchor-id="why-traditional-ai-coding-assistants-arent-enough-anymore">Why Traditional AI Coding Assistants Aren’t Enough Anymore</h2>
+<p>Let me tell you about the moment I realized coding with AI needed to evolve. I was using GitHub Copilot to build a web dashboard, and while it was helpful for autocomplete and small snippets, I found myself constantly:</p>
+<ul>
+<li>Writing prompts for <em>every single file</em></li>
+<li>Manually testing each change in the browser</li>
+<li>Context-switching between editor, terminal, and browser dozens of times</li>
+<li>Babysitting the AI through multi-step tasks</li>
+</ul>
+<p>What if, instead of an AI that <em>suggests</em> code, you had an AI that could <strong>build entire features autonomously</strong>—planning the work, writing the code, testing it in a browser, and showing you proof it works?</p>
+<p>That’s exactly what <strong>Google Antigravity</strong> does. And honestly, it’s unlike any IDE I’ve used before.</p>
+<hr>
+</section>
+<section id="what-is-google-antigravity" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-google-antigravity">What is Google Antigravity?</h2>
+<p>Antigravity is Google’s new “agent-first” IDE, announced in November 2025 alongside the Gemini 3 model. Think of it as VS Code on steroids, where AI agents don’t just assist—they <strong>take over entire tasks</strong>.</p>
+<p>Instead of you writing code line by line, you describe what you want to build, and autonomous agents:</p>
+<ol type="1">
+<li><strong>Plan</strong> the implementation (creating task lists and architecture)</li>
+<li><strong>Execute</strong> across editor, terminal, and browser</li>
+<li><strong>Test</strong> the app automatically in Chrome</li>
+<li><strong>Verify</strong> their work with screenshots and recordings</li>
+<li><strong>Learn</strong> from your feedback to improve over time</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="antigravity-agent-manager.png" class="img-fluid figure-img"></p>
+<figcaption>Antigravity Agent Manager Interface - Add screenshot showing the Agent Manager with multiple tasks</figcaption>
+</figure>
+</div>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li><strong>Multi-Model Support</strong>: Gemini 3 Pro, Claude Sonnet 4.5, GPT-OSS</li>
+<li><strong>Two Interfaces</strong>: Editor view (traditional IDE) + Manager view (mission control)</li>
+<li><strong>Built-in Browser</strong>: Agents can actually <em>click</em> buttons and test your app</li>
+<li><strong>Artifacts</strong>: Task lists, implementation plans, screenshots, video recordings</li>
+<li><strong>Free (for now)</strong>: Public preview with generous rate limits</li>
+</ul>
+<hr>
+</section>
+<section id="the-two-faces-of-antigravity" class="level2">
+<h2 class="anchored" data-anchor-id="the-two-faces-of-antigravity">The Two Faces of Antigravity</h2>
+<p>Unlike traditional IDEs, Antigravity has <strong>two distinct modes</strong> you can toggle between:</p>
+<section id="editor-view-the-familiar" class="level3">
+<h3 class="anchored" data-anchor-id="editor-view-the-familiar">1. Editor View (The Familiar)</h3>
+<p>This looks and feels like VS Code—because it literally is a VS Code fork. You get:</p>
+<ul>
+<li>Standard code editor with syntax highlighting</li>
+<li>File explorer on the left</li>
+<li>Terminal at the bottom</li>
+<li><strong>Agent panel</strong> on the right (the new part)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="antigravity-editor-view.png" class="img-fluid figure-img"></p>
+<figcaption>Editor View - Add screenshot showing the traditional VS Code-like interface with agent sidebar</figcaption>
+</figure>
+</div>
+<p>Use this when you want to <strong>code alongside the AI</strong>—reviewing its suggestions, making manual edits, or using tab autocomplete like Copilot.</p>
+<p><strong>Keyboard Shortcut</strong>: <code>Ctrl+L</code> (Windows/Linux) or <code>Cmd+L</code> (Mac) to open the agent chat</p>
+</section>
+<section id="manager-view-the-revolution" class="level3">
+<h3 class="anchored" data-anchor-id="manager-view-the-revolution">2. Manager View (The Revolution)</h3>
+<p>This is where Antigravity gets wild. The Manager view is like <strong>Mission Control for AI agents</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="antigravity-manager-view.png" class="img-fluid figure-img"></p>
+<figcaption>Manager View - Add screenshot showing multiple agents working asynchronously</figcaption>
+</figure>
+</div>
+<p>Instead of a single chat thread, you can:</p>
+<ul>
+<li>Spawn <strong>multiple agents</strong> working on different tasks simultaneously</li>
+<li>Monitor their progress in real-time</li>
+<li>Review artifacts (plans, screenshots, videos)</li>
+<li>Leave feedback like Google Docs comments</li>
+<li>Switch between tasks without losing context</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code>Agent 1: "Build the user authentication system"
+Agent 2: "Create the dashboard UI with charts"
+Agent 3: "Set up the PostgreSQL database schema"</code></pre>
+<p>All three run <strong>asynchronously</strong> while you sip coffee and review their work.</p>
+<p><strong>Keyboard Shortcut</strong>: <code>Cmd+E</code> (Mac) / <code>Ctrl+E</code> (Windows) to toggle between Editor and Manager</p>
+<hr>
+</section>
+</section>
+<section id="the-magic-of-artifacts-proof-the-agent-isnt-just-guessing" class="level2">
+<h2 class="anchored" data-anchor-id="the-magic-of-artifacts-proof-the-agent-isnt-just-guessing">The Magic of Artifacts: Proof the Agent Isn’t Just Guessing</h2>
+<p>Here’s the problem with most AI coding tools: they give you code, but you have no idea if it actually <strong>works</strong> without running it yourself.</p>
+<p>Antigravity solves this with <strong>Artifacts</strong>—tangible proof that the agent knows what it’s doing.</p>
+<section id="types-of-artifacts" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-artifacts">Types of Artifacts:</h3>
+<ol type="1">
+<li><strong>Task Lists</strong>: “Here’s my plan for implementing this feature (5 steps)”</li>
+<li><strong>Implementation Plans</strong>: Detailed architecture before writing a single line of code</li>
+<li><strong>Screenshots</strong>: “Here’s what the UI looks like after I built it”</li>
+<li><strong>Browser Recordings</strong>: Video of the agent testing the app (clicking buttons, filling forms)</li>
+<li><strong>Test Results</strong>: Structured logs showing which tests passed/failed</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="antigravity-artifacts.png" class="img-fluid figure-img"></p>
+<figcaption>Artifacts Panel - Add screenshot showing artifacts like task lists and screenshots</figcaption>
+</figure>
+</div>
+<p><strong>Why This Matters:</strong></p>
+<p>Before writing code, the agent shows you the plan. You can comment on it (like Google Docs), and the agent will revise. This means:</p>
+<ul>
+<li>Catch architectural mistakes <strong>before</strong> they’re coded</li>
+<li>No more “AI wrote 500 lines of garbage” moments</li>
+<li>Agents can prove they tested their work (with video evidence!)</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="step-by-step-getting-started-with-antigravity" class="level2">
+<h2 class="anchored" data-anchor-id="step-by-step-getting-started-with-antigravity">Step-by-Step: Getting Started with Antigravity</h2>
+<p>Let me walk you through setting up Antigravity and building your first AI-powered app.</p>
+<section id="step-1-download-and-install" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-download-and-install">Step 1: Download and Install</h3>
+<ol type="1">
+<li>Go to <strong>https://antigravity.google/download</strong></li>
+<li>Choose your OS (Mac, Windows, or Linux)</li>
+<li>Run the installer</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="antigravity-download.png" class="img-fluid figure-img"></p>
+<figcaption>Download Page - Add screenshot of the download page</figcaption>
+</figure>
+</div>
+<p><strong>Requirements:</strong> - Mac: macOS 12 (Monterey) or later - Windows: Windows 10/11 - Linux: Ubuntu 20.04+, Debian 10+, Fedora 36+, RHEL 8+</p>
+</section>
+<section id="step-2-sign-in-and-configure" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-sign-in-and-configure">Step 2: Sign In and Configure</h3>
+<p>Launch Antigravity and sign in with your <strong>personal Gmail account</strong> (required for the free preview).</p>
+<p>Choose your development mode:</p>
+<ul>
+<li><strong>Agent-Assisted Development</strong> (Recommended): AI asks for approval on complex decisions</li>
+<li><strong>Agent-Driven Development</strong>: AI has full autonomy (for experienced users)</li>
+<li><strong>Manual Development</strong>: Traditional IDE with AI on the side</li>
+</ul>
+<p><strong>Pro Tip</strong>: Start with Agent-Assisted. You can always give the agent more autonomy later.</p>
+</section>
+<section id="step-3-choose-your-ai-model" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-choose-your-ai-model">Step 3: Choose Your AI Model</h3>
+<p>Antigravity supports multiple models:</p>
+<ul>
+<li><strong>Gemini 3 Pro (High)</strong>: Best reasoning, highest quality (uses more tokens)</li>
+<li><strong>Gemini 3 Pro (Low)</strong>: Faster, lower cost (great for routine tasks)</li>
+<li><strong>Claude Sonnet 4.5</strong>: Excellent for detailed reasoning and documentation</li>
+<li><strong>Claude Sonnet 4.5 (Thinking)</strong>: Deep reasoning mode (slower but thorough)</li>
+<li><strong>GPT-OSS 120B</strong>: Open-source model for quick prototyping</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="antigravity-model-selection.png" class="img-fluid figure-img"></p>
+<figcaption>Model Selection - Add screenshot showing model picker</figcaption>
+</figure>
+</div>
+<p><strong>My Strategy</strong>: - Use <strong>Gemini 3 (Low)</strong> for 80% of tasks (routine coding, small fixes) - Switch to <strong>Claude Sonnet 4.5</strong> for complex architecture or detailed docs - Save <strong>Gemini 3 (High)</strong> for when Low fails 3+ times</p>
+<p><strong>Why?</strong> Rate limits are tight. Using High Thinking mode burns through tokens fast because of “hidden thinking tokens” the model generates internally.</p>
+<hr>
+</section>
+</section>
+<section id="your-first-agent-task-build-a-react-hello-world" class="level2">
+<h2 class="anchored" data-anchor-id="your-first-agent-task-build-a-react-hello-world">Your First Agent Task: Build a React Hello World</h2>
+<p>Let’s see Antigravity in action by building a simple React app from scratch.</p>
+<section id="the-prompt-manager-view" class="level3">
+<h3 class="anchored" data-anchor-id="the-prompt-manager-view">The Prompt (Manager View)</h3>
+<p>Open Antigravity and click the “New Task” button in Manager view. Enter this prompt:</p>
+<pre><code>Create a React "Hello World" application with the following:
+- A centered greeting that says "Hello from Antigravity!"
+- A button that changes the greeting when clicked
+- Use Tailwind CSS for styling
+- Set up the project structure with Vite
+- Run the app in the browser and verify it works</code></pre>
+<p>Press Enter and watch the magic happen.</p>
+</section>
+<section id="what-the-agent-does-behind-the-scenes" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-agent-does-behind-the-scenes">What the Agent Does (Behind the Scenes)</h3>
+<ol type="1">
+<li><strong>Plans</strong>: Creates a task list (you can review it before approval)
+<ul>
+<li>Initialize Vite project</li>
+<li>Create React component</li>
+<li>Add Tailwind config</li>
+<li>Build interactive button</li>
+<li>Test in browser</li>
+</ul></li>
+<li><strong>Executes</strong>:
+<ul>
+<li>Opens terminal, runs <code>npm create vite@latest</code></li>
+<li>Installs dependencies</li>
+<li>Creates <code>App.jsx</code> with the component</li>
+<li>Configures Tailwind</li>
+<li>Runs <code>npm run dev</code></li>
+</ul></li>
+<li><strong>Tests</strong>:
+<ul>
+<li>Opens Chrome via the built-in browser</li>
+<li>Takes screenshot of initial state</li>
+<li>Clicks the button</li>
+<li>Takes screenshot of updated state</li>
+<li>Records a video of the interaction</li>
+</ul></li>
+<li><strong>Reports Back</strong>:
+<ul>
+<li>Shows you the code (with diffs)</li>
+<li>Presents screenshots and video</li>
+<li>Marks the task complete</li>
+</ul></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="antigravity-agent-working.png" class="img-fluid figure-img"></p>
+<figcaption>Agent Working - Add screenshot showing agent executing tasks</figcaption>
+</figure>
+</div>
+<p><strong>Total Time</strong>: 2-3 minutes. No manual terminal commands, no browser opening, no “did I break something?” anxiety.</p>
+</section>
+<section id="reviewing-the-work" class="level3">
+<h3 class="anchored" data-anchor-id="reviewing-the-work">Reviewing the Work</h3>
+<p>In the Manager view, click on the completed task. You’ll see:</p>
+<ul>
+<li><strong>Implementation Plan</strong>: The agent’s strategy (before coding)</li>
+<li><strong>Code Changes</strong>: Diffs of files created/modified</li>
+<li><strong>Screenshots</strong>: Before and after images</li>
+<li><strong>Browser Recording</strong>: Video proof it works</li>
+</ul>
+<p>If something’s wrong, click on the screenshot and leave a comment: “The button should be blue, not red.” The agent will revise.</p>
+<hr>
+</section>
+</section>
+<section id="the-built-in-browser-testing-on-autopilot" class="level2">
+<h2 class="anchored" data-anchor-id="the-built-in-browser-testing-on-autopilot">The Built-In Browser: Testing on Autopilot</h2>
+<p>This is where Antigravity gets sci-fi. The agent doesn’t just <em>generate</em> code—it can <strong>actually use your app</strong> to verify it works.</p>
+<section id="how-it-works" class="level3">
+<h3 class="anchored" data-anchor-id="how-it-works">How It Works</h3>
+<p>Antigravity includes a Chrome browser that agents can control programmatically. They can:</p>
+<ul>
+<li>Click buttons and links</li>
+<li>Fill out forms</li>
+<li>Scroll pages</li>
+<li>Wait for elements to load</li>
+<li>Read console errors</li>
+<li>Take screenshots and videos</li>
+</ul>
+</section>
+<section id="example-testing-a-login-flow" class="level3">
+<h3 class="anchored" data-anchor-id="example-testing-a-login-flow">Example: Testing a Login Flow</h3>
+<p>Prompt:</p>
+<pre><code>Build a login form with email/password inputs. 
+When submitted, show an alert if fields are empty, 
+otherwise show a success message. Test all scenarios.</code></pre>
+<p>The agent will:</p>
+<ol type="1">
+<li>Write the form code</li>
+<li>Open it in the browser</li>
+<li><strong>Test Case 1</strong>: Submit empty form → Check for error alert → Screenshot</li>
+<li><strong>Test Case 2</strong>: Fill only email → Submit → Check for error → Screenshot</li>
+<li><strong>Test Case 3</strong>: Fill both fields → Submit → Check for success message → Screenshot</li>
+<li>Generate a test report with all screenshots</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="antigravity-browser-testing.png" class="img-fluid figure-img"></p>
+<figcaption>Browser Testing - Add screenshot showing browser agent testing a form</figcaption>
+</figure>
+</div>
+<p><strong>Why This is Revolutionary</strong>: Traditional AI tools generate code and stop. You have to manually test. Antigravity’s agents <strong>prove</strong> their work by actually running it like a human would.</p>
+<hr>
+</section>
+</section>
+<section id="advanced-features-rules-workflows-and-learning" class="level2">
+<h2 class="anchored" data-anchor-id="advanced-features-rules-workflows-and-learning">Advanced Features: Rules, Workflows, and Learning</h2>
+<p>Antigravity has some powerful customization options most people miss.</p>
+<section id="rules-global-instructions" class="level3">
+<h3 class="anchored" data-anchor-id="rules-global-instructions">1. Rules (Global Instructions)</h3>
+<p>Rules are like system prompts that apply to <strong>all agents</strong>. They guide behavior globally.</p>
+<p><strong>Example Rules:</strong></p>
+<pre><code>- Always use TypeScript instead of JavaScript
+- Follow the Airbnb style guide for code formatting
+- Add JSDoc comments to all functions
+- Use async/await instead of .then() for promises
+- Prefer functional components over class components in React</code></pre>
+<p><strong>How to Set Rules:</strong> 1. Click <code>...</code> menu in top right 2. Select “Customizations” 3. Go to “Rules” tab 4. Add your guidelines</p>
+<p>Rules apply <strong>workspace-wide</strong> or <strong>globally</strong>—your choice.</p>
+</section>
+<section id="workflows-saved-prompts" class="level3">
+<h3 class="anchored" data-anchor-id="workflows-saved-prompts">2. Workflows (Saved Prompts)</h3>
+<p>Workflows are reusable prompts you can trigger with <code>/</code> shortcuts.</p>
+<p><strong>Example Workflows:</strong></p>
+<pre><code>/api-endpoint → "Create a REST API endpoint with error handling, validation, and tests"
+/component → "Build a React component with TypeScript, props validation, and Storybook story"
+/debug → "Analyze this error, identify the root cause, and implement a fix"</code></pre>
+<p><strong>How to Use:</strong> Type <code>/</code> in the agent chat to see available workflows, then select one.</p>
+</section>
+<section id="knowledge-base-agent-learning" class="level3">
+<h3 class="anchored" data-anchor-id="knowledge-base-agent-learning">3. Knowledge Base (Agent Learning)</h3>
+<p>Antigravity agents <strong>learn from your work</strong>. When an agent completes a task successfully, it can save:</p>
+<ul>
+<li>Code snippets you liked</li>
+<li>Architecture patterns that worked</li>
+<li>Steps taken to solve a problem</li>
+</ul>
+<p>Next time you ask for something similar, the agent references this knowledge base.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="antigravity-knowledge.png" class="img-fluid figure-img"></p>
+<figcaption>Knowledge Base - Add screenshot showing knowledge items</figcaption>
+</figure>
+</div>
+<p><strong>Example</strong>: After building a login form once, the agent remembers your preferred validation library and security practices. Future auth features will automatically use that pattern.</p>
+<hr>
+</section>
+</section>
+<section id="the-reality-check-limitations-you-should-know" class="level2">
+<h2 class="anchored" data-anchor-id="the-reality-check-limitations-you-should-know">The Reality Check: Limitations You Should Know</h2>
+<p>Antigravity is impressive, but it’s not perfect (yet). Here are the gotchas I’ve hit:</p>
+<section id="rate-limits-are-aggressive" class="level3">
+<h3 class="anchored" data-anchor-id="rate-limits-are-aggressive">1. Rate Limits Are Aggressive</h3>
+<p>Even with a <strong>paid Google AI Pro subscription</strong>, I’ve hit rate limits after just 2-3 prompts. The free tier is even tighter.</p>
+<p><strong>Rate Limit Details:</strong> - Gemini 3 Pro quota refreshes <strong>once every 5 hours</strong> (not generous at all) - High Thinking mode burns tokens fast - No clear documentation on exact limits</p>
+<p><strong>Workaround</strong>: Use Gemini 3 (Low) for routine tasks, save High/Claude for complex work.</p>
+</section>
+<section id="performance-can-be-slow" class="level3">
+<h3 class="anchored" data-anchor-id="performance-can-be-slow">2. Performance Can Be Slow</h3>
+<p>Agents take time to think and plan. A simple task might take 2-5 minutes from prompt to completion. Complex multi-file features can take 10-20 minutes.</p>
+<p>Compare that to Cursor, where autocomplete is instant.</p>
+<p><strong>Trade-off</strong>: You get autonomy and verification, but it’s not real-time.</p>
+</section>
+<section id="the-free-preview-wont-last-forever" class="level3">
+<h3 class="anchored" data-anchor-id="the-free-preview-wont-last-forever">3. The Free Preview Won’t Last Forever</h3>
+<p>Right now it’s free, but Google will introduce paid tiers:</p>
+<ul>
+<li><strong>Individual Plan</strong>: $0/month (likely with tighter limits)</li>
+<li><strong>Team Plan</strong>: TBD (self-serve for small teams)</li>
+<li><strong>Enterprise</strong>: TBD (Google Cloud integration)</li>
+</ul>
+<p>Expect token-based pricing similar to API usage once the preview ends.</p>
+</section>
+<section id="security-concerns" class="level3">
+<h3 class="anchored" data-anchor-id="security-concerns">4. Security Concerns</h3>
+<p><strong>Warning</strong>: During the preview, your code is processed by Google’s servers and <strong>may be used for model training</strong> (Google’s policy is unclear on this).</p>
+<p><strong>Recommendation</strong>: Don’t use Antigravity for: - Proprietary company code - Projects with trade secrets - Code with API keys or credentials</p>
+<p>Stick to personal projects, open-source work, or test apps until Google clarifies their data policies.</p>
+<hr>
+</section>
+</section>
+<section id="antigravity-vs.-the-competition" class="level2">
+<h2 class="anchored" data-anchor-id="antigravity-vs.-the-competition">Antigravity vs.&nbsp;The Competition</h2>
+<p>How does it stack up against other AI IDEs?</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Antigravity</th>
+<th>Cursor</th>
+<th>GitHub Copilot</th>
+<th>Windsurf</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Multi-Agent Orchestration</strong></td>
+<td>✅ Yes</td>
+<td>❌ No</td>
+<td>❌ No</td>
+<td>❌ No</td>
+</tr>
+<tr class="even">
+<td><strong>Built-in Browser Testing</strong></td>
+<td>✅ Yes</td>
+<td>❌ No</td>
+<td>❌ No</td>
+<td>❌ No</td>
+</tr>
+<tr class="odd">
+<td><strong>Artifacts (Plans, Screenshots)</strong></td>
+<td>✅ Yes</td>
+<td>❌ No</td>
+<td>❌ No</td>
+<td>❌ No</td>
+</tr>
+<tr class="even">
+<td><strong>Free Tier</strong></td>
+<td>✅ Yes (preview)</td>
+<td>❌ Limited</td>
+<td>✅ Yes</td>
+<td>❌ No</td>
+</tr>
+<tr class="odd">
+<td><strong>Model Flexibility</strong></td>
+<td>✅ Gemini, Claude, GPT-OSS</td>
+<td>✅ Multiple</td>
+<td>❌ OpenAI only</td>
+<td>✅ Multiple</td>
+</tr>
+<tr class="even">
+<td><strong>Autocomplete Speed</strong></td>
+<td>⚠️ Slower</td>
+<td>✅ Fast</td>
+<td>✅ Fast</td>
+<td>✅ Fast</td>
+</tr>
+<tr class="odd">
+<td><strong>Enterprise-Ready</strong></td>
+<td>❌ Not yet</td>
+<td>✅ Yes</td>
+<td>✅ Yes</td>
+<td>✅ Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict</strong>: Antigravity wins on <strong>autonomy and verification</strong> but loses on <strong>speed and stability</strong>. It’s experimental and exciting, but not production-ready for serious work yet.</p>
+<hr>
+</section>
+<section id="real-world-use-cases-when-to-use-antigravity" class="level2">
+<h2 class="anchored" data-anchor-id="real-world-use-cases-when-to-use-antigravity">Real-World Use Cases: When to Use Antigravity</h2>
+<p>Based on my testing, here’s where Antigravity shines (and where it doesn’t):</p>
+<section id="great-for" class="level3">
+<h3 class="anchored" data-anchor-id="great-for">✅ Great For:</h3>
+<ol type="1">
+<li><strong>Prototyping New Ideas</strong>: “Build me a todo app with drag-and-drop” → Done in 10 minutes</li>
+<li><strong>Learning New Frameworks</strong>: Watch the agent build a Next.js app and learn from its code</li>
+<li><strong>Tedious Boilerplate</strong>: “Set up Express.js with TypeScript, JWT auth, and Postgres” → Let the agent handle it</li>
+<li><strong>UI Iteration</strong>: “Make this dashboard look like Stripe’s design” → Agent tries, shows screenshots, you comment</li>
+<li><strong>Automated Testing</strong>: “Write Playwright tests for the checkout flow and run them” → Agent does it all</li>
+</ol>
+</section>
+<section id="not-great-for" class="level3">
+<h3 class="anchored" data-anchor-id="not-great-for">❌ Not Great For:</h3>
+<ol type="1">
+<li><strong>Quick Edits</strong>: If you just need to change one line, typing it yourself is faster</li>
+<li><strong>Production Code</strong> (yet): Security concerns and rate limits make it risky for serious projects</li>
+<li><strong>Real-Time Pair Programming</strong>: The agent is slower than a human co-pilot</li>
+<li><strong>Large Codebases</strong>: Works best on new projects or small repos (&lt; 100 files)</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="step-by-step-building-a-real-project" class="level2">
+<h2 class="anchored" data-anchor-id="step-by-step-building-a-real-project">Step-by-Step: Building a Real Project</h2>
+<p>Let’s build something more complex: a <strong>Personal Finance Dashboard</strong> with charts, dark mode, and multiple pages.</p>
+<section id="start-with-the-plan" class="level3">
+<h3 class="anchored" data-anchor-id="start-with-the-plan">1. Start with the Plan</h3>
+<p>Open Manager view and paste this prompt:</p>
+<pre><code>Build a Personal Finance Risk Dashboard with:
+- Next.js 14 + TypeScript + Tailwind CSS + shadcn/ui
+- 4 risk categories: Savings, Bonds, Index Funds, Crypto
+- Each category shows: current value, risk level (Low/Medium/High), and trend chart
+- Dark/light mode toggle
+- Responsive design (mobile-friendly)
+- Use Recharts for data visualization
+- Test the app in the browser and verify all features work</code></pre>
+<p>The agent will create a detailed implementation plan. Review it, leave comments if needed.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="antigravity-project-plan.png" class="img-fluid figure-img"></p>
+<figcaption>Project Plan - Add screenshot showing implementation plan artifact</figcaption>
+</figure>
+</div>
+</section>
+<section id="monitor-progress" class="level3">
+<h3 class="anchored" data-anchor-id="monitor-progress">2. Monitor Progress</h3>
+<p>The agent will work through multiple tasks:</p>
+<ul>
+<li>Task 1: Initialize Next.js project with TypeScript</li>
+<li>Task 2: Set up Tailwind and shadcn/ui</li>
+<li>Task 3: Create dashboard layout component</li>
+<li>Task 4: Build risk category cards</li>
+<li>Task 5: Add Recharts components</li>
+<li>Task 6: Implement dark mode toggle</li>
+<li>Task 7: Test responsiveness in browser</li>
+</ul>
+<p>You’ll see each task complete with artifacts (code diffs, screenshots, videos).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="antigravity-multi-task.png" class="img-fluid figure-img"></p>
+<figcaption>Multi-Task Progress - Add screenshot showing multiple tasks in progress</figcaption>
+</figure>
+</div>
+</section>
+<section id="iterate-with-feedback" class="level3">
+<h3 class="anchored" data-anchor-id="iterate-with-feedback">3. Iterate with Feedback</h3>
+<p>After the agent shows you the dashboard, you might comment:</p>
+<blockquote class="blockquote">
+<p>“The risk levels should use colors: green for low, yellow for medium, red for high. Also, make the charts animate on page load.”</p>
+</blockquote>
+<p>The agent will revise and show you the updated version—no need to stop and restart.</p>
+</section>
+<section id="final-verification" class="level3">
+<h3 class="anchored" data-anchor-id="final-verification">4. Final Verification</h3>
+<p>The agent opens the completed app in Chrome and records a walkthrough:</p>
+<ul>
+<li>Shows the dashboard on desktop</li>
+<li>Toggles dark mode</li>
+<li>Resizes to mobile view</li>
+<li>Clicks through all categories</li>
+</ul>
+<p>You get a <strong>video artifact</strong> proving everything works.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="antigravity-final-walkthrough.png" class="img-fluid figure-img"></p>
+<figcaption>Final Walkthrough - Add screenshot of completed dashboard</figcaption>
+</figure>
+</div>
+<p><strong>Total Time</strong>: 15-20 minutes for a multi-page app with styling, charts, and dark mode. I didn’t write a single line of code.</p>
+<hr>
+</section>
+</section>
+<section id="tips-for-maximizing-your-free-token-quota" class="level2">
+<h2 class="anchored" data-anchor-id="tips-for-maximizing-your-free-token-quota">Tips for Maximizing Your Free Token Quota</h2>
+<p>Since rate limits are tight, here’s how to make every token count:</p>
+<section id="match-model-to-task-complexity" class="level3">
+<h3 class="anchored" data-anchor-id="match-model-to-task-complexity">1. Match Model to Task Complexity</h3>
+<pre><code>Simple tasks (&lt; 50 lines of code):
+→ Use Gemini 3 (Low)
+
+Medium tasks (refactoring, new features):
+→ Use Gemini 3 (Low) first, upgrade to High if it fails
+
+Complex tasks (architecture, multi-file changes):
+→ Start with Claude Sonnet 4.5 or Gemini 3 (High)</code></pre>
+</section>
+<section id="use-planning-mode-for-big-tasks" class="level3">
+<h3 class="anchored" data-anchor-id="use-planning-mode-for-big-tasks">2. Use Planning Mode for Big Tasks</h3>
+<p>Antigravity has two modes:</p>
+<ul>
+<li><strong>Fast Mode</strong>: Executes immediately (no plan)</li>
+<li><strong>Planning Mode</strong>: Creates a plan first, waits for approval</li>
+</ul>
+<p>For anything non-trivial, use <strong>Planning Mode</strong>. This prevents the agent from going down the wrong path and wasting tokens.</p>
+</section>
+<section id="batch-related-tasks-together" class="level3">
+<h3 class="anchored" data-anchor-id="batch-related-tasks-together">3. Batch Related Tasks Together</h3>
+<p>Instead of:</p>
+<pre><code>Prompt 1: "Create a user model"
+Prompt 2: "Add a login endpoint"
+Prompt 3: "Create a registration form"</code></pre>
+<p>Do:</p>
+<pre><code>Prompt: "Create a complete user authentication system with:
+- User model (email, password, timestamps)
+- Login and registration endpoints with validation
+- Frontend forms with error handling
+"</code></pre>
+<p>One big task uses fewer tokens than three small ones (because of context loading).</p>
+</section>
+<section id="move-routine-work-off-platform" class="level3">
+<h3 class="anchored" data-anchor-id="move-routine-work-off-platform">4. Move Routine Work Off-Platform</h3>
+<p>For simple edits (changing a color, fixing a typo), just do it manually in the Editor view. Don’t waste agent tokens on trivial changes.</p>
+<hr>
+</section>
+</section>
+<section id="the-future-of-coding-where-antigravity-is-heading" class="level2">
+<h2 class="anchored" data-anchor-id="the-future-of-coding-where-antigravity-is-heading">The Future of Coding: Where Antigravity is Heading</h2>
+<p>Google positions Antigravity as <strong>experimental</strong>—a glimpse of what’s possible when models get smarter.</p>
+<section id="whats-coming-speculation" class="level3">
+<h3 class="anchored" data-anchor-id="whats-coming-speculation">What’s Coming (Speculation):</h3>
+<ol type="1">
+<li><strong>More Models</strong>: Likely to add OpenAI GPT-4/5 support</li>
+<li><strong>Better Rate Limits</strong>: Once out of preview, paid tiers should have reasonable quotas</li>
+<li><strong>Team Collaboration</strong>: Multi-user workspaces where agents work on behalf of the team</li>
+<li><strong>Code Review Agents</strong>: Specialized agents that review pull requests</li>
+<li><strong>Production Deployment</strong>: Agents that can deploy to Vercel/AWS/GCP directly</li>
+</ol>
+</section>
+<section id="the-bigger-picture" class="level3">
+<h3 class="anchored" data-anchor-id="the-bigger-picture">The Bigger Picture:</h3>
+<p>We’re moving from:</p>
+<p><strong>“AI helps me code”</strong> → <strong>“AI codes for me”</strong></p>
+<p>This shift means:</p>
+<ul>
+<li>Developers become <strong>architects</strong> (defining what to build)</li>
+<li>AI becomes <strong>builders</strong> (implementing the details)</li>
+<li>The bottleneck shifts from typing speed to <strong>idea clarity</strong></li>
+</ul>
+<p>Antigravity is one of the first tools designed for this future. It’s rough around the edges, but it shows where we’re going.</p>
+<hr>
+</section>
+</section>
+<section id="should-you-use-antigravity-today" class="level2">
+<h2 class="anchored" data-anchor-id="should-you-use-antigravity-today">Should You Use Antigravity Today?</h2>
+<p><strong>For Personal Projects / Learning</strong>: Absolutely. It’s free, it’s fun, and it’s a peek into the future.</p>
+<p><strong>For Professional Work</strong>: Not yet. Wait until: - Rate limits improve - Security policies clarify - Pricing stabilizes - Performance gets faster</p>
+<p><strong>My Recommendation</strong>: Install it, play with it on weekends, but keep using Cursor/Copilot for your day job. Antigravity is a <strong>secondary IDE</strong> right now, not a primary one.</p>
+<p>But here’s the thing—when I use it for side projects, I genuinely feel like I’m coding in the future. The experience of describing what I want and watching an agent build, test, and verify it is unlike anything else.</p>
+<p>That feeling alone makes it worth trying.</p>
+<hr>
+</section>
+<section id="getting-started-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started-checklist">Getting Started Checklist</h2>
+<p>Ready to dive in? Here’s your action plan:</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Download from https://antigravity.google/download</label></li>
+<li><label><input type="checkbox">Sign in with personal Gmail account</label></li>
+<li><label><input type="checkbox">Choose Agent-Assisted development mode</label></li>
+<li><label><input type="checkbox">Set default model to Gemini 3 (Low)</label></li>
+<li><label><input type="checkbox">Configure your first Rule (e.g., “Always use TypeScript”)</label></li>
+<li><label><input type="checkbox">Try the React Hello World example from earlier</label></li>
+<li><label><input type="checkbox">Build something more complex (dashboard, API, todo app)</label></li>
+<li><label><input type="checkbox">Watch the agent work in Manager view</label></li>
+<li><label><input type="checkbox">Review artifacts (screenshots, videos)</label></li>
+<li><label><input type="checkbox">Leave feedback on the agent’s work</label></li>
+<li><label><input type="checkbox">Join the community (Twitter, Discord, Reddit) to share experiences</label></li>
+</ul>
+<hr>
+</section>
+<section id="further-reading-resources" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading-resources">Further Reading &amp; Resources</h2>
+<ul>
+<li><strong>Official Docs</strong>: https://antigravity.google/docs</li>
+<li><strong>Google Codelabs Tutorial</strong>: https://codelabs.developers.google.com/getting-started-google-antigravity</li>
+<li><strong>Google Developers Blog</strong>: https://developers.googleblog.com/build-with-google-antigravity-our-new-agentic-development-platform</li>
+<li><strong>Gemini 3 Announcement</strong>: https://blog.google/products/gemini/gemini-3</li>
+<li><strong>YouTube Tutorial</strong>: Search “Learn the basics of Google Antigravity” (14-minute walkthrough by product engineer Kevin Hou)</li>
+<li><strong>Community Discussions</strong>: Hacker News, Reddit r/MachineLearning, Twitter #Antigravity</li>
+</ul>
+<hr>
+</section>
+<section id="the-bottom-line" class="level2">
+<h2 class="anchored" data-anchor-id="the-bottom-line">The Bottom Line</h2>
+<p>Google Antigravity represents a fundamental shift in how we’ll code in the future. Instead of an AI that <strong>assists</strong>, it’s an AI that <strong>acts</strong>—autonomously planning, building, testing, and verifying entire features while you review its work.</p>
+<p>It’s not perfect. Rate limits are frustrating, performance is slow, and it’s not production-ready. But it’s <strong>free</strong>, it’s <strong>experimental</strong>, and it’s a glimpse of where AI-powered development is heading.</p>
+<p>If you’re still manually testing every change in the browser, context-switching between tools constantly, or writing the same boilerplate for the hundredth time, give Antigravity a try.</p>
+<p>Your future self—the one who’s an architect directing AI agents instead of a coder wrestling with syntax—will thank you.</p>
+<hr>
+<p><em>Have you tried Google Antigravity? What did you build? Share your experiences in the comments below or tag me on Twitter with #Antigravity. I’d love to see what you create!</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2025 Your Name. Built with <a href="https://quarto.org">Quarto</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/yourusername">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="../posts/index.xml">
+      <i class="bi bi-rss" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

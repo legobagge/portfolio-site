@@ -2,6 +2,9 @@
   {
     "listing": "/posts/index.html",
     "items": [
+      "/posts/blog_post_pulsar_introduction.html",
+      "/posts/google-antigravity-guide.html",
+      "/posts/autoloader-databricks-blog.html",
       "/posts/bayesian-hierarchical-models.html",
       "/posts/difference-in-differences.html"
     ]

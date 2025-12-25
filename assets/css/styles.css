@@ -98,23 +98,53 @@ h2::after {
   background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal));
 }
 
+/* Code blocks - Higher contrast for better readability */
 code {
   font-family: 'JetBrains Mono', monospace;
-  background: var(--surface-elevated);
+  background: rgba(74, 158, 255, 0.15);  /* Subtle blue tint */
+  color: #e2e8f0;  /* Bright text */
   padding: 0.2em 0.4em;
   border-radius: 4px;
   font-size: 0.9em;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid rgba(74, 158, 255, 0.3);  /* Blue border */
 }
 
 pre {
-  background: var(--surface-elevated) !important;
-  border: 1px solid var(--border-subtle);
+  background: linear-gradient(135deg, 
+    rgba(26, 35, 50, 0.95) 0%, 
+    rgba(30, 41, 59, 0.95) 100%) !important;  /* Gradient background */
+  border: 1px solid rgba(74, 158, 255, 0.25);
   border-radius: 8px;
   padding: 1.5rem;
   overflow-x: auto;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);  /* Inner highlight */
 }
+
+pre code {
+  background: transparent !important;
+  border: none !important;
+  color: #f1f5f9 !important;  /* Very bright text */
+  font-size: 0.95rem;
+}
+
+/* Syntax colors - VS Code Dark+ style */
+pre code .im { color: #c586c0; }  /* import keyword - purple */
+pre code .kw { color: #c586c0; }  /* keywords - purple */
+pre code .cf { color: #c586c0; }  /* control flow - purple */
+pre code .st { color: #ce9178; }  /* strings - orange */
+pre code .vs { color: #ce9178; }  /* verbatim strings - orange */
+pre code .ss { color: #ce9178; }  /* special strings - orange */
+pre code .fu { color: #dcdcaa; }  /* functions - yellow */
+pre code .op { color: #d4d4d4; }  /* operators - light gray */
+pre code .co { color: #6a9955; font-style: italic; }  /* comments - green */
+pre code .cn { color: #4ec9b0; }  /* constants - teal */
+pre code .dv { color: #b5cea8; }  /* decimal values - light green */
+pre code .fl { color: #b5cea8; }  /* floats - light green */
+pre code .va { color: #9cdcfe; }  /* variables - light blue */
+pre code .at { color: #9cdcfe; }  /* attributes - light blue */
+pre code .bu { color: #4ec9b0; }  /* built-ins - teal */
+pre code .dt { color: #4ec9b0; }  /* data types - teal */
 
 /* Navigation */
 .navbar {
