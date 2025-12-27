@@ -222,7 +222,6 @@ In the Manager view, click on the completed task. You'll see:
 -   **Screenshots**: Before and after images
 -   **Browser Recording**: Video proof it works
 
-
 If something's wrong, click on the screenshot and leave a comment: "The button should be blue, not red." The agent will revise.
 
 ------------------------------------------------------------------------

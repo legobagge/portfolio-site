@@ -41,7 +41,7 @@ Autoloader does all of this automatically. You just point it at a directory, and
 
 Here's my specific use case: We get daily snapshots from an Oracle database exported as JSON files, like this:
 
-```bash
+```         
 orders-2025-11-26.json
 orders-2025-11-27.json
 orders-2025-11-28.json
@@ -186,13 +186,13 @@ Notice this part?
             F.to_date(
                 F.regexp_extract(
                     F.col("_source_file"), 
-                    r"orders-(\d{4}-\d{2}-\d{2})\.json", 
+                    r"table-(\d{4}-\d{2}-\d{2})\.json", 
                     1
                 )
             ))
 ```
 
-I'm extracting the date from the filename (`orders-2025-11-26.json` → `2025-11-26`). This tells me **when the Oracle snapshot was taken**, not when I ingested it.
+I'm extracting the date from the filename (`table-2025-11-26.json` → `2025-11-26`). This tells me **when the Oracle snapshot was taken**, not when I ingested it.
 
 Why does this matter? Because if my ingestion job runs late (network issue, cluster delay, etc.), I still know the **source date** of the data. This becomes crucial in the Silver layer for deduplication.
 
