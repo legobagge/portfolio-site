@@ -70,7 +70,6 @@ h1 {
   font-size: 3.5rem;
   line-height: 1.1;
   background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
-  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: gradient-shift 3s ease infinite;
@@ -210,7 +209,6 @@ pre code .dt { color: #4ec9b0; }  /* data types - teal */
   text-align: center;
   z-index: 10;
   backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
   background: rgb(10 14 39 / 60%);
   border: 1px solid rgb(255 255 255 / 8%);
   border-radius: 1.5rem;
@@ -240,7 +238,6 @@ pre code .dt { color: #4ec9b0; }  /* data types - teal */
 
   /* keep the nice gradient, but scoped to hero only */
   background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
-  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
