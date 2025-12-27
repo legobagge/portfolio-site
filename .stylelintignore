@@ -1,0 +1,7 @@
+# Ignore the compiled output folder
+docs/
+site_libs/
+.quarto/
+
+# Ignore minified files
+*.min.css
