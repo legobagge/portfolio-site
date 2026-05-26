@@ -1,0 +1,218 @@
+# Spark Declarative Pipelines
+
+Apache Spark 4.1 introduced **Spark Declarative Pipelines (SDP)** — a framework built directly into Spark that lets you define what your data pipeline should produce and have the engine figure out how to execute it. It sits on top of Spark SQL, PySpark, and Spark Structured Streaming, and offers first-class APIs in both Python and SQL for both batch and streaming workloads.
+
+If you have spent any time building multi-step pipelines in Spark, you know the pattern: write the queries, then wrap them in orchestration logic to sequence them, add retry handling, manually manage streaming checkpoints, and wire up dependency order yourself. SDP replaces most of that scaffolding.
+
+The analogy that fits well here is Kubernetes or Terraform. With Kubernetes you don't write a script that says "spin up container 1, then spin up container 2" — you declare the desired state and let the system reconcile it. SDP applies the same principle to Spark pipelines: declare the tables and the queries that populate them, and let the framework handle sequencing, parallelism, retries, and state management.
+
+---
+
+## The problem with imperative pipelines
+
+Spark SQL and DataFrames have been declarative at the query level for a long time. A single `SELECT` statement is declarative — you describe what you want, not how to scan and join rows. But the moment you chain more than one query together, you're back to imperative thinking: execute this first, then that, check for errors in between, write a checkpoint here.
+
+For a manufacturing setting like LEGO's E&Q data platform this is a familiar pain. Consider a pipeline that feeds mould qualification data through three stages:
+
+1. A **streaming table** ingesting raw machine events from a Kafka topic — cycle times, clamp force readings, shot weight deviations arriving off injection moulding machines in real time.
+2. A **materialized view** of cleaned, joined mould master data pulled from a batch source (say, a Delta table populated from SAP/HANA).
+3. A **gold fact table** joining the two — clean machine events enriched with mould identity, tool number, and qualification status.
+
+In a standard PySpark script you'd manage the execution order manually, figure out which steps can parallelize, and handle streaming checkpoints yourself. If a schema changes upstream you find out at runtime, usually after expensive compute has already started.
+
+SDP changes this by analyzing the queries you define, inferring data dependencies from them, and building a **data flow graph** before touching any data.
+
+---
+
+## Core abstractions
+
+SDP has three building blocks: **datasets**, **sinks**, and **flows**.
+
+A **dataset** is a table or view — the target your pipeline writes to. There are four dataset types:
+
+- **Streaming table** — populated by a Structured Streaming query; results are appended incrementally.
+- **Materialized view** — populated by a batch query; fully overwritten on each pipeline run.
+- **View** — a standard SQL view; definition is updated at pipeline run time, contents evaluated at read time.
+- **Temporary view** — like a view but scoped to the pipeline; useful for centralizing shared logic.
+
+A **sink** covers any other writable target Spark Streaming supports — a Kafka topic being the most common case.
+
+A **flow** is the unit of data transformation: it reads from a source, applies logic, and writes to a target. In most cases flows are implicit — when you write `CREATE STREAMING TABLE ... AS SELECT ...` you're defining both the dataset and the implicit flow in one statement. Explicit flows become useful when you need to fan multiple sources into one table, or when writing to a sink.
+
+---
+
+## Defining a LEGO machine data pipeline
+
+Let us take a look at what this looks like in practice. The pipeline below ingests raw injection moulding machine events from Kafka, joins them with mould master data, and produces a clean qualified-shot fact table.
+
+```python
+# transformations/machine_events.py
+from pyspark.pipelines import table, materialized_view
+from pyspark.sql import functions as F
+from pyspark.sql.types import StructType, StructField, StringType, DoubleType, TimestampType
+
+MACHINE_EVENT_SCHEMA = StructType([
+    StructField("machine_id", StringType()),
+    StructField("mould_id", StringType()),
+    StructField("shot_timestamp", TimestampType()),
+    StructField("cycle_time_s", DoubleType()),
+    StructField("clamp_force_kn", DoubleType()),
+    StructField("shot_weight_g", DoubleType()),
+    StructField("cavity_pressure_bar", DoubleType()),
+])
+
+@table
+def raw_machine_events(spark):
+    return (
+        spark.readStream
+        .format("kafka")
+        .option("kafka.bootstrap.servers", "kafka:9092")
+        .option("subscribe", "lego.machine.events")
+        .load()
+        .select(F.from_json(F.col("value").cast("string"), MACHINE_EVENT_SCHEMA).alias("data"))
+        .select("data.*")
+    )
+```
+
+```python
+# transformations/mould_master.py
+from pyspark.pipelines import materialized_view
+
+@materialized_view
+def mould_master(spark):
+    return spark.read.format("delta").load("/mnt/bronze/mould_design/mould_master")
+```
+
+```python
+# transformations/qualified_shots.py
+from pyspark.pipelines import materialized_view
+from pyspark.sql import functions as F
+
+@materialized_view
+def qualified_shots(spark):
+    events = spark.read.table("raw_machine_events")
+    moulds = spark.read.table("mould_master")
+
+    return (
+        events
+        .join(moulds, on="mould_id", how="inner")
+        .filter(F.col("qualification_status") == "QUALIFIED")
+        .withColumn("shot_weight_deviation_pct",
+            (F.col("shot_weight_g") - F.col("target_weight_g")) / F.col("target_weight_g") * 100
+        )
+        .select(
+            "machine_id",
+            "mould_id",
+            "tool_number",
+            "shot_timestamp",
+            "cycle_time_s",
+            "clamp_force_kn",
+            "shot_weight_deviation_pct",
+            "cavity_pressure_bar",
+        )
+    )
+```
+
+SDP reads these files, detects that `qualified_shots` reads from `raw_machine_events` and `mould_master`, and infers the execution order automatically. You never specify it.
+
+The equivalent in SQL follows the same pattern:
+
+```sql
+-- transformations/raw_machine_events.sql
+CREATE STREAMING TABLE raw_machine_events
+AS SELECT
+    data:machine_id      AS machine_id,
+    data:mould_id        AS mould_id,
+    data:shot_timestamp  AS shot_timestamp,
+    data:cycle_time_s    AS cycle_time_s,
+    data:clamp_force_kn  AS clamp_force_kn,
+    data:shot_weight_g   AS shot_weight_g
+FROM STREAM read_kafka(
+    bootstrapServers => 'kafka:9092',
+    subscribe => 'lego.machine.events'
+);
+
+-- transformations/qualified_shots.sql
+CREATE MATERIALIZED VIEW qualified_shots
+AS SELECT
+    e.machine_id,
+    e.mould_id,
+    m.tool_number,
+    e.shot_timestamp,
+    e.cycle_time_s,
+    e.clamp_force_kn,
+    (e.shot_weight_g - m.target_weight_g) / m.target_weight_g * 100 AS shot_weight_deviation_pct
+FROM raw_machine_events e
+INNER JOIN mould_master m USING (mould_id)
+WHERE m.qualification_status = 'QUALIFIED';
+```
+
+---
+
+## Running the pipeline
+
+The `spark pipelines` CLI manages initialization and execution. Starting a new project:
+
+```bash
+spark pipelines init --name machine_quality_pipeline
+```
+
+This generates a `spark_pipeline.yaml` config and a `transformations/` directory. The config is minimal — it points to your code glob and specifies a storage path for managed state.
+
+Before running against real data, use the dry run to validate the graph:
+
+```bash
+spark pipelines dry-run
+```
+
+This compiles the entire pipeline, resolves all dependencies, infers schemas, and checks that downstream queries are compatible with what their upstream tables actually produce — without touching any data. If `qualified_shots` references a column that `raw_machine_events` doesn't emit, you find out here rather than after the Kafka consumer has been running for 20 minutes.
+
+As an example, if you accidentally reference `mould_idz` instead of `mould_id` in the join condition:
+
+```
+ERROR: Failed to resolve flow 'qualified_shots'
+  AnalysisException: cannot resolve 'mould_idz' given input columns:
+    [raw_machine_events.machine_id, raw_machine_events.mould_id, ...]
+```
+
+Once the dry run is clean:
+
+```bash
+spark pipelines run
+```
+
+SDP executes independent steps in parallel automatically. `raw_machine_events` and `mould_master` have no dependency on each other so they run concurrently. `qualified_shots` starts only once both are available.
+
+For targeted refreshes — say you only want to re-materialize `qualified_shots` after a logic change without reprocessing the raw Kafka ingestion:
+
+```bash
+spark pipelines run --refresh-selection qualified_shots
+```
+
+And when you need a full reprocess from scratch — requalifying all historical shot data after a mould master correction:
+
+```bash
+spark pipelines run --full-refresh-all
+```
+
+This wipes streaming checkpoints and reprocesses from the beginning of the Kafka retention window.
+
+---
+
+## What SDP handles for you
+
+The shift left validation is the biggest practical gain. Schema mismatches between `raw_machine_events` and `qualified_shots`, circular dependencies, missing upstream tables — all caught at dry run time. In an imperative script these show up at runtime, after the pipeline has already consumed resources and partially written state.
+
+Beyond validation, SDP automatically manages streaming checkpoints — no more manually specifying checkpoint locations and hoping they stay consistent across deploys. Parallelism across independent branches of the graph is also automatic, which matters when you have a pipeline with several independent bronze ingestion tables feeding separate silver transforms.
+
+The one thing SDP does not do is replace orchestration scheduling. You still need something to trigger `spark pipelines run` on a cadence — a cron job, Airflow, or Databricks Workflows. SDP is about what happens inside a run, not about when runs happen.
+
+---
+
+## Conclusion
+
+SDP extends Spark's declarative model from the query level to the entire pipeline level. For machine data pipelines — where you're typically stitching together streaming ingestion from production equipment, batch joins against ERP-sourced master data, and aggregated quality views — the ability to define the graph once and have the framework handle execution order, parallelism, and checkpoint state is a meaningful reduction in operational surface area.
+
+The dry run capability alone changes the feedback loop. Schema mismatches and dependency errors that used to surface mid-run now surface before a single record is processed.
+
+SDP ships in Apache Spark 4.1. This can be explored further in the [Apache Spark release notes](https://spark.apache.org/releases/) and the official pipeline documentation.

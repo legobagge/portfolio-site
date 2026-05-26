@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Lucas Bagge">
+<meta name="dcterms.date" content="2025-12-10">
+<meta name="description" content="A practical introduction to distributed messaging for developers—understand Pulsar through familiar analogies and build a complete real-time analytics pipeline">
 
-<title>blog_post_pulsar_introduction – AI &amp; Analytics Portfolio</title>
+<title>Getting Started with Apache Pulsar: A Postman’s Guide to Modern Message Streaming – AI &amp; Analytics Portfolio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,11 +74,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -175,9 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#getting-started-with-apache-pulsar-a-postmans-guide-to-modern-message-streaming" id="toc-getting-started-with-apache-pulsar-a-postmans-guide-to-modern-message-streaming" class="nav-link active" data-scroll-target="#getting-started-with-apache-pulsar-a-postmans-guide-to-modern-message-streaming">Getting Started with Apache Pulsar: A Postman’s Guide to Modern Message Streaming</a>
-  <ul class="collapse">
-  <li><a href="#introduction-why-pulsar" id="toc-introduction-why-pulsar" class="nav-link" data-scroll-target="#introduction-why-pulsar">Introduction: Why Pulsar?</a></li>
+  <li><a href="#introduction-why-pulsar" id="toc-introduction-why-pulsar" class="nav-link active" data-scroll-target="#introduction-why-pulsar">Introduction: Why Pulsar?</a></li>
   <li><a href="#understanding-pulsar-key-terminology" id="toc-understanding-pulsar-key-terminology" class="nav-link" data-scroll-target="#understanding-pulsar-key-terminology">Understanding Pulsar: Key Terminology</a>
   <ul class="collapse">
   <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics"><strong>Topics</strong></a></li>
@@ -221,21 +222,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
-  </ul></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Getting Started with Apache Pulsar: A Postman’s Guide to Modern Message Streaming</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Apache Pulsar</div>
+    <div class="quarto-category">Streaming</div>
+    <div class="quarto-category">Data Engineering</div>
+    <div class="quarto-category">Tutorial</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A practical introduction to distributed messaging for developers—understand Pulsar through familiar analogies and build a complete real-time analytics pipeline
+  </div>
+</div>
 
 
+<div class="quarto-title-meta">
 
-<section id="getting-started-with-apache-pulsar-a-postmans-guide-to-modern-message-streaming" class="level1">
-<h1>Getting Started with Apache Pulsar: A Postman’s Guide to Modern Message Streaming</h1>
-<p><em>A practical introduction to distributed messaging for developers</em></p>
-<hr>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Lucas Bagge </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 10, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <section id="introduction-why-pulsar" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-why-pulsar">Introduction: Why Pulsar?</h2>
 <p>Imagine you’re building a modern application that needs to handle thousands of events per second—user clicks, sensor readings, financial transactions, or social media updates. How do you ensure these messages get delivered reliably, in order, and without data loss? Enter <strong>Apache Pulsar</strong>, a cloud-native distributed messaging and streaming platform that’s been quietly powering some of the world’s largest applications.</p>
@@ -695,9 +730,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="key-takeaways" class="level2">
 <h2 class="anchored" data-anchor-id="key-takeaways">Key Takeaways</h2>
-<p><strong>Why Choose Pulsar?</strong> 1. <strong>Unified messaging</strong>: Queueing + streaming in one platform 2. <strong>Cloud-native</strong>: Built for Kubernetes and multi-tenant deployments 3. <strong>Geo-replication</strong>: Built-in cross-datacenter replication 4. <strong>Storage separation</strong>: Independent scaling of compute and storage 5. <strong>Multi-language</strong>: Clients for Java, Python, Go, C++, Node.js, and more</p>
-<p><strong>When to Use Pulsar:</strong> - ✅ Need both pub-sub and queuing semantics - ✅ Require strong ordering guarantees - ✅ Multi-tenancy is important - ✅ Planning for global distribution - ✅ Need durability with low latency</p>
-<p><strong>When to Consider Alternatives:</strong> - If you only need simple pub-sub → NATS - If you need complex stream processing → Kafka with Kafka Streams - If you want managed service → AWS Kinesis, Google Pub/Sub</p>
+<p><strong>Why Choose Pulsar?</strong></p>
+<ol type="1">
+<li><strong>Unified messaging</strong>: Queueing + streaming in one platform</li>
+<li><strong>Cloud-native</strong>: Built for Kubernetes and multi-tenant deployments</li>
+<li><strong>Geo-replication</strong>: Built-in cross-datacenter replication</li>
+<li><strong>Storage separation</strong>: Independent scaling of compute and storage</li>
+<li><strong>Multi-language</strong>: Clients for Java, Python, Go, C++, Node.js, and more</li>
+</ol>
+<p><strong>When to Use Pulsar:</strong></p>
+<ul>
+<li>✅ Need both pub-sub and queuing semantics</li>
+<li>✅ Require strong ordering guarantees</li>
+<li>✅ Multi-tenancy is important</li>
+<li>✅ Planning for global distribution</li>
+<li>✅ Need durability with low latency</li>
+</ul>
+<p><strong>When to Consider Alternatives:</strong></p>
+<ul>
+<li>If you only need simple pub-sub → NATS</li>
+<li>If you need complex stream processing → Kafka with Kafka Streams</li>
+<li>If you want managed service → AWS Kinesis, Google Pub/Sub</li>
+</ul>
 <hr>
 </section>
 <section id="conclusion" class="level2">
@@ -708,21 +762,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Ready to dive deeper? Check out the <a href="https://pulsar.apache.org/docs/">official Pulsar documentation</a> and join the vibrant community!</p>
 <hr>
 </section>
-<section id="additional-resources" class="level2">
-<h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
 <ul>
-<li><strong>Official Docs</strong>: https://pulsar.apache.org/docs/</li>
-<li><strong>GitHub</strong>: https://github.com/apache/pulsar</li>
-<li><strong>Slack Community</strong>: https://pulsar.apache.org/community/</li>
-<li><strong>Pulsar Summit</strong>: Annual conference with talks and workshops</li>
-<li><strong>This Demo on GitHub</strong>: [Link to your repo]</li>
+<li><a href="https://pulsar.apache.org/docs/">Apache Pulsar Documentation</a></li>
+<li><a href="https://github.com/apache/pulsar">Pulsar GitHub Repository</a></li>
+<li><a href="https://pulsar.apache.org/community/">Pulsar Community Slack</a></li>
+<li><a href="https://pulsar.apache.org/community/#events">Pulsar Summit</a></li>
 </ul>
-<p><strong>Try it yourself:</strong> All code from this tutorial is available at [your-github-link]. Clone, experiment, and build something amazing!</p>
+<p><strong>Try it yourself:</strong> All code from this tutorial is available in the demo files above. Clone, experiment, and build something amazing!</p>
 <hr>
 <p><em>Have questions or built something cool with Pulsar? Share your experience in the comments below!</em></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -862,7 +914,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = false;
+  const darkModeDefault = true;
   let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {

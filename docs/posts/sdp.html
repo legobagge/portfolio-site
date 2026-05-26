@@ -6,11 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Your Name">
-<meta name="dcterms.date" content="2024-10-28">
-<meta name="description" content="A step-by-step guide to estimating causal effects using DiD methodology">
 
-<title>Causal Inference in Practice: Difference-in-Differences with Python – AI &amp; Analytics Portfolio</title>
+<title>sdp – AI &amp; Analytics Portfolio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,35 +104,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
@@ -207,260 +175,187 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-causal-question" id="toc-the-causal-question" class="nav-link active" data-scroll-target="#the-causal-question">The Causal Question</a></li>
-  <li><a href="#when-to-use-did" id="toc-when-to-use-did" class="nav-link" data-scroll-target="#when-to-use-did">When to Use DiD</a></li>
-  <li><a href="#a-real-world-example" id="toc-a-real-world-example" class="nav-link" data-scroll-target="#a-real-world-example">A Real-World Example</a>
+  <li><a href="#spark-declarative-pipelines" id="toc-spark-declarative-pipelines" class="nav-link active" data-scroll-target="#spark-declarative-pipelines">Spark Declarative Pipelines</a>
   <ul class="collapse">
-  <li><a href="#setting-up-the-data" id="toc-setting-up-the-data" class="nav-link" data-scroll-target="#setting-up-the-data">Setting Up the Data</a></li>
-  <li><a href="#visualizing-parallel-trends" id="toc-visualizing-parallel-trends" class="nav-link" data-scroll-target="#visualizing-parallel-trends">Visualizing Parallel Trends</a></li>
-  </ul></li>
-  <li><a href="#estimating-the-did-effect" id="toc-estimating-the-did-effect" class="nav-link" data-scroll-target="#estimating-the-did-effect">Estimating the DiD Effect</a>
-  <ul class="collapse">
-  <li><a href="#regression-approach" id="toc-regression-approach" class="nav-link" data-scroll-target="#regression-approach">Regression Approach</a></li>
-  </ul></li>
-  <li><a href="#advanced-did-multiple-time-periods" id="toc-advanced-did-multiple-time-periods" class="nav-link" data-scroll-target="#advanced-did-multiple-time-periods">Advanced DiD: Multiple Time Periods</a></li>
-  <li><a href="#testing-parallel-trends" id="toc-testing-parallel-trends" class="nav-link" data-scroll-target="#testing-parallel-trends">Testing Parallel Trends</a></li>
-  <li><a href="#common-pitfalls" id="toc-common-pitfalls" class="nav-link" data-scroll-target="#common-pitfalls">Common Pitfalls</a></li>
-  <li><a href="#modern-alternatives" id="toc-modern-alternatives" class="nav-link" data-scroll-target="#modern-alternatives">Modern Alternatives</a></li>
-  <li><a href="#practical-recommendations" id="toc-practical-recommendations" class="nav-link" data-scroll-target="#practical-recommendations">Practical Recommendations</a></li>
+  <li><a href="#the-problem-with-imperative-pipelines" id="toc-the-problem-with-imperative-pipelines" class="nav-link" data-scroll-target="#the-problem-with-imperative-pipelines">The problem with imperative pipelines</a></li>
+  <li><a href="#core-abstractions" id="toc-core-abstractions" class="nav-link" data-scroll-target="#core-abstractions">Core abstractions</a></li>
+  <li><a href="#defining-a-lego-machine-data-pipeline" id="toc-defining-a-lego-machine-data-pipeline" class="nav-link" data-scroll-target="#defining-a-lego-machine-data-pipeline">Defining a LEGO machine data pipeline</a></li>
+  <li><a href="#running-the-pipeline" id="toc-running-the-pipeline" class="nav-link" data-scroll-target="#running-the-pipeline">Running the pipeline</a></li>
+  <li><a href="#what-sdp-handles-for-you" id="toc-what-sdp-handles-for-you" class="nav-link" data-scroll-target="#what-sdp-handles-for-you">What SDP handles for you</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Causal Inference in Practice: Difference-in-Differences with Python</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">Econometrics</div>
-    <div class="quarto-category">Causal Inference</div>
-    <div class="quarto-category">Python</div>
-  </div>
-  </div>
-
-<div>
-  <div class="description">
-    A step-by-step guide to estimating causal effects using DiD methodology
-  </div>
-</div>
 
 
-<div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Your Name </p>
-          </div>
-  </div>
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">October 28, 2024</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="the-causal-question" class="level2">
-<h2 class="anchored" data-anchor-id="the-causal-question">The Causal Question</h2>
-<p>How do we measure the true impact of an intervention when we can’t run a randomized experiment? Difference-in-differences (DiD) offers a powerful quasi-experimental approach.</p>
-</section>
-<section id="when-to-use-did" class="level2">
-<h2 class="anchored" data-anchor-id="when-to-use-did">When to Use DiD</h2>
-<p>DiD is appropriate when:</p>
+<section id="spark-declarative-pipelines" class="level1">
+<h1>Spark Declarative Pipelines</h1>
+<p>Apache Spark 4.1 introduced <strong>Spark Declarative Pipelines (SDP)</strong> — a framework built directly into Spark that lets you define what your data pipeline should produce and have the engine figure out how to execute it. It sits on top of Spark SQL, PySpark, and Spark Structured Streaming, and offers first-class APIs in both Python and SQL for both batch and streaming workloads.</p>
+<p>If you have spent any time building multi-step pipelines in Spark, you know the pattern: write the queries, then wrap them in orchestration logic to sequence them, add retry handling, manually manage streaming checkpoints, and wire up dependency order yourself. SDP replaces most of that scaffolding.</p>
+<p>The analogy that fits well here is Kubernetes or Terraform. With Kubernetes you don’t write a script that says “spin up container 1, then spin up container 2” — you declare the desired state and let the system reconcile it. SDP applies the same principle to Spark pipelines: declare the tables and the queries that populate them, and let the framework handle sequencing, parallelism, retries, and state management.</p>
+<hr>
+<section id="the-problem-with-imperative-pipelines" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem-with-imperative-pipelines">The problem with imperative pipelines</h2>
+<p>Spark SQL and DataFrames have been declarative at the query level for a long time. A single <code>SELECT</code> statement is declarative — you describe what you want, not how to scan and join rows. But the moment you chain more than one query together, you’re back to imperative thinking: execute this first, then that, check for errors in between, write a checkpoint here.</p>
+<p>For a manufacturing setting like LEGO’s E&amp;Q data platform this is a familiar pain. Consider a pipeline that feeds mould qualification data through three stages:</p>
 <ol type="1">
-<li>You have a <strong>treatment group</strong> and <strong>control group</strong></li>
-<li>You observe both groups <strong>before and after</strong> the intervention</li>
-<li>The <strong>parallel trends assumption</strong> holds (more on this later)</li>
+<li>A <strong>streaming table</strong> ingesting raw machine events from a Kafka topic — cycle times, clamp force readings, shot weight deviations arriving off injection moulding machines in real time.</li>
+<li>A <strong>materialized view</strong> of cleaned, joined mould master data pulled from a batch source (say, a Delta table populated from SAP/HANA).</li>
+<li>A <strong>gold fact table</strong> joining the two — clean machine events enriched with mould identity, tool number, and qualification status.</li>
 </ol>
+<p>In a standard PySpark script you’d manage the execution order manually, figure out which steps can parallelize, and handle streaming checkpoints yourself. If a schema changes upstream you find out at runtime, usually after expensive compute has already started.</p>
+<p>SDP changes this by analyzing the queries you define, inferring data dependencies from them, and building a <strong>data flow graph</strong> before touching any data.</p>
+<hr>
 </section>
-<section id="a-real-world-example" class="level2">
-<h2 class="anchored" data-anchor-id="a-real-world-example">A Real-World Example</h2>
-<p>Suppose a state implements a new job training program. We want to estimate its causal effect on employment rates.</p>
-<section id="setting-up-the-data" class="level3">
-<h3 class="anchored" data-anchor-id="setting-up-the-data">Setting Up the Data</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate data</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1000</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'state'</span>: np.random.choice([<span class="st">'treated'</span>, <span class="st">'control'</span>], n),</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'year'</span>: np.random.choice([<span class="dv">2018</span>, <span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2021</span>], n)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Treatment occurs in 2020 for treated states</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'post'</span>] <span class="op">=</span> (df[<span class="st">'year'</span>] <span class="op">&gt;=</span> <span class="dv">2020</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'treated'</span>] <span class="op">=</span> (df[<span class="st">'state'</span>] <span class="op">==</span> <span class="st">'treated'</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># True causal effect = 5 percentage points</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>treatment_effect <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate employment rates with parallel trends pre-treatment</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'employment_rate'</span>] <span class="op">=</span> (</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="dv">60</span> <span class="op">+</span>  <span class="co"># Baseline</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span> <span class="op">*</span> df[<span class="st">'year'</span>] <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> <span class="dv">2018</span> <span class="op">+</span>  <span class="co"># Common time trend</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="dv">5</span> <span class="op">*</span> df[<span class="st">'treated'</span>] <span class="op">+</span>  <span class="co"># Baseline difference between groups</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    treatment_effect <span class="op">*</span> df[<span class="st">'treated'</span>] <span class="op">*</span> df[<span class="st">'post'</span>] <span class="op">+</span>  <span class="co"># CAUSAL EFFECT</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    np.random.normal(<span class="dv">0</span>, <span class="dv">3</span>, n)  <span class="co"># Noise</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="visualizing-parallel-trends" class="level3">
-<h3 class="anchored" data-anchor-id="visualizing-parallel-trends">Visualizing Parallel Trends</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Group means by year and treatment status</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>means <span class="op">=</span> df.groupby([<span class="st">'year'</span>, <span class="st">'state'</span>])[<span class="st">'employment_rate'</span>].mean().reset_index()</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> state <span class="kw">in</span> [<span class="st">'treated'</span>, <span class="st">'control'</span>]:</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> means[means[<span class="st">'state'</span>] <span class="op">==</span> state]</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    plt.plot(data[<span class="st">'year'</span>], data[<span class="st">'employment_rate'</span>], </span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>             marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span>state, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span><span class="fl">2019.5</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, </span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>            label<span class="op">=</span><span class="st">'Treatment Start'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Year'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Employment Rate (%)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Parallel Trends Check'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="estimating-the-did-effect" class="level2">
-<h2 class="anchored" data-anchor-id="estimating-the-did-effect">Estimating the DiD Effect</h2>
-<p>The classic DiD estimator:</p>
-<p><span class="math display">\[
-\hat{\delta}_{DiD} = (\bar{Y}_{treated,post} - \bar{Y}_{treated,pre}) - (\bar{Y}_{control,post} - \bar{Y}_{control,pre})
-\]</span></p>
-<section id="regression-approach" class="level3">
-<h3 class="anchored" data-anchor-id="regression-approach">Regression Approach</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DiD regression</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> smf.ols(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'employment_rate ~ treated * post + C(year)'</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>df</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>).fit(cov_type<span class="op">=</span><span class="st">'HC1'</span>)  <span class="co"># Robust standard errors</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.summary())</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># The coefficient on treated:post is our DiD estimate</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>did_effect <span class="op">=</span> model.params[<span class="st">'treated:post'</span>]</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Estimated Treatment Effect: </span><span class="sc">{</span>did_effect<span class="sc">:.2f}</span><span class="ss"> percentage points"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="advanced-did-multiple-time-periods" class="level2">
-<h2 class="anchored" data-anchor-id="advanced-did-multiple-time-periods">Advanced DiD: Multiple Time Periods</h2>
-<p>For multiple treatment periods, we use the <strong>two-way fixed effects</strong> (TWFE) model:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add state and year fixed effects</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>model_twfe <span class="op">=</span> smf.ols(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'employment_rate ~ treated:post + C(state) + C(year)'</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>df</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>).fit(cov_type<span class="op">=</span><span class="st">'cluster'</span>, cov_kwds<span class="op">=</span>{<span class="st">'groups'</span>: df[<span class="st">'state'</span>]})</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model_twfe.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="testing-parallel-trends" class="level2">
-<h2 class="anchored" data-anchor-id="testing-parallel-trends">Testing Parallel Trends</h2>
-<p>A crucial assumption! We can test it using <strong>event study</strong> specification:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create relative time to treatment</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'rel_year'</span>] <span class="op">=</span> df[<span class="st">'year'</span>] <span class="op">-</span> <span class="dv">2020</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'rel_year'</span>] <span class="op">=</span> df[<span class="st">'rel_year'</span>] <span class="op">*</span> df[<span class="st">'treated'</span>]</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Event study regression (omit t=-1 as base period)</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>event_study <span class="op">=</span> smf.ols(</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'''employment_rate ~ C(rel_year, Treatment(-1)) + </span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">       C(state) + C(year)'''</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>df</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>).fit(cov_type<span class="op">=</span><span class="st">'cluster'</span>, cov_kwds<span class="op">=</span>{<span class="st">'groups'</span>: df[<span class="st">'state'</span>]})</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot event study coefficients</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>coeffs <span class="op">=</span> event_study.params.<span class="bu">filter</span>(like<span class="op">=</span><span class="st">'rel_year'</span>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>conf_int <span class="op">=</span> event_study.conf_int().<span class="bu">filter</span>(like<span class="op">=</span><span class="st">'rel_year'</span>, axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>plt.errorbar(<span class="bu">range</span>(<span class="bu">len</span>(coeffs)), coeffs.values, </span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>             yerr<span class="op">=</span>[coeffs.values <span class="op">-</span> conf_int[<span class="dv">0</span>].values,</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>                   conf_int[<span class="dv">1</span>].values <span class="op">-</span> coeffs.values],</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>             fmt<span class="op">=</span><span class="st">'o'</span>, capsize<span class="op">=</span><span class="dv">5</span>, capthick<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span><span class="bu">len</span>([x <span class="cf">for</span> x <span class="kw">in</span> coeffs.index <span class="cf">if</span> <span class="st">'-'</span> <span class="kw">in</span> x]), </span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>            color<span class="op">=</span><span class="st">'green'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Periods Relative to Treatment'</span>)</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Estimated Effect'</span>)</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Event Study Plot'</span>)</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="common-pitfalls" class="level2">
-<h2 class="anchored" data-anchor-id="common-pitfalls">Common Pitfalls</h2>
-<ol type="1">
-<li><strong>Violation of Parallel Trends</strong>: Always test pre-treatment trends</li>
-<li><strong>Treatment Effect Heterogeneity</strong>: TWFE can be biased with staggered adoption</li>
-<li><strong>Spillover Effects</strong>: Control group shouldn’t be affected by treatment</li>
-<li><strong>Anticipation</strong>: Treatment effects shouldn’t begin before official start</li>
-</ol>
-</section>
-<section id="modern-alternatives" class="level2">
-<h2 class="anchored" data-anchor-id="modern-alternatives">Modern Alternatives</h2>
-<p>Recent econometric research has developed improved DiD estimators:</p>
+<section id="core-abstractions" class="level2">
+<h2 class="anchored" data-anchor-id="core-abstractions">Core abstractions</h2>
+<p>SDP has three building blocks: <strong>datasets</strong>, <strong>sinks</strong>, and <strong>flows</strong>.</p>
+<p>A <strong>dataset</strong> is a table or view — the target your pipeline writes to. There are four dataset types:</p>
 <ul>
-<li><strong>Callaway &amp; Sant’Anna (2021)</strong>: Robust to heterogeneous effects</li>
-<li><strong>Sun &amp; Abraham (2021)</strong>: Interaction-weighted estimator</li>
-<li><strong>Borusyak et al.&nbsp;(2021)</strong>: Imputation-based approach</li>
+<li><strong>Streaming table</strong> — populated by a Structured Streaming query; results are appended incrementally.</li>
+<li><strong>Materialized view</strong> — populated by a batch query; fully overwritten on each pipeline run.</li>
+<li><strong>View</strong> — a standard SQL view; definition is updated at pipeline run time, contents evaluated at read time.</li>
+<li><strong>Temporary view</strong> — like a view but scoped to the pipeline; useful for centralizing shared logic.</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example using did2s package</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> did2s <span class="im">import</span> did2s</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Staggered DiD with heterogeneous effects</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> did2s(</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    df<span class="op">=</span>df,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    yname<span class="op">=</span><span class="st">'employment_rate'</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    first_stage<span class="op">=</span><span class="st">'~ 0 | state + year'</span>,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    second_stage<span class="op">=</span><span class="st">'~ i(rel_year)'</span>,</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    treatment<span class="op">=</span><span class="st">'treated'</span>,</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    cluster<span class="op">=</span><span class="st">'state'</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A <strong>sink</strong> covers any other writable target Spark Streaming supports — a Kafka topic being the most common case.</p>
+<p>A <strong>flow</strong> is the unit of data transformation: it reads from a source, applies logic, and writes to a target. In most cases flows are implicit — when you write <code>CREATE STREAMING TABLE ... AS SELECT ...</code> you’re defining both the dataset and the implicit flow in one statement. Explicit flows become useful when you need to fan multiple sources into one table, or when writing to a sink.</p>
+<hr>
 </section>
-<section id="practical-recommendations" class="level2">
-<h2 class="anchored" data-anchor-id="practical-recommendations">Practical Recommendations</h2>
-<ol type="1">
-<li><strong>Always visualize</strong> your data before running regressions</li>
-<li><strong>Test parallel trends</strong> rigorously in pre-treatment periods</li>
-<li><strong>Use robust/clustered</strong> standard errors</li>
-<li><strong>Consider placebo tests</strong> with fake treatment dates</li>
-<li><strong>Report effect sizes</strong> with confidence intervals</li>
-</ol>
+<section id="defining-a-lego-machine-data-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="defining-a-lego-machine-data-pipeline">Defining a LEGO machine data pipeline</h2>
+<p>Let us take a look at what this looks like in practice. The pipeline below ingests raw injection moulding machine events from Kafka, joins them with mould master data, and produces a clean qualified-shot fact table.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># transformations/machine_events.py</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.pipelines <span class="im">import</span> table, materialized_view</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> functions <span class="im">as</span> F</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.types <span class="im">import</span> StructType, StructField, StringType, DoubleType, TimestampType</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>MACHINE_EVENT_SCHEMA <span class="op">=</span> StructType([</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    StructField(<span class="st">"machine_id"</span>, StringType()),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    StructField(<span class="st">"mould_id"</span>, StringType()),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    StructField(<span class="st">"shot_timestamp"</span>, TimestampType()),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    StructField(<span class="st">"cycle_time_s"</span>, DoubleType()),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    StructField(<span class="st">"clamp_force_kn"</span>, DoubleType()),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    StructField(<span class="st">"shot_weight_g"</span>, DoubleType()),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    StructField(<span class="st">"cavity_pressure_bar"</span>, DoubleType()),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">@table</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> raw_machine_events(spark):</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        spark.readStream</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        .<span class="bu">format</span>(<span class="st">"kafka"</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        .option(<span class="st">"kafka.bootstrap.servers"</span>, <span class="st">"kafka:9092"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        .option(<span class="st">"subscribe"</span>, <span class="st">"lego.machine.events"</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        .load()</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        .select(F.from_json(F.col(<span class="st">"value"</span>).cast(<span class="st">"string"</span>), MACHINE_EVENT_SCHEMA).alias(<span class="st">"data"</span>))</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        .select(<span class="st">"data.*"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># transformations/mould_master.py</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.pipelines <span class="im">import</span> materialized_view</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">@materialized_view</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mould_master(spark):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> spark.read.<span class="bu">format</span>(<span class="st">"delta"</span>).load(<span class="st">"/mnt/bronze/mould_design/mould_master"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># transformations/qualified_shots.py</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.pipelines <span class="im">import</span> materialized_view</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> functions <span class="im">as</span> F</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">@materialized_view</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> qualified_shots(spark):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    events <span class="op">=</span> spark.read.table(<span class="st">"raw_machine_events"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    moulds <span class="op">=</span> spark.read.table(<span class="st">"mould_master"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        events</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        .join(moulds, on<span class="op">=</span><span class="st">"mould_id"</span>, how<span class="op">=</span><span class="st">"inner"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        .<span class="bu">filter</span>(F.col(<span class="st">"qualification_status"</span>) <span class="op">==</span> <span class="st">"QUALIFIED"</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        .withColumn(<span class="st">"shot_weight_deviation_pct"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>            (F.col(<span class="st">"shot_weight_g"</span>) <span class="op">-</span> F.col(<span class="st">"target_weight_g"</span>)) <span class="op">/</span> F.col(<span class="st">"target_weight_g"</span>) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        .select(</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"machine_id"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">"mould_id"</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>            <span class="st">"tool_number"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>            <span class="st">"shot_timestamp"</span>,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>            <span class="st">"cycle_time_s"</span>,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>            <span class="st">"clamp_force_kn"</span>,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>            <span class="st">"shot_weight_deviation_pct"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>            <span class="st">"cavity_pressure_bar"</span>,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>SDP reads these files, detects that <code>qualified_shots</code> reads from <code>raw_machine_events</code> and <code>mould_master</code>, and infers the execution order automatically. You never specify it.</p>
+<p>The equivalent in SQL follows the same pattern:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- transformations/raw_machine_events.sql</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> STREAMING <span class="kw">TABLE</span> raw_machine_events</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">AS</span> <span class="kw">SELECT</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">data</span><span class="ch">:machine_id</span>      <span class="kw">AS</span> machine_id,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">data</span><span class="ch">:mould_id</span>        <span class="kw">AS</span> mould_id,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">data</span><span class="ch">:shot_timestamp</span>  <span class="kw">AS</span> shot_timestamp,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">data</span><span class="ch">:cycle_time_s</span>    <span class="kw">AS</span> cycle_time_s,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">data</span><span class="ch">:clamp_force_kn</span>  <span class="kw">AS</span> clamp_force_kn,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">data</span><span class="ch">:shot_weight_g</span>   <span class="kw">AS</span> shot_weight_g</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> STREAM read_kafka(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    bootstrapServers <span class="op">=&gt;</span> <span class="st">'kafka:9092'</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    subscribe <span class="op">=&gt;</span> <span class="st">'lego.machine.events'</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">-- transformations/qualified_shots.sql</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">MATERIALIZED</span> <span class="kw">VIEW</span> qualified_shots</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="kw">AS</span> <span class="kw">SELECT</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    e.machine_id,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    e.mould_id,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    m.tool_number,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    e.shot_timestamp,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    e.cycle_time_s,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    e.clamp_force_kn,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    (e.shot_weight_g <span class="op">-</span> m.target_weight_g) <span class="op">/</span> m.target_weight_g <span class="op">*</span> <span class="dv">100</span> <span class="kw">AS</span> shot_weight_deviation_pct</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> raw_machine_events e</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> mould_master m <span class="kw">USING</span> (mould_id)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> m.qualification_status <span class="op">=</span> <span class="st">'QUALIFIED'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="running-the-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="running-the-pipeline">Running the pipeline</h2>
+<p>The <code>spark pipelines</code> CLI manages initialization and execution. Starting a new project:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">spark</span> pipelines init <span class="at">--name</span> machine_quality_pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This generates a <code>spark_pipeline.yaml</code> config and a <code>transformations/</code> directory. The config is minimal — it points to your code glob and specifies a storage path for managed state.</p>
+<p>Before running against real data, use the dry run to validate the graph:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">spark</span> pipelines dry-run</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This compiles the entire pipeline, resolves all dependencies, infers schemas, and checks that downstream queries are compatible with what their upstream tables actually produce — without touching any data. If <code>qualified_shots</code> references a column that <code>raw_machine_events</code> doesn’t emit, you find out here rather than after the Kafka consumer has been running for 20 minutes.</p>
+<p>As an example, if you accidentally reference <code>mould_idz</code> instead of <code>mould_id</code> in the join condition:</p>
+<pre><code>ERROR: Failed to resolve flow 'qualified_shots'
+  AnalysisException: cannot resolve 'mould_idz' given input columns:
+    [raw_machine_events.machine_id, raw_machine_events.mould_id, ...]</code></pre>
+<p>Once the dry run is clean:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">spark</span> pipelines run</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>SDP executes independent steps in parallel automatically. <code>raw_machine_events</code> and <code>mould_master</code> have no dependency on each other so they run concurrently. <code>qualified_shots</code> starts only once both are available.</p>
+<p>For targeted refreshes — say you only want to re-materialize <code>qualified_shots</code> after a logic change without reprocessing the raw Kafka ingestion:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">spark</span> pipelines run <span class="at">--refresh-selection</span> qualified_shots</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And when you need a full reprocess from scratch — requalifying all historical shot data after a mould master correction:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">spark</span> pipelines run <span class="at">--full-refresh-all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This wipes streaming checkpoints and reprocesses from the beginning of the Kafka retention window.</p>
+<hr>
+</section>
+<section id="what-sdp-handles-for-you" class="level2">
+<h2 class="anchored" data-anchor-id="what-sdp-handles-for-you">What SDP handles for you</h2>
+<p>The shift left validation is the biggest practical gain. Schema mismatches between <code>raw_machine_events</code> and <code>qualified_shots</code>, circular dependencies, missing upstream tables — all caught at dry run time. In an imperative script these show up at runtime, after the pipeline has already consumed resources and partially written state.</p>
+<p>Beyond validation, SDP automatically manages streaming checkpoints — no more manually specifying checkpoint locations and hoping they stay consistent across deploys. Parallelism across independent branches of the graph is also automatic, which matters when you have a pipeline with several independent bronze ingestion tables feeding separate silver transforms.</p>
+<p>The one thing SDP does not do is replace orchestration scheduling. You still need something to trigger <code>spark pipelines run</code> on a cadence — a cron job, Airflow, or Databricks Workflows. SDP is about what happens inside a run, not about when runs happen.</p>
+<hr>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Difference-in-differences remains one of the most powerful tools for causal inference in observational settings. Combined with modern estimators and careful testing of assumptions, it provides credible estimates of treatment effects.</p>
+<p>SDP extends Spark’s declarative model from the query level to the entire pipeline level. For machine data pipelines — where you’re typically stitching together streaming ingestion from production equipment, batch joins against ERP-sourced master data, and aggregated quality views — the ability to define the graph once and have the framework handle execution order, parallelism, and checkpoint state is a meaningful reduction in operational surface area.</p>
+<p>The dry run capability alone changes the feedback loop. Schema mismatches and dependency errors that used to surface mid-run now surface before a single record is processed.</p>
+<p>SDP ships in Apache Spark 4.1. This can be explored further in the <a href="https://spark.apache.org/releases/">Apache Spark release notes</a> and the official pipeline documentation.</p>
+
+
 </section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<ul>
-<li>Angrist, J. D., &amp; Pischke, J. S. (2008). <em>Mostly Harmless Econometrics</em></li>
-<li>Cunningham, S. (2021). <em>Causal Inference: The Mixtape</em></li>
-<li>Callaway, B., &amp; Sant’Anna, P. H. (2021). Difference-in-differences with multiple time periods</li>
-</ul>
-<hr>
-<p><strong>Code</strong>: Complete implementation on <a href="https://github.com/yourusername/causal-inference-examples">GitHub</a></p>
-
-
 </section>
 
 </main> <!-- /main -->

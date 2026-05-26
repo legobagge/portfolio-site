@@ -40,8 +40,8 @@ website:
 format:
   html:
     theme:
-      light: cosmo
       dark: darkly
+      light: cosmo
     css: assets/css/styles.css
     toc: true
     toc-depth: 3

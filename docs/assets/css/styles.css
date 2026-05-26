@@ -9,6 +9,9 @@ that stands off from the background.  Without these rules the hero
 would appear as plain text on top of the grid.
 */
 
+/* Import elegant fonts */
+@import 'https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap';
+
 :root {
   --primary-dark: #0a0e27;
   --primary-navy: #1a2332;
@@ -18,12 +21,9 @@ would appear as plain text on top of the grid.
   --text-secondary: #b4bac1;    
   --surface: #141b2d;
   --surface-elevated: #1e293b;
-  --border-subtle: rgba(255, 255, 255, 0.1);
-  --glow: rgba(74, 158, 255, 0.3);
+  --border-subtle: rgb(255 255 255 / 10%);
+  --glow: rgb(74 158 255 / 30%);
 }
-
-/* Import elegant fonts */
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap');
 
 body {
   font-family: 'Crimson Pro', serif;
@@ -70,7 +70,6 @@ h1 {
   font-size: 3.5rem;
   line-height: 1.1;
   background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: gradient-shift 3s ease infinite;
@@ -98,60 +97,111 @@ h2::after {
   background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal));
 }
 
-/* Code blocks - Higher contrast for better readability */
-code {
+/*
+  Code & syntax contrast fixes.
+  The custom body is always dark, but Quarto/Bootstrap default to the light
+  theme — so light-theme inline code and syntax colors must be overridden.
+*/
+
+/* Inline code in prose (exclude fenced code blocks) */
+:not(pre) > code {
   font-family: 'JetBrains Mono', monospace;
-  background: rgba(74, 158, 255, 0.15);  /* Subtle blue tint */
-  color: #e2e8f0;  /* Bright text */
+  background: rgb(74 158 255 / 18%) !important;
+  color: #e2e8f0 !important;
   padding: 0.2em 0.4em;
   border-radius: 4px;
   font-size: 0.9em;
-  border: 1px solid rgba(74, 158, 255, 0.3);  /* Blue border */
+  border: 1px solid rgb(74 158 255 / 35%) !important;
 }
 
 pre {
-  background: linear-gradient(135deg, 
-    rgba(26, 35, 50, 0.95) 0%, 
-    rgba(30, 41, 59, 0.95) 100%) !important;  /* Gradient background */
-  border: 1px solid rgba(74, 158, 255, 0.25);
+  background: linear-gradient(135deg,
+    rgb(26 35 50 / 95%) 0%,
+    rgb(30 41 59 / 95%) 100%) !important;
+  border: 1px solid rgb(74 158 255 / 25%);
   border-radius: 8px;
   padding: 1.5rem;
   overflow-x: auto;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3),
-              inset 0 1px 0 rgba(255, 255, 255, 0.05);  /* Inner highlight */
+  box-shadow: 0 4px 6px rgb(0 0 0 / 30%),
+              inset 0 1px 0 rgb(255 255 255 / 5%);
 }
 
 pre code {
   background: transparent !important;
   border: none !important;
-  color: #f1f5f9 !important;  /* Very bright text */
+  color: #f1f5f9 !important;
   font-size: 0.95rem;
 }
 
-/* Syntax colors - VS Code Dark+ style */
-pre code .im { color: #c586c0; }  /* import keyword - purple */
-pre code .kw { color: #c586c0; }  /* keywords - purple */
-pre code .cf { color: #c586c0; }  /* control flow - purple */
-pre code .st { color: #ce9178; }  /* strings - orange */
-pre code .vs { color: #ce9178; }  /* verbatim strings - orange */
-pre code .ss { color: #ce9178; }  /* special strings - orange */
-pre code .fu { color: #dcdcaa; }  /* functions - yellow */
-pre code .op { color: #d4d4d4; }  /* operators - light gray */
-pre code .co { color: #6a9955; font-style: italic; }  /* comments - green */
-pre code .cn { color: #4ec9b0; }  /* constants - teal */
-pre code .dv { color: #b5cea8; }  /* decimal values - light green */
-pre code .fl { color: #b5cea8; }  /* floats - light green */
-pre code .va { color: #9cdcfe; }  /* variables - light blue */
-pre code .at { color: #9cdcfe; }  /* attributes - light blue */
-pre code .bu { color: #4ec9b0; }  /* built-ins - teal */
-pre code .dt { color: #4ec9b0; }  /* data types - teal */
+/* Base token color — overrides Quarto light-theme defaults (#003B4F, etc.) */
+pre > code.sourceCode > span,
+code.sourceCode > span,
+div.sourceCode,
+div.sourceCode pre.sourceCode {
+  color: #f1f5f9 !important;
+}
+
+/* Syntax colors — VS Code Dark+ */
+pre code.sourceCode span.kw,
+pre code.sourceCode span.cf { color: #c586c0 !important; font-weight: bold; }
+pre code.sourceCode span.im { color: #c586c0 !important; }
+pre code.sourceCode span.st,
+pre code.sourceCode span.vs,
+pre code.sourceCode span.ss { color: #ce9178 !important; }
+pre code.sourceCode span.fu { color: #dcdcaa !important; }
+pre code.sourceCode span.op,
+pre code.sourceCode span.ot { color: #d4d4d4 !important; }
+pre code.sourceCode span.co,
+pre code.sourceCode span.do { color: #6a9955 !important; font-style: italic; }
+pre code.sourceCode span.cn,
+pre code.sourceCode span.bu,
+pre code.sourceCode span.dt { color: #4ec9b0 !important; }
+pre code.sourceCode span.dv,
+pre code.sourceCode span.fl { color: #b5cea8 !important; }
+pre code.sourceCode span.va,
+pre code.sourceCode span.at,
+pre code.sourceCode span.ex { color: #9cdcfe !important; }
+pre code.sourceCode span.ch,
+pre code.sourceCode span.sc { color: #d4d4d4 !important; }
+pre code.sourceCode span.an,
+pre code.sourceCode span.in,
+pre code.sourceCode span.wa { color: #808080 !important; }
+pre code.sourceCode span.er,
+pre code.sourceCode span.al { color: #f44747 !important; }
+pre code.sourceCode span.pp { color: #dcdcaa !important; }
+
+/* TOC sidebar — active section link */
+#TOC .nav-link,
+#quarto-margin-sidebar .nav-link {
+  color: var(--text-secondary) !important;
+}
+
+#TOC .nav-link.active,
+#quarto-margin-sidebar .nav-link.active {
+  color: #fff !important;
+  background-color: rgb(74 158 255 / 22%) !important;
+  border-radius: 4px;
+}
+
+/* Subtle scrollbars inside code blocks (avoid bright blue bars) */
+pre::-webkit-scrollbar,
+div.sourceCode::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+pre::-webkit-scrollbar-thumb,
+div.sourceCode::-webkit-scrollbar-thumb {
+  background: rgb(74 158 255 / 35%);
+  border-radius: 4px;
+}
 
 /* Navigation */
 .navbar {
   backdrop-filter: blur(10px);
-  background: rgba(10, 14, 39, 0.9) !important;
+  background: rgb(10 14 39 / 90%) !important;
   border-bottom: 1px solid var(--border-subtle);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 20px rgb(0 0 0 / 50%);
 }
 
 .navbar-brand {
@@ -209,13 +259,12 @@ pre code .dt { color: #4ec9b0; }  /* data types - teal */
   text-align: center;
   z-index: 10;
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  background: rgba(10, 14, 39, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgb(10 14 39 / 60%);
+  border: 1px solid rgb(255 255 255 / 8%);
   border-radius: 1.5rem;
   padding: 3rem 2rem;
   max-width: 60rem;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 24px 60px rgb(0 0 0 / 55%);
   animation: fade-in-up 1s ease-out;
 }
 
@@ -224,6 +273,7 @@ pre code .dt { color: #4ec9b0; }  /* data types - teal */
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -238,7 +288,6 @@ pre code .dt { color: #4ec9b0; }  /* data types - teal */
 
   /* keep the nice gradient, but scoped to hero only */
   background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
@@ -261,10 +310,12 @@ pre code .dt { color: #4ec9b0; }  /* data types - teal */
   position: relative;
   overflow: hidden;
 }
+
 .card p {
   color: var(--text-primary);
   opacity: 0.9;
 }
+
 .card::before {
   content: '';
   position: absolute;
@@ -272,14 +323,14 @@ pre code .dt { color: #4ec9b0; }  /* data types - teal */
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(74, 158, 255, 0.05), rgba(45, 212, 191, 0.05));
+  background: linear-gradient(135deg, rgb(74 158 255 / 5%), rgb(45 212 191 / 5%));
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(74, 158, 255, 0.2);
+  box-shadow: 0 8px 30px rgb(74 158 255 / 20%);
   border-color: var(--accent-blue);
 }
 
@@ -292,6 +343,7 @@ pre code .dt { color: #4ec9b0; }  /* data types - teal */
   margin-bottom: 1rem;
   color: var(--accent-blue);
 }
+
 .card h3 + p {
   color: #d1d5db;
   line-height: 1.6;
@@ -316,7 +368,7 @@ pre code .dt { color: #4ec9b0; }  /* data types - teal */
 
 .project-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 12px 40px rgba(74, 158, 255, 0.3);
+  box-shadow: 0 12px 40px rgb(74 158 255 / 30%);
 }
 
 .project-image {
@@ -386,12 +438,12 @@ a:hover {
 /* Blockquotes */
 blockquote {
   border-left: 4px solid var(--accent-blue);
-  padding-left: 1.5rem;
   margin: 2rem 0;
   font-style: italic;
   color: var(--text-secondary);
   background: var(--surface-elevated);
-  padding: 1.5rem;
+  padding: 1.5rem; 
+  padding-left: 1.5rem; 
   border-radius: 0 8px 8px 0;
 }
 
@@ -450,9 +502,10 @@ tr:hover {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   h1 { font-size: 2.5rem; }
   .hero-content > h1 { font-size: 3rem; }
+
   .project-grid {
     grid-template-columns: 1fr;
   }
@@ -477,6 +530,7 @@ tr:hover {
     opacity: 0;
     transform: translateX(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -509,27 +563,28 @@ tr:hover {
 
 .quarto-listing .listing-item {
   background: radial-gradient(circle at top left,
-              rgba(74, 158, 255, 0.16),
+              rgb(74 158 255 / 16%),
               transparent 55%),
-              rgba(10, 14, 39, 0.90);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+              rgb(10 14 39 / 90%);
+  border: 1px solid rgb(255 255 255 / 18%);
   border-radius: 16px;
   padding: 2.2rem 2rem;
   margin-bottom: 1.75rem;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.60);
+  box-shadow: 0 18px 40px rgb(0 0 0 / 60%);
   transition: transform 0.2s ease-out, box-shadow 0.2s ease-out,
               border-color 0.2s ease-out;
 }
 
 .quarto-listing .listing-item:hover {
   transform: translateY(-4px);
-  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.75);
-  border-color: rgba(74, 158, 255, 0.55);
+  box-shadow: 0 24px 55px rgb(0 0 0 / 75%);
+  border-color: rgb(74 158 255 / 55%);
 }
+
 /* Title & description – brighter and higher contrast */
 .quarto-listing .listing-title,
 .quarto-listing .listing-title a {
-  color: #ffffff !important;              /* pure white for max contrast */
+  color: #fff !important;              /* pure white for max contrast */
   font-size: 2rem !important;
   margin-bottom: 0.4rem !important;
   text-decoration: none !important;
@@ -550,15 +605,15 @@ tr:hover {
 .quarto-listing .listing-metadata,
 .quarto-listing .listing-date,
 .quarto-listing .listing-reading-time {
-  color: rgba(203, 213, 225, 0.9) !important;  /* brighter than before */
+  color: rgb(203 213 225 / 90%) !important;  /* brighter than before */
   font-size: 0.9rem !important;
 }
 
 /* Category tags in listings */
 .quarto-listing .listing-category {
-  background: rgba(15, 23, 42, 0.9) !important;
+  background: rgb(15 23 42 / 90%) !important;
   color: var(--accent-teal) !important;
-  border: 1px solid rgba(148, 163, 184, 0.5) !important;
+  border: 1px solid rgb(148 163 184 / 50%) !important;
   padding: 0.25rem 0.75rem !important;
   border-radius: 999px !important;
   font-size: 0.8rem !important;
