@@ -172,30 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#architecture" id="toc-architecture" class="nav-link" data-scroll-target="#architecture">Architecture</a></li>
-  <li><a href="#key-features" id="toc-key-features" class="nav-link" data-scroll-target="#key-features">Key Features</a></li>
-  <li><a href="#technology-stack" id="toc-technology-stack" class="nav-link" data-scroll-target="#technology-stack">Technology Stack</a></li>
-  <li><a href="#implementation-highlights" id="toc-implementation-highlights" class="nav-link" data-scroll-target="#implementation-highlights">Implementation Highlights</a>
-  <ul class="collapse">
-  <li><a href="#fastapi-service" id="toc-fastapi-service" class="nav-link" data-scroll-target="#fastapi-service">1. FastAPI Service</a></li>
-  <li><a href="#docker-configuration" id="toc-docker-configuration" class="nav-link" data-scroll-target="#docker-configuration">2. Docker Configuration</a></li>
-  <li><a href="#kubernetes-deployment" id="toc-kubernetes-deployment" class="nav-link" data-scroll-target="#kubernetes-deployment">3. Kubernetes Deployment</a></li>
-  <li><a href="#monitoring-observability" id="toc-monitoring-observability" class="nav-link" data-scroll-target="#monitoring-observability">4. Monitoring &amp; Observability</a></li>
-  </ul></li>
-  <li><a href="#performance-metrics" id="toc-performance-metrics" class="nav-link" data-scroll-target="#performance-metrics">Performance Metrics</a></li>
-  <li><a href="#load-testing-results" id="toc-load-testing-results" class="nav-link" data-scroll-target="#load-testing-results">Load Testing Results</a></li>
-  <li><a href="#lessons-learned" id="toc-lessons-learned" class="nav-link" data-scroll-target="#lessons-learned">Lessons Learned</a></li>
-  <li><a href="#future-enhancements" id="toc-future-enhancements" class="nav-link" data-scroll-target="#future-enhancements">Future Enhancements</a></li>
-  <li><a href="#code-resources" id="toc-code-resources" class="nav-link" data-scroll-target="#code-resources">Code &amp; Resources</a></li>
-  <li><a href="#tags" id="toc-tags" class="nav-link" data-scroll-target="#tags">Tags</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -236,7 +213,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of Contents</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview">Overview</a></li>
+  <li><a href="#architecture" id="toc-architecture">Architecture</a></li>
+  <li><a href="#key-features" id="toc-key-features">Key Features</a></li>
+  <li><a href="#technology-stack" id="toc-technology-stack">Technology Stack</a></li>
+  <li><a href="#implementation-highlights" id="toc-implementation-highlights">Implementation Highlights</a></li>
+  <li><a href="#performance-metrics" id="toc-performance-metrics">Performance Metrics</a></li>
+  <li><a href="#load-testing-results" id="toc-load-testing-results">Load Testing Results</a></li>
+  <li><a href="#lessons-learned" id="toc-lessons-learned">Lessons Learned</a></li>
+  <li><a href="#future-enhancements" id="toc-future-enhancements">Future Enhancements</a></li>
+  <li><a href="#code-resources" id="toc-code-resources">Code &amp; Resources</a></li>
+  <li><a href="#tags" id="toc-tags">Tags</a></li>
+  </ul>
+</nav>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>Built an end-to-end machine learning pipeline capable of serving 10,000+ predictions per second with sub-100ms latency. The system handles feature engineering, model inference, and monitoring in a production environment.</p>

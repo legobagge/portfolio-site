@@ -173,43 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#why-i-stopped-using-spark.read-for-data-ingestion" id="toc-why-i-stopped-using-spark.read-for-data-ingestion" class="nav-link active" data-scroll-target="#why-i-stopped-using-spark.read-for-data-ingestion">Why I Stopped Using spark.read() for Data Ingestion</a></li>
-  <li><a href="#what-is-autoloader-really" id="toc-what-is-autoloader-really" class="nav-link" data-scroll-target="#what-is-autoloader-really">What is Autoloader, Really?</a></li>
-  <li><a href="#the-problem-daily-full-dumps" id="toc-the-problem-daily-full-dumps" class="nav-link" data-scroll-target="#the-problem-daily-full-dumps">The Problem: Daily Full Dumps</a>
-  <ul class="collapse">
-  <li><a href="#the-old-way-spark.read" id="toc-the-old-way-spark.read" class="nav-link" data-scroll-target="#the-old-way-spark.read">The Old Way (spark.read)</a></li>
-  </ul></li>
-  <li><a href="#the-solution-autoloader-bronze-layer" id="toc-the-solution-autoloader-bronze-layer" class="nav-link" data-scroll-target="#the-solution-autoloader-bronze-layer">The Solution: Autoloader + Bronze Layer</a>
-  <ul class="collapse">
-  <li><a href="#step-1-autoloader-bronze-append-everything" id="toc-step-1-autoloader-bronze-append-everything" class="nav-link" data-scroll-target="#step-1-autoloader-bronze-append-everything">Step 1: Autoloader → Bronze (Append Everything)</a></li>
-  </ul></li>
-  <li><a href="#what-makes-this-smart" id="toc-what-makes-this-smart" class="nav-link" data-scroll-target="#what-makes-this-smart">What Makes This Smart?</a>
-  <ul class="collapse">
-  <li><a href="#incremental-processing-no-duplicates" id="toc-incremental-processing-no-duplicates" class="nav-link" data-scroll-target="#incremental-processing-no-duplicates">1. Incremental Processing (No Duplicates)</a></li>
-  <li><a href="#schema-evolution-future-proof" id="toc-schema-evolution-future-proof" class="nav-link" data-scroll-target="#schema-evolution-future-proof">2. Schema Evolution (Future-Proof)</a></li>
-  <li><a href="#file-date-tracking" id="toc-file-date-tracking" class="nav-link" data-scroll-target="#file-date-tracking">3. File Date Tracking</a></li>
-  <li><a href="#fault-tolerance" id="toc-fault-tolerance" class="nav-link" data-scroll-target="#fault-tolerance">4. Fault Tolerance</a></li>
-  </ul></li>
-  <li><a href="#the-bronze-layer-philosophy" id="toc-the-bronze-layer-philosophy" class="nav-link" data-scroll-target="#the-bronze-layer-philosophy">The Bronze Layer Philosophy</a></li>
-  <li><a href="#what-about-performance" id="toc-what-about-performance" class="nav-link" data-scroll-target="#what-about-performance">What About Performance?</a></li>
-  <li><a href="#the-trigger-mode-batch-vs.-streaming" id="toc-the-trigger-mode-batch-vs.-streaming" class="nav-link" data-scroll-target="#the-trigger-mode-batch-vs.-streaming">The Trigger Mode: Batch vs.&nbsp;Streaming</a></li>
-  <li><a href="#common-gotchas-i-ran-into" id="toc-common-gotchas-i-ran-into" class="nav-link" data-scroll-target="#common-gotchas-i-ran-into">Common Gotchas I Ran Into</a>
-  <ul class="collapse">
-  <li><a href="#checkpoint-path-must-be-writable" id="toc-checkpoint-path-must-be-writable" class="nav-link" data-scroll-target="#checkpoint-path-must-be-writable">1. Checkpoint Path Must Be Writable</a></li>
-  <li><a href="#json-array-format" id="toc-json-array-format" class="nav-link" data-scroll-target="#json-array-format">2. JSON Array Format</a></li>
-  <li><a href="#schema-inference-can-fail-on-empty-directories" id="toc-schema-inference-can-fail-on-empty-directories" class="nav-link" data-scroll-target="#schema-inference-can-fail-on-empty-directories">3. Schema Inference Can Fail on Empty Directories</a></li>
-  </ul></li>
-  <li><a href="#why-this-matters-for-the-medallion-architecture" id="toc-why-this-matters-for-the-medallion-architecture" class="nav-link" data-scroll-target="#why-this-matters-for-the-medallion-architecture">Why This Matters for the Medallion Architecture</a></li>
-  <li><a href="#the-bottom-line" id="toc-the-bottom-line" class="nav-link" data-scroll-target="#the-bottom-line">The Bottom Line</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -255,7 +219,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of Contents</h2>
+   
+  <ul>
+  <li><a href="#why-i-stopped-using-spark.read-for-data-ingestion" id="toc-why-i-stopped-using-spark.read-for-data-ingestion">Why I Stopped Using spark.read() for Data Ingestion</a></li>
+  <li><a href="#what-is-autoloader-really" id="toc-what-is-autoloader-really">What is Autoloader, Really?</a></li>
+  <li><a href="#the-problem-daily-full-dumps" id="toc-the-problem-daily-full-dumps">The Problem: Daily Full Dumps</a></li>
+  <li><a href="#the-solution-autoloader-bronze-layer" id="toc-the-solution-autoloader-bronze-layer">The Solution: Autoloader + Bronze Layer</a></li>
+  <li><a href="#what-makes-this-smart" id="toc-what-makes-this-smart">What Makes This Smart?</a></li>
+  <li><a href="#the-bronze-layer-philosophy" id="toc-the-bronze-layer-philosophy">The Bronze Layer Philosophy</a></li>
+  <li><a href="#what-about-performance" id="toc-what-about-performance">What About Performance?</a></li>
+  <li><a href="#the-trigger-mode-batch-vs.-streaming" id="toc-the-trigger-mode-batch-vs.-streaming">The Trigger Mode: Batch vs.&nbsp;Streaming</a></li>
+  <li><a href="#common-gotchas-i-ran-into" id="toc-common-gotchas-i-ran-into">Common Gotchas I Ran Into</a></li>
+  <li><a href="#why-this-matters-for-the-medallion-architecture" id="toc-why-this-matters-for-the-medallion-architecture">Why This Matters for the Medallion Architecture</a></li>
+  <li><a href="#the-bottom-line" id="toc-the-bottom-line">The Bottom Line</a></li>
+  <li><a href="#next-steps" id="toc-next-steps">Next Steps</a></li>
+  <li><a href="#further-reading" id="toc-further-reading">Further Reading</a></li>
+  </ul>
+</nav>
 <section id="why-i-stopped-using-spark.read-for-data-ingestion" class="level2">
 <h2 class="anchored" data-anchor-id="why-i-stopped-using-spark.read-for-data-ingestion">Why I Stopped Using spark.read() for Data Ingestion</h2>
 <p>Let me tell you about a problem I ran into recently. We had daily JSON files dropping into Azure Blob Storage from an Oracle database—full dumps arriving every morning at 2 AM. Simple enough, right? Just read the files with <code>spark.read.json()</code> and load them into a Delta table.</p>

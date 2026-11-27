@@ -202,31 +202,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#the-causal-question" id="toc-the-causal-question" class="nav-link active" data-scroll-target="#the-causal-question">The Causal Question</a></li>
-  <li><a href="#when-to-use-did" id="toc-when-to-use-did" class="nav-link" data-scroll-target="#when-to-use-did">When to Use DiD</a></li>
-  <li><a href="#a-real-world-example" id="toc-a-real-world-example" class="nav-link" data-scroll-target="#a-real-world-example">A Real-World Example</a>
-  <ul class="collapse">
-  <li><a href="#setting-up-the-data" id="toc-setting-up-the-data" class="nav-link" data-scroll-target="#setting-up-the-data">Setting Up the Data</a></li>
-  <li><a href="#visualizing-parallel-trends" id="toc-visualizing-parallel-trends" class="nav-link" data-scroll-target="#visualizing-parallel-trends">Visualizing Parallel Trends</a></li>
-  </ul></li>
-  <li><a href="#estimating-the-did-effect" id="toc-estimating-the-did-effect" class="nav-link" data-scroll-target="#estimating-the-did-effect">Estimating the DiD Effect</a>
-  <ul class="collapse">
-  <li><a href="#regression-approach" id="toc-regression-approach" class="nav-link" data-scroll-target="#regression-approach">Regression Approach</a></li>
-  </ul></li>
-  <li><a href="#advanced-did-multiple-time-periods" id="toc-advanced-did-multiple-time-periods" class="nav-link" data-scroll-target="#advanced-did-multiple-time-periods">Advanced DiD: Multiple Time Periods</a></li>
-  <li><a href="#testing-parallel-trends" id="toc-testing-parallel-trends" class="nav-link" data-scroll-target="#testing-parallel-trends">Testing Parallel Trends</a></li>
-  <li><a href="#common-pitfalls" id="toc-common-pitfalls" class="nav-link" data-scroll-target="#common-pitfalls">Common Pitfalls</a></li>
-  <li><a href="#modern-alternatives" id="toc-modern-alternatives" class="nav-link" data-scroll-target="#modern-alternatives">Modern Alternatives</a></li>
-  <li><a href="#practical-recommendations" id="toc-practical-recommendations" class="nav-link" data-scroll-target="#practical-recommendations">Practical Recommendations</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -271,7 +247,23 @@ window.Quarto = {
 
 </header>
 
-
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of Contents</h2>
+   
+  <ul>
+  <li><a href="#the-causal-question" id="toc-the-causal-question">The Causal Question</a></li>
+  <li><a href="#when-to-use-did" id="toc-when-to-use-did">When to Use DiD</a></li>
+  <li><a href="#a-real-world-example" id="toc-a-real-world-example">A Real-World Example</a></li>
+  <li><a href="#estimating-the-did-effect" id="toc-estimating-the-did-effect">Estimating the DiD Effect</a></li>
+  <li><a href="#advanced-did-multiple-time-periods" id="toc-advanced-did-multiple-time-periods">Advanced DiD: Multiple Time Periods</a></li>
+  <li><a href="#testing-parallel-trends" id="toc-testing-parallel-trends">Testing Parallel Trends</a></li>
+  <li><a href="#common-pitfalls" id="toc-common-pitfalls">Common Pitfalls</a></li>
+  <li><a href="#modern-alternatives" id="toc-modern-alternatives">Modern Alternatives</a></li>
+  <li><a href="#practical-recommendations" id="toc-practical-recommendations">Practical Recommendations</a></li>
+  <li><a href="#conclusion" id="toc-conclusion">Conclusion</a></li>
+  <li><a href="#references" id="toc-references">References</a></li>
+  </ul>
+</nav>
 <section id="the-causal-question" class="level2">
 <h2 class="anchored" data-anchor-id="the-causal-question">The Causal Question</h2>
 <p>How do we measure the true impact of an intervention when we can’t run a randomized experiment? Difference-in-differences (DiD) offers a powerful quasi-experimental approach.</p>

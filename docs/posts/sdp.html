@@ -170,29 +170,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#spark-declarative-pipelines" id="toc-spark-declarative-pipelines" class="nav-link active" data-scroll-target="#spark-declarative-pipelines">Spark Declarative Pipelines</a>
-  <ul class="collapse">
-  <li><a href="#the-problem-with-imperative-pipelines" id="toc-the-problem-with-imperative-pipelines" class="nav-link" data-scroll-target="#the-problem-with-imperative-pipelines">The problem with imperative pipelines</a></li>
-  <li><a href="#core-abstractions" id="toc-core-abstractions" class="nav-link" data-scroll-target="#core-abstractions">Core abstractions</a></li>
-  <li><a href="#defining-a-lego-machine-data-pipeline" id="toc-defining-a-lego-machine-data-pipeline" class="nav-link" data-scroll-target="#defining-a-lego-machine-data-pipeline">Defining a LEGO machine data pipeline</a></li>
-  <li><a href="#running-the-pipeline" id="toc-running-the-pipeline" class="nav-link" data-scroll-target="#running-the-pipeline">Running the pipeline</a></li>
-  <li><a href="#what-sdp-handles-for-you" id="toc-what-sdp-handles-for-you" class="nav-link" data-scroll-target="#what-sdp-handles-for-you">What SDP handles for you</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
-
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of Contents</h2>
+   
+  <ul>
+  <li><a href="#spark-declarative-pipelines" id="toc-spark-declarative-pipelines">Spark Declarative Pipelines</a>
+  <ul>
+  <li><a href="#the-problem-with-imperative-pipelines" id="toc-the-problem-with-imperative-pipelines">The problem with imperative pipelines</a></li>
+  <li><a href="#core-abstractions" id="toc-core-abstractions">Core abstractions</a></li>
+  <li><a href="#defining-a-lego-machine-data-pipeline" id="toc-defining-a-lego-machine-data-pipeline">Defining a LEGO machine data pipeline</a></li>
+  <li><a href="#running-the-pipeline" id="toc-running-the-pipeline">Running the pipeline</a></li>
+  <li><a href="#what-sdp-handles-for-you" id="toc-what-sdp-handles-for-you">What SDP handles for you</a></li>
+  <li><a href="#conclusion" id="toc-conclusion">Conclusion</a></li>
+  </ul></li>
+  </ul>
+</nav>
 <section id="spark-declarative-pipelines" class="level1">
 <h1>Spark Declarative Pipelines</h1>
 <p>Apache Spark 4.1 introduced <strong>Spark Declarative Pipelines (SDP)</strong> — a framework built directly into Spark that lets you define what your data pipeline should produce and have the engine figure out how to execute it. It sits on top of Spark SQL, PySpark, and Spark Structured Streaming, and offers first-class APIs in both Python and SQL for both batch and streaming workloads.</p>

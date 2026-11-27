@@ -173,58 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#introduction-why-pulsar" id="toc-introduction-why-pulsar" class="nav-link active" data-scroll-target="#introduction-why-pulsar">Introduction: Why Pulsar?</a></li>
-  <li><a href="#understanding-pulsar-key-terminology" id="toc-understanding-pulsar-key-terminology" class="nav-link" data-scroll-target="#understanding-pulsar-key-terminology">Understanding Pulsar: Key Terminology</a>
-  <ul class="collapse">
-  <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics"><strong>Topics</strong></a></li>
-  <li><a href="#producers" id="toc-producers" class="nav-link" data-scroll-target="#producers"><strong>Producers</strong></a></li>
-  <li><a href="#consumers" id="toc-consumers" class="nav-link" data-scroll-target="#consumers"><strong>Consumers</strong></a></li>
-  <li><a href="#subscriptions" id="toc-subscriptions" class="nav-link" data-scroll-target="#subscriptions"><strong>Subscriptions</strong></a></li>
-  <li><a href="#messages" id="toc-messages" class="nav-link" data-scroll-target="#messages"><strong>Messages</strong></a></li>
-  <li><a href="#brokers" id="toc-brokers" class="nav-link" data-scroll-target="#brokers"><strong>Brokers</strong></a></li>
-  <li><a href="#bookkeeper" id="toc-bookkeeper" class="nav-link" data-scroll-target="#bookkeeper"><strong>BookKeeper</strong></a></li>
-  </ul></li>
-  <li><a href="#the-postman-analogy-understanding-message-flow" id="toc-the-postman-analogy-understanding-message-flow" class="nav-link" data-scroll-target="#the-postman-analogy-understanding-message-flow">The Postman Analogy: Understanding Message Flow</a>
-  <ul class="collapse">
-  <li><a href="#pulsar-the-postal-service" id="toc-pulsar-the-postal-service" class="nav-link" data-scroll-target="#pulsar-the-postal-service"><strong>Pulsar = The Postal Service</strong></a></li>
-  <li><a href="#key-differences-from-traditional-mail" id="toc-key-differences-from-traditional-mail" class="nav-link" data-scroll-target="#key-differences-from-traditional-mail"><strong>Key Differences from Traditional Mail:</strong></a></li>
-  </ul></li>
-  <li><a href="#demo-building-a-real-time-sales-analytics-pipeline" id="toc-demo-building-a-real-time-sales-analytics-pipeline" class="nav-link" data-scroll-target="#demo-building-a-real-time-sales-analytics-pipeline">Demo: Building a Real-Time Sales Analytics Pipeline</a>
-  <ul class="collapse">
-  <li><a href="#architecture-overview" id="toc-architecture-overview" class="nav-link" data-scroll-target="#architecture-overview"><strong>Architecture Overview</strong></a></li>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites"><strong>Prerequisites</strong></a></li>
-  <li><a href="#step-1-set-up-the-infrastructure" id="toc-step-1-set-up-the-infrastructure" class="nav-link" data-scroll-target="#step-1-set-up-the-infrastructure"><strong>Step 1: Set Up the Infrastructure</strong></a></li>
-  <li><a href="#step-2-generate-dummy-sales-data" id="toc-step-2-generate-dummy-sales-data" class="nav-link" data-scroll-target="#step-2-generate-dummy-sales-data"><strong>Step 2: Generate Dummy Sales Data</strong></a></li>
-  <li><a href="#step-3-process-with-pyspark" id="toc-step-3-process-with-pyspark" class="nav-link" data-scroll-target="#step-3-process-with-pyspark"><strong>Step 3: Process with PySpark</strong></a></li>
-  </ul></li>
-  <li><a href="#code-explanation-deep-dive" id="toc-code-explanation-deep-dive" class="nav-link" data-scroll-target="#code-explanation-deep-dive">Code Explanation: Deep Dive</a>
-  <ul class="collapse">
-  <li><a href="#producer-side-generate_sales_data.py" id="toc-producer-side-generate_sales_data.py" class="nav-link" data-scroll-target="#producer-side-generate_sales_data.py"><strong>Producer Side (generate_sales_data.py)</strong></a></li>
-  <li><a href="#consumer-side-analyze_sales.py" id="toc-consumer-side-analyze_sales.py" class="nav-link" data-scroll-target="#consumer-side-analyze_sales.py"><strong>Consumer Side (analyze_sales.py)</strong></a></li>
-  <li><a href="#spark-processing" id="toc-spark-processing" class="nav-link" data-scroll-target="#spark-processing"><strong>Spark Processing</strong></a></li>
-  </ul></li>
-  <li><a href="#monitoring-your-pipeline" id="toc-monitoring-your-pipeline" class="nav-link" data-scroll-target="#monitoring-your-pipeline">Monitoring Your Pipeline</a>
-  <ul class="collapse">
-  <li><a href="#pulsar-express-ui-httplocalhost3000" id="toc-pulsar-express-ui-httplocalhost3000" class="nav-link" data-scroll-target="#pulsar-express-ui-httplocalhost3000"><strong>Pulsar Express UI</strong> (http://localhost:3000)</a></li>
-  <li><a href="#spark-ui-httplocalhost4040" id="toc-spark-ui-httplocalhost4040" class="nav-link" data-scroll-target="#spark-ui-httplocalhost4040"><strong>Spark UI</strong> (http://localhost:4040)</a></li>
-  <li><a href="#admin-api-httplocalhost8080" id="toc-admin-api-httplocalhost8080" class="nav-link" data-scroll-target="#admin-api-httplocalhost8080"><strong>Admin API</strong> (http://localhost:8080)</a></li>
-  </ul></li>
-  <li><a href="#production-perspective-whats-next" id="toc-production-perspective-whats-next" class="nav-link" data-scroll-target="#production-perspective-whats-next">Production Perspective: What’s Next?</a>
-  <ul class="collapse">
-  <li><a href="#scaling-considerations" id="toc-scaling-considerations" class="nav-link" data-scroll-target="#scaling-considerations"><strong>Scaling Considerations</strong></a></li>
-  <li><a href="#reliability-patterns" id="toc-reliability-patterns" class="nav-link" data-scroll-target="#reliability-patterns"><strong>Reliability Patterns</strong></a></li>
-  <li><a href="#real-world-use-cases" id="toc-real-world-use-cases" class="nav-link" data-scroll-target="#real-world-use-cases"><strong>Real-World Use Cases</strong></a></li>
-  </ul></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -270,7 +219,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of Contents</h2>
+   
+  <ul>
+  <li><a href="#introduction-why-pulsar" id="toc-introduction-why-pulsar">Introduction: Why Pulsar?</a></li>
+  <li><a href="#understanding-pulsar-key-terminology" id="toc-understanding-pulsar-key-terminology">Understanding Pulsar: Key Terminology</a></li>
+  <li><a href="#the-postman-analogy-understanding-message-flow" id="toc-the-postman-analogy-understanding-message-flow">The Postman Analogy: Understanding Message Flow</a></li>
+  <li><a href="#demo-building-a-real-time-sales-analytics-pipeline" id="toc-demo-building-a-real-time-sales-analytics-pipeline">Demo: Building a Real-Time Sales Analytics Pipeline</a></li>
+  <li><a href="#code-explanation-deep-dive" id="toc-code-explanation-deep-dive">Code Explanation: Deep Dive</a></li>
+  <li><a href="#monitoring-your-pipeline" id="toc-monitoring-your-pipeline">Monitoring Your Pipeline</a></li>
+  <li><a href="#production-perspective-whats-next" id="toc-production-perspective-whats-next">Production Perspective: What’s Next?</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways">Key Takeaways</a></li>
+  <li><a href="#conclusion" id="toc-conclusion">Conclusion</a></li>
+  <li><a href="#further-reading" id="toc-further-reading">Further Reading</a></li>
+  </ul>
+</nav>
 <section id="introduction-why-pulsar" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-why-pulsar">Introduction: Why Pulsar?</h2>
 <p>Imagine you’re building a modern application that needs to handle thousands of events per second—user clicks, sensor readings, financial transactions, or social media updates. How do you ensure these messages get delivered reliably, in order, and without data loss? Enter <strong>Apache Pulsar</strong>, a cloud-native distributed messaging and streaming platform that’s been quietly powering some of the world’s largest applications.</p>
