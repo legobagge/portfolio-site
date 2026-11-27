@@ -1,0 +1,20 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site-docs",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-c",
+        "import functools, http.server as s\nclass H(s.SimpleHTTPRequestHandler):\n    def end_headers(self):\n        self.send_header('Cache-Control', 'no-store')\n        super().end_headers()\ns.ThreadingHTTPServer(('127.0.0.1', 8765), functools.partial(H, directory='docs')).serve_forever()"
+      ],
+      "port": 8765
+    },
+    {
+      "name": "style-options",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8766", "--directory", "design"],
+      "port": 8766
+    }
+  ]
+}
