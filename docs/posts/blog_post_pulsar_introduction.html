@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Lucas Bagge">
+<meta name="dcterms.date" content="2025-12-10">
+<meta name="description" content="A practical introduction to distributed messaging for developers—understand Pulsar through familiar analogies and build a complete real-time analytics pipeline">
 
-<title>blog_post_pulsar_introduction – AI &amp; Analytics Portfolio</title>
+<title>Getting Started with Apache Pulsar: A Postman’s Guide to Modern Message Streaming – AI &amp; Analytics Portfolio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,11 +74,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -170,72 +173,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#getting-started-with-apache-pulsar-a-postmans-guide-to-modern-message-streaming" id="toc-getting-started-with-apache-pulsar-a-postmans-guide-to-modern-message-streaming" class="nav-link active" data-scroll-target="#getting-started-with-apache-pulsar-a-postmans-guide-to-modern-message-streaming">Getting Started with Apache Pulsar: A Postman’s Guide to Modern Message Streaming</a>
-  <ul class="collapse">
-  <li><a href="#introduction-why-pulsar" id="toc-introduction-why-pulsar" class="nav-link" data-scroll-target="#introduction-why-pulsar">Introduction: Why Pulsar?</a></li>
-  <li><a href="#understanding-pulsar-key-terminology" id="toc-understanding-pulsar-key-terminology" class="nav-link" data-scroll-target="#understanding-pulsar-key-terminology">Understanding Pulsar: Key Terminology</a>
-  <ul class="collapse">
-  <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics"><strong>Topics</strong></a></li>
-  <li><a href="#producers" id="toc-producers" class="nav-link" data-scroll-target="#producers"><strong>Producers</strong></a></li>
-  <li><a href="#consumers" id="toc-consumers" class="nav-link" data-scroll-target="#consumers"><strong>Consumers</strong></a></li>
-  <li><a href="#subscriptions" id="toc-subscriptions" class="nav-link" data-scroll-target="#subscriptions"><strong>Subscriptions</strong></a></li>
-  <li><a href="#messages" id="toc-messages" class="nav-link" data-scroll-target="#messages"><strong>Messages</strong></a></li>
-  <li><a href="#brokers" id="toc-brokers" class="nav-link" data-scroll-target="#brokers"><strong>Brokers</strong></a></li>
-  <li><a href="#bookkeeper" id="toc-bookkeeper" class="nav-link" data-scroll-target="#bookkeeper"><strong>BookKeeper</strong></a></li>
-  </ul></li>
-  <li><a href="#the-postman-analogy-understanding-message-flow" id="toc-the-postman-analogy-understanding-message-flow" class="nav-link" data-scroll-target="#the-postman-analogy-understanding-message-flow">The Postman Analogy: Understanding Message Flow</a>
-  <ul class="collapse">
-  <li><a href="#pulsar-the-postal-service" id="toc-pulsar-the-postal-service" class="nav-link" data-scroll-target="#pulsar-the-postal-service"><strong>Pulsar = The Postal Service</strong></a></li>
-  <li><a href="#key-differences-from-traditional-mail" id="toc-key-differences-from-traditional-mail" class="nav-link" data-scroll-target="#key-differences-from-traditional-mail"><strong>Key Differences from Traditional Mail:</strong></a></li>
-  </ul></li>
-  <li><a href="#demo-building-a-real-time-sales-analytics-pipeline" id="toc-demo-building-a-real-time-sales-analytics-pipeline" class="nav-link" data-scroll-target="#demo-building-a-real-time-sales-analytics-pipeline">Demo: Building a Real-Time Sales Analytics Pipeline</a>
-  <ul class="collapse">
-  <li><a href="#architecture-overview" id="toc-architecture-overview" class="nav-link" data-scroll-target="#architecture-overview"><strong>Architecture Overview</strong></a></li>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites"><strong>Prerequisites</strong></a></li>
-  <li><a href="#step-1-set-up-the-infrastructure" id="toc-step-1-set-up-the-infrastructure" class="nav-link" data-scroll-target="#step-1-set-up-the-infrastructure"><strong>Step 1: Set Up the Infrastructure</strong></a></li>
-  <li><a href="#step-2-generate-dummy-sales-data" id="toc-step-2-generate-dummy-sales-data" class="nav-link" data-scroll-target="#step-2-generate-dummy-sales-data"><strong>Step 2: Generate Dummy Sales Data</strong></a></li>
-  <li><a href="#step-3-process-with-pyspark" id="toc-step-3-process-with-pyspark" class="nav-link" data-scroll-target="#step-3-process-with-pyspark"><strong>Step 3: Process with PySpark</strong></a></li>
-  </ul></li>
-  <li><a href="#code-explanation-deep-dive" id="toc-code-explanation-deep-dive" class="nav-link" data-scroll-target="#code-explanation-deep-dive">Code Explanation: Deep Dive</a>
-  <ul class="collapse">
-  <li><a href="#producer-side-generate_sales_data.py" id="toc-producer-side-generate_sales_data.py" class="nav-link" data-scroll-target="#producer-side-generate_sales_data.py"><strong>Producer Side (generate_sales_data.py)</strong></a></li>
-  <li><a href="#consumer-side-analyze_sales.py" id="toc-consumer-side-analyze_sales.py" class="nav-link" data-scroll-target="#consumer-side-analyze_sales.py"><strong>Consumer Side (analyze_sales.py)</strong></a></li>
-  <li><a href="#spark-processing" id="toc-spark-processing" class="nav-link" data-scroll-target="#spark-processing"><strong>Spark Processing</strong></a></li>
-  </ul></li>
-  <li><a href="#monitoring-your-pipeline" id="toc-monitoring-your-pipeline" class="nav-link" data-scroll-target="#monitoring-your-pipeline">Monitoring Your Pipeline</a>
-  <ul class="collapse">
-  <li><a href="#pulsar-express-ui-httplocalhost3000" id="toc-pulsar-express-ui-httplocalhost3000" class="nav-link" data-scroll-target="#pulsar-express-ui-httplocalhost3000"><strong>Pulsar Express UI</strong> (http://localhost:3000)</a></li>
-  <li><a href="#spark-ui-httplocalhost4040" id="toc-spark-ui-httplocalhost4040" class="nav-link" data-scroll-target="#spark-ui-httplocalhost4040"><strong>Spark UI</strong> (http://localhost:4040)</a></li>
-  <li><a href="#admin-api-httplocalhost8080" id="toc-admin-api-httplocalhost8080" class="nav-link" data-scroll-target="#admin-api-httplocalhost8080"><strong>Admin API</strong> (http://localhost:8080)</a></li>
-  </ul></li>
-  <li><a href="#production-perspective-whats-next" id="toc-production-perspective-whats-next" class="nav-link" data-scroll-target="#production-perspective-whats-next">Production Perspective: What’s Next?</a>
-  <ul class="collapse">
-  <li><a href="#scaling-considerations" id="toc-scaling-considerations" class="nav-link" data-scroll-target="#scaling-considerations"><strong>Scaling Considerations</strong></a></li>
-  <li><a href="#reliability-patterns" id="toc-reliability-patterns" class="nav-link" data-scroll-target="#reliability-patterns"><strong>Reliability Patterns</strong></a></li>
-  <li><a href="#real-world-use-cases" id="toc-real-world-use-cases" class="nav-link" data-scroll-target="#real-world-use-cases"><strong>Real-World Use Cases</strong></a></li>
-  </ul></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Getting Started with Apache Pulsar: A Postman’s Guide to Modern Message Streaming</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Apache Pulsar</div>
+    <div class="quarto-category">Streaming</div>
+    <div class="quarto-category">Data Engineering</div>
+    <div class="quarto-category">Tutorial</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A practical introduction to distributed messaging for developers—understand Pulsar through familiar analogies and build a complete real-time analytics pipeline
+  </div>
+</div>
 
 
+<div class="quarto-title-meta">
 
-<section id="getting-started-with-apache-pulsar-a-postmans-guide-to-modern-message-streaming" class="level1">
-<h1>Getting Started with Apache Pulsar: A Postman’s Guide to Modern Message Streaming</h1>
-<p><em>A practical introduction to distributed messaging for developers</em></p>
-<hr>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Lucas Bagge </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 10, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of Contents</h2>
+   
+  <ul>
+  <li><a href="#introduction-why-pulsar" id="toc-introduction-why-pulsar">Introduction: Why Pulsar?</a></li>
+  <li><a href="#understanding-pulsar-key-terminology" id="toc-understanding-pulsar-key-terminology">Understanding Pulsar: Key Terminology</a></li>
+  <li><a href="#the-postman-analogy-understanding-message-flow" id="toc-the-postman-analogy-understanding-message-flow">The Postman Analogy: Understanding Message Flow</a></li>
+  <li><a href="#demo-building-a-real-time-sales-analytics-pipeline" id="toc-demo-building-a-real-time-sales-analytics-pipeline">Demo: Building a Real-Time Sales Analytics Pipeline</a></li>
+  <li><a href="#code-explanation-deep-dive" id="toc-code-explanation-deep-dive">Code Explanation: Deep Dive</a></li>
+  <li><a href="#monitoring-your-pipeline" id="toc-monitoring-your-pipeline">Monitoring Your Pipeline</a></li>
+  <li><a href="#production-perspective-whats-next" id="toc-production-perspective-whats-next">Production Perspective: What’s Next?</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways">Key Takeaways</a></li>
+  <li><a href="#conclusion" id="toc-conclusion">Conclusion</a></li>
+  <li><a href="#further-reading" id="toc-further-reading">Further Reading</a></li>
+  </ul>
+</nav>
 <section id="introduction-why-pulsar" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-why-pulsar">Introduction: Why Pulsar?</h2>
 <p>Imagine you’re building a modern application that needs to handle thousands of events per second—user clicks, sensor readings, financial transactions, or social media updates. How do you ensure these messages get delivered reliably, in order, and without data loss? Enter <strong>Apache Pulsar</strong>, a cloud-native distributed messaging and streaming platform that’s been quietly powering some of the world’s largest applications.</p>
@@ -695,9 +694,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="key-takeaways" class="level2">
 <h2 class="anchored" data-anchor-id="key-takeaways">Key Takeaways</h2>
-<p><strong>Why Choose Pulsar?</strong> 1. <strong>Unified messaging</strong>: Queueing + streaming in one platform 2. <strong>Cloud-native</strong>: Built for Kubernetes and multi-tenant deployments 3. <strong>Geo-replication</strong>: Built-in cross-datacenter replication 4. <strong>Storage separation</strong>: Independent scaling of compute and storage 5. <strong>Multi-language</strong>: Clients for Java, Python, Go, C++, Node.js, and more</p>
-<p><strong>When to Use Pulsar:</strong> - ✅ Need both pub-sub and queuing semantics - ✅ Require strong ordering guarantees - ✅ Multi-tenancy is important - ✅ Planning for global distribution - ✅ Need durability with low latency</p>
-<p><strong>When to Consider Alternatives:</strong> - If you only need simple pub-sub → NATS - If you need complex stream processing → Kafka with Kafka Streams - If you want managed service → AWS Kinesis, Google Pub/Sub</p>
+<p><strong>Why Choose Pulsar?</strong></p>
+<ol type="1">
+<li><strong>Unified messaging</strong>: Queueing + streaming in one platform</li>
+<li><strong>Cloud-native</strong>: Built for Kubernetes and multi-tenant deployments</li>
+<li><strong>Geo-replication</strong>: Built-in cross-datacenter replication</li>
+<li><strong>Storage separation</strong>: Independent scaling of compute and storage</li>
+<li><strong>Multi-language</strong>: Clients for Java, Python, Go, C++, Node.js, and more</li>
+</ol>
+<p><strong>When to Use Pulsar:</strong></p>
+<ul>
+<li>✅ Need both pub-sub and queuing semantics</li>
+<li>✅ Require strong ordering guarantees</li>
+<li>✅ Multi-tenancy is important</li>
+<li>✅ Planning for global distribution</li>
+<li>✅ Need durability with low latency</li>
+</ul>
+<p><strong>When to Consider Alternatives:</strong></p>
+<ul>
+<li>If you only need simple pub-sub → NATS</li>
+<li>If you need complex stream processing → Kafka with Kafka Streams</li>
+<li>If you want managed service → AWS Kinesis, Google Pub/Sub</li>
+</ul>
 <hr>
 </section>
 <section id="conclusion" class="level2">
@@ -708,21 +726,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Ready to dive deeper? Check out the <a href="https://pulsar.apache.org/docs/">official Pulsar documentation</a> and join the vibrant community!</p>
 <hr>
 </section>
-<section id="additional-resources" class="level2">
-<h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
 <ul>
-<li><strong>Official Docs</strong>: https://pulsar.apache.org/docs/</li>
-<li><strong>GitHub</strong>: https://github.com/apache/pulsar</li>
-<li><strong>Slack Community</strong>: https://pulsar.apache.org/community/</li>
-<li><strong>Pulsar Summit</strong>: Annual conference with talks and workshops</li>
-<li><strong>This Demo on GitHub</strong>: [Link to your repo]</li>
+<li><a href="https://pulsar.apache.org/docs/">Apache Pulsar Documentation</a></li>
+<li><a href="https://github.com/apache/pulsar">Pulsar GitHub Repository</a></li>
+<li><a href="https://pulsar.apache.org/community/">Pulsar Community Slack</a></li>
+<li><a href="https://pulsar.apache.org/community/#events">Pulsar Summit</a></li>
 </ul>
-<p><strong>Try it yourself:</strong> All code from this tutorial is available at [your-github-link]. Clone, experiment, and build something amazing!</p>
+<p><strong>Try it yourself:</strong> All code from this tutorial is available in the demo files above. Clone, experiment, and build something amazing!</p>
 <hr>
 <p><em>Have questions or built something cool with Pulsar? Share your experience in the comments below!</em></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -862,7 +878,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = false;
+  const darkModeDefault = true;
   let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="agent.run(task) fans out into four workloads: reasoning, agent loop, action and state">
+  <style>
+    .label { font-family: Comfortaa, 'Trebuchet MS', 'Segoe UI', sans-serif; font-weight: 600; fill: #ffffff; }
+    .sub   { font-family: Comfortaa, 'Trebuchet MS', 'Segoe UI', sans-serif; fill: #aaa39a; }
+    .mono  { font-family: 'IBM Plex Mono', Consolas, 'Courier New', monospace; }
+  </style>
+
+  <rect width="1200" height="630" fill="#24221f"/>
+
+  <!-- code window card -->
+  <rect x="380" y="56" width="440" height="122" rx="14" fill="#1b1a18" stroke="#3d3934" stroke-width="2"/>
+  <circle cx="410" cy="84" r="7" fill="#e58a6f"/>
+  <circle cx="432" cy="84" r="7" fill="#8fb8de"/>
+  <circle cx="454" cy="84" r="7" fill="#b5d99c"/>
+  <text x="410" y="146" class="mono" font-size="34">
+    <tspan fill="#f3efe8">agent.</tspan><tspan fill="#8fb8de">run</tspan><tspan fill="#f3efe8">(task)</tspan>
+  </text>
+
+  <!-- fan-out connector -->
+  <g stroke="#aaa39a" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <line x1="600" y1="178" x2="600" y2="236"/>
+    <line x1="180" y1="236" x2="1020" y2="236"/>
+    <line x1="180" y1="236" x2="180" y2="270"/>
+    <line x1="460" y1="236" x2="460" y2="270"/>
+    <line x1="740" y1="236" x2="740" y2="270"/>
+    <line x1="1020" y1="236" x2="1020" y2="270"/>
+  </g>
+  <g fill="#aaa39a">
+    <path d="M172 266 L188 266 L180 280 Z"/>
+    <path d="M452 266 L468 266 L460 280 Z"/>
+    <path d="M732 266 L748 266 L740 280 Z"/>
+    <path d="M1012 266 L1028 266 L1020 280 Z"/>
+  </g>
+
+  <!-- four workloads -->
+  <rect x="70"  y="290" width="220" height="150" rx="16" fill="none" stroke="#e58a6f" stroke-width="3"/>
+  <rect x="350" y="290" width="220" height="150" rx="16" fill="none" stroke="#8fb8de" stroke-width="3"/>
+  <rect x="630" y="290" width="220" height="150" rx="16" fill="none" stroke="#d9c38c" stroke-width="3"/>
+  <rect x="910" y="290" width="220" height="150" rx="16" fill="none" stroke="#8fb8de" stroke-width="3" stroke-dasharray="10 8"/>
+
+  <text x="180"  y="356" text-anchor="middle" class="label" font-size="30">Reasoning</text>
+  <text x="460"  y="356" text-anchor="middle" class="label" font-size="30">Agent loop</text>
+  <text x="740"  y="356" text-anchor="middle" class="label" font-size="30">Action</text>
+  <text x="1020" y="356" text-anchor="middle" class="label" font-size="30">State</text>
+
+  <text x="180"  y="398" text-anchor="middle" class="sub" font-size="22">GPU · vLLM</text>
+  <text x="460"  y="398" text-anchor="middle" class="sub" font-size="22">CPU · stateless</text>
+  <text x="740"  y="398" text-anchor="middle" class="sub" font-size="22">sandboxed tools</text>
+  <text x="1020" y="398" text-anchor="middle" class="sub" font-size="22">Postgres / Redis</text>
+
+  <!-- small capacity bars, one per workload -->
+  <rect x="70"  y="480" width="220" height="14" rx="7" fill="#3d3934"/>
+  <rect x="70"  y="480" width="200" height="14" rx="7" fill="#e58a6f"/>
+  <rect x="350" y="480" width="220" height="14" rx="7" fill="#3d3934"/>
+  <rect x="350" y="480" width="40"  height="14" rx="7" fill="#8fb8de"/>
+  <rect x="630" y="480" width="220" height="14" rx="7" fill="#3d3934"/>
+  <rect x="630" y="480" width="110" height="14" rx="7" fill="#d9c38c"/>
+  <rect x="910" y="480" width="220" height="14" rx="7" fill="#3d3934"/>
+  <rect x="910" y="480" width="70"  height="14" rx="7" fill="#8fb8de"/>
+
+  <text x="600" y="572" text-anchor="middle" class="sub" font-size="26">one agent · four workloads · four scaling signals</text>
+</svg>

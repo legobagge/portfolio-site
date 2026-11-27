@@ -74,11 +74,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -173,43 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#why-i-stopped-using-spark.read-for-data-ingestion" id="toc-why-i-stopped-using-spark.read-for-data-ingestion" class="nav-link active" data-scroll-target="#why-i-stopped-using-spark.read-for-data-ingestion">Why I Stopped Using spark.read() for Data Ingestion</a></li>
-  <li><a href="#what-is-autoloader-really" id="toc-what-is-autoloader-really" class="nav-link" data-scroll-target="#what-is-autoloader-really">What is Autoloader, Really?</a></li>
-  <li><a href="#the-problem-daily-full-dumps" id="toc-the-problem-daily-full-dumps" class="nav-link" data-scroll-target="#the-problem-daily-full-dumps">The Problem: Daily Full Dumps</a>
-  <ul class="collapse">
-  <li><a href="#the-old-way-spark.read" id="toc-the-old-way-spark.read" class="nav-link" data-scroll-target="#the-old-way-spark.read">The Old Way (spark.read)</a></li>
-  </ul></li>
-  <li><a href="#the-solution-autoloader-bronze-layer" id="toc-the-solution-autoloader-bronze-layer" class="nav-link" data-scroll-target="#the-solution-autoloader-bronze-layer">The Solution: Autoloader + Bronze Layer</a>
-  <ul class="collapse">
-  <li><a href="#step-1-autoloader-bronze-append-everything" id="toc-step-1-autoloader-bronze-append-everything" class="nav-link" data-scroll-target="#step-1-autoloader-bronze-append-everything">Step 1: Autoloader → Bronze (Append Everything)</a></li>
-  </ul></li>
-  <li><a href="#what-makes-this-smart" id="toc-what-makes-this-smart" class="nav-link" data-scroll-target="#what-makes-this-smart">What Makes This Smart?</a>
-  <ul class="collapse">
-  <li><a href="#incremental-processing-no-duplicates" id="toc-incremental-processing-no-duplicates" class="nav-link" data-scroll-target="#incremental-processing-no-duplicates">1. Incremental Processing (No Duplicates)</a></li>
-  <li><a href="#schema-evolution-future-proof" id="toc-schema-evolution-future-proof" class="nav-link" data-scroll-target="#schema-evolution-future-proof">2. Schema Evolution (Future-Proof)</a></li>
-  <li><a href="#file-date-tracking" id="toc-file-date-tracking" class="nav-link" data-scroll-target="#file-date-tracking">3. File Date Tracking</a></li>
-  <li><a href="#fault-tolerance" id="toc-fault-tolerance" class="nav-link" data-scroll-target="#fault-tolerance">4. Fault Tolerance</a></li>
-  </ul></li>
-  <li><a href="#the-bronze-layer-philosophy" id="toc-the-bronze-layer-philosophy" class="nav-link" data-scroll-target="#the-bronze-layer-philosophy">The Bronze Layer Philosophy</a></li>
-  <li><a href="#what-about-performance" id="toc-what-about-performance" class="nav-link" data-scroll-target="#what-about-performance">What About Performance?</a></li>
-  <li><a href="#the-trigger-mode-batch-vs.-streaming" id="toc-the-trigger-mode-batch-vs.-streaming" class="nav-link" data-scroll-target="#the-trigger-mode-batch-vs.-streaming">The Trigger Mode: Batch vs.&nbsp;Streaming</a></li>
-  <li><a href="#common-gotchas-i-ran-into" id="toc-common-gotchas-i-ran-into" class="nav-link" data-scroll-target="#common-gotchas-i-ran-into">Common Gotchas I Ran Into</a>
-  <ul class="collapse">
-  <li><a href="#checkpoint-path-must-be-writable" id="toc-checkpoint-path-must-be-writable" class="nav-link" data-scroll-target="#checkpoint-path-must-be-writable">1. Checkpoint Path Must Be Writable</a></li>
-  <li><a href="#json-array-format" id="toc-json-array-format" class="nav-link" data-scroll-target="#json-array-format">2. JSON Array Format</a></li>
-  <li><a href="#schema-inference-can-fail-on-empty-directories" id="toc-schema-inference-can-fail-on-empty-directories" class="nav-link" data-scroll-target="#schema-inference-can-fail-on-empty-directories">3. Schema Inference Can Fail on Empty Directories</a></li>
-  </ul></li>
-  <li><a href="#why-this-matters-for-the-medallion-architecture" id="toc-why-this-matters-for-the-medallion-architecture" class="nav-link" data-scroll-target="#why-this-matters-for-the-medallion-architecture">Why This Matters for the Medallion Architecture</a></li>
-  <li><a href="#the-bottom-line" id="toc-the-bottom-line" class="nav-link" data-scroll-target="#the-bottom-line">The Bottom Line</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -255,7 +219,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of Contents</h2>
+   
+  <ul>
+  <li><a href="#why-i-stopped-using-spark.read-for-data-ingestion" id="toc-why-i-stopped-using-spark.read-for-data-ingestion">Why I Stopped Using spark.read() for Data Ingestion</a></li>
+  <li><a href="#what-is-autoloader-really" id="toc-what-is-autoloader-really">What is Autoloader, Really?</a></li>
+  <li><a href="#the-problem-daily-full-dumps" id="toc-the-problem-daily-full-dumps">The Problem: Daily Full Dumps</a></li>
+  <li><a href="#the-solution-autoloader-bronze-layer" id="toc-the-solution-autoloader-bronze-layer">The Solution: Autoloader + Bronze Layer</a></li>
+  <li><a href="#what-makes-this-smart" id="toc-what-makes-this-smart">What Makes This Smart?</a></li>
+  <li><a href="#the-bronze-layer-philosophy" id="toc-the-bronze-layer-philosophy">The Bronze Layer Philosophy</a></li>
+  <li><a href="#what-about-performance" id="toc-what-about-performance">What About Performance?</a></li>
+  <li><a href="#the-trigger-mode-batch-vs.-streaming" id="toc-the-trigger-mode-batch-vs.-streaming">The Trigger Mode: Batch vs.&nbsp;Streaming</a></li>
+  <li><a href="#common-gotchas-i-ran-into" id="toc-common-gotchas-i-ran-into">Common Gotchas I Ran Into</a></li>
+  <li><a href="#why-this-matters-for-the-medallion-architecture" id="toc-why-this-matters-for-the-medallion-architecture">Why This Matters for the Medallion Architecture</a></li>
+  <li><a href="#the-bottom-line" id="toc-the-bottom-line">The Bottom Line</a></li>
+  <li><a href="#next-steps" id="toc-next-steps">Next Steps</a></li>
+  <li><a href="#further-reading" id="toc-further-reading">Further Reading</a></li>
+  </ul>
+</nav>
 <section id="why-i-stopped-using-spark.read-for-data-ingestion" class="level2">
 <h2 class="anchored" data-anchor-id="why-i-stopped-using-spark.read-for-data-ingestion">Why I Stopped Using spark.read() for Data Ingestion</h2>
 <p>Let me tell you about a problem I ran into recently. We had daily JSON files dropping into Azure Blob Storage from an Oracle database—full dumps arriving every morning at 2 AM. Simple enough, right? Just read the files with <code>spark.read.json()</code> and load them into a Delta table.</p>
@@ -281,10 +263,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="the-problem-daily-full-dumps" class="level2">
 <h2 class="anchored" data-anchor-id="the-problem-daily-full-dumps">The Problem: Daily Full Dumps</h2>
 <p>Here’s my specific use case: We get daily snapshots from an Oracle database exported as JSON files, like this:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">orders-2025-11-26.json</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">orders-2025-11-27.json</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">orders-2025-11-28.json</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>orders-2025-11-26.json
+orders-2025-11-27.json
+orders-2025-11-28.json
+...</code></pre>
 <p>Each file is a <strong>complete dump</strong> of the orders table—about 25MB per file. New file arrives every morning at 2 AM.</p>
 <section id="the-old-way-spark.read" class="level3">
 <h3 class="anchored" data-anchor-id="the-old-way-spark.read">The Old Way (spark.read)</h3>
@@ -405,11 +387,11 @@ Day 3: Check checkpoint → Skip both old files,
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>            F.to_date(</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                F.regexp_extract(</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                    F.col(<span class="st">"_source_file"</span>), </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                    <span class="vs">r"orders-(\d</span><span class="sc">{4}</span><span class="vs">-\d</span><span class="sc">{2}</span><span class="vs">-\d</span><span class="sc">{2}</span><span class="vs">)\.json"</span>, </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                    <span class="vs">r"table-(\d</span><span class="sc">{4}</span><span class="vs">-\d</span><span class="sc">{2}</span><span class="vs">-\d</span><span class="sc">{2}</span><span class="vs">)\.json"</span>, </span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                )</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>            ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>I’m extracting the date from the filename (<code>orders-2025-11-26.json</code> → <code>2025-11-26</code>). This tells me <strong>when the Oracle snapshot was taken</strong>, not when I ingested it.</p>
+<p>I’m extracting the date from the filename (<code>table-2025-11-26.json</code> → <code>2025-11-26</code>). This tells me <strong>when the Oracle snapshot was taken</strong>, not when I ingested it.</p>
 <p>Why does this matter? Because if my ingestion job runs late (network issue, cluster delay, etc.), I still know the <strong>source date</strong> of the data. This becomes crucial in the Silver layer for deduplication.</p>
 </section>
 <section id="fault-tolerance" class="level3">
@@ -692,7 +674,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = false;
+  const darkModeDefault = true;
   let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {

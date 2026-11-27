@@ -2,6 +2,8 @@
   {
     "listing": "/posts/index.html",
     "items": [
+      "/posts/sdp.html",
+      "/posts/agent-architecture-four-workloads.html",
       "/posts/blog_post_pulsar_introduction.html",
       "/posts/google-antigravity-guide.html",
       "/posts/autoloader-databricks-blog.html",

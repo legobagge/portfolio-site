@@ -8,7 +8,7 @@ page-layout: full
 
 # AI, Data &amp; Analytics Engineering {.hero-title}
 
-Exploring the intersection of machine learning, Bayesian inference, and econometric modeling {.hero-subtitle}
+Exploring the intersection of machine learning, Bayesian inference, and econometric modeling
 
 ::: {.hero-actions}
 [View Projects](projects/index.qmd){.btn .btn-primary .hero-btn-primary}
