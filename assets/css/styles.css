@@ -4,14 +4,14 @@
    Palette: warm charcoal / paper with a coral-rust accent, a muted blue and a sand tone.
    Colors follow Quarto's light/dark toggle via body.quarto-light / body.quarto-dark. */
 
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import 'https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap';
 
-:root { --mermaid-font-family: Comfortaa, 'Trebuchet MS', sans-serif; }
+:root { --mermaid-font-family: comfortaa, 'Trebuchet MS', sans-serif; }
 
 body.quarto-dark {
   --bg: #24221f;
   --band: #1b1a18;
-  --head: #ffffff;
+  --head: #fff;
   --fg: #e4dfd8;
   --muted: #aaa39a;
   --border: #3d3934;
@@ -33,10 +33,10 @@ body.quarto-light {
   --accent: #a3361f;   /* rust */
   --accent-2: #1f5f8b; /* blue */
   --accent-3: #8a6d1f; /* sand */
-  --on-accent: #ffffff;
+  --on-accent: #fff;
 }
 
-/* Code blocks are dark in both modes */
+/* Base. The --code-* colors keep code blocks dark in both modes. */
 body {
   --code-bg: #1b1a18;
   --code-fg: #f3efe8;
@@ -46,10 +46,7 @@ body {
   --code-fn: #8fb8de;
   --code-num: #c9a7e8;
   --code-type: #d9c38c;
-}
 
-/* Base */
-body {
   font-family: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-size: 1.125rem;
   line-height: 1.65;
@@ -61,7 +58,7 @@ p, li, td, dd { color: var(--fg); }
 
 h1, h2, h3, h4, h5, h6,
 .title, .quarto-title .title {
-  font-family: 'Comfortaa', 'Trebuchet MS', sans-serif;
+  font-family: Comfortaa, 'Trebuchet MS', sans-serif;
   font-weight: 600;
   letter-spacing: 0;
   color: var(--head) !important;
@@ -140,7 +137,7 @@ img { border-radius: 8px; }
 
 .navbar-brand,
 .navbar-title {
-  font-family: 'Comfortaa', 'Trebuchet MS', sans-serif;
+  font-family: Comfortaa, 'Trebuchet MS', sans-serif;
   font-weight: 600;
   font-size: 1.3rem;
   color: var(--accent-2) !important;
@@ -151,6 +148,7 @@ img { border-radius: 8px; }
 .navbar .quarto-color-scheme-toggle .bi { color: var(--fg) !important; }
 
 .navbar .nav-link { font-weight: 500; }
+
 .navbar .nav-link:hover,
 .navbar .nav-link.active { color: var(--accent) !important; }
 
@@ -167,7 +165,7 @@ img { border-radius: 8px; }
 main #TOC { display: block !important; margin-bottom: 2rem; }
 
 #toc-title {
-  font-family: 'Comfortaa', 'Trebuchet MS', sans-serif;
+  font-family: Comfortaa, 'Trebuchet MS', sans-serif;
   font-size: 1.9rem;
   font-weight: 600;
   color: var(--head) !important;
@@ -232,28 +230,35 @@ div.sourceCode pre.sourceCode {
 pre code.sourceCode span.kw,
 pre code.sourceCode span.cf,
 pre code.sourceCode span.im { color: var(--code-kw) !important; }
+
 pre code.sourceCode span.st,
 pre code.sourceCode span.vs,
 pre code.sourceCode span.ss,
 pre code.sourceCode span.ch,
 pre code.sourceCode span.sc { color: var(--code-str) !important; }
+
 pre code.sourceCode span.fu,
 pre code.sourceCode span.pp { color: var(--code-fn) !important; }
+
 pre code.sourceCode span.op,
 pre code.sourceCode span.ot,
 pre code.sourceCode span.va,
 pre code.sourceCode span.at,
 pre code.sourceCode span.ex { color: var(--code-fg) !important; }
+
 pre code.sourceCode span.co,
 pre code.sourceCode span.do,
 pre code.sourceCode span.an,
 pre code.sourceCode span.in,
 pre code.sourceCode span.wa { color: var(--code-com) !important; font-style: normal; }
+
 pre code.sourceCode span.cn,
 pre code.sourceCode span.bu,
 pre code.sourceCode span.dt { color: var(--code-type) !important; }
+
 pre code.sourceCode span.dv,
 pre code.sourceCode span.fl { color: var(--code-num) !important; }
+
 pre code.sourceCode span.er,
 pre code.sourceCode span.al { color: var(--code-kw) !important; }
 
@@ -318,6 +323,7 @@ svg.mermaid-js .labelBkg { background: var(--bg) !important; fill: var(--bg) !im
 
 /* Tables */
 table { width: 100%; margin: 1.5rem 0; border-collapse: collapse; color: var(--fg); }
+
 th {
   font-weight: 600;
   color: var(--head) !important;
@@ -394,7 +400,7 @@ blockquote p:last-child { margin-bottom: 0; }
 .hero-content > p:last-child { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
 
 /* Buttons: soft rounded */
-.btn { border-radius: 8px; font-weight: 500; text-decoration: none; padding: 0.6rem 1.4rem; font-family: 'Comfortaa', 'Trebuchet MS', sans-serif; }
+.btn { border-radius: 8px; font-weight: 500; text-decoration: none; padding: 0.6rem 1.4rem; font-family: Comfortaa, 'Trebuchet MS', sans-serif; }
 
 .btn-primary,
 .btn-primary:focus {
@@ -478,7 +484,7 @@ blockquote p:last-child { margin-bottom: 0; }
 .quarto-listing .listing-title,
 .quarto-listing .listing-title a,
 .quarto-post .listing-title a {
-  font-family: 'Comfortaa', 'Trebuchet MS', sans-serif;
+  font-family: Comfortaa, 'Trebuchet MS', sans-serif;
   color: var(--head) !important;
   font-size: 1.45rem !important;
   font-weight: 600;
